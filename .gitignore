@@ -55,4 +55,5 @@ Mkfile.old
 dkms.conf
 
 # Ressources folder
+vm_champs/*
 vm_champs/*/*
