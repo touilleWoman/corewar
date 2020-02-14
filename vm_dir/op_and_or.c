@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 21:55:43 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 14:40:31 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:40:47 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 /*
 **	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
 **		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0},
-** 
-**  p1 & p2 -> p3, the parameter 3 is always a register. This operation 
+**
+**  p1 & p2 -> p3, the parameter 3 is always a register. This operation
 **  modifies the carry. and r2, %0,r3 stores r2 & 0 in r3.
 **
 **
@@ -32,7 +32,6 @@ void				op_and(t_vm *vm, t_cursor *c)
 	uint32_t		value2;
 	uint32_t		value;
 
-	printf("and\n");
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
 		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
@@ -45,10 +44,10 @@ void				op_and(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		printf("and SUCESS\n");
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "and", &prm);
 	}
 	c->pc = prm.newpc;
-	printf("pc!!!%d\n", c->pc);
 }
 
 
@@ -64,7 +63,6 @@ void		op_or(t_vm *vm, t_cursor *c)
 	uint32_t			value2;
 	uint32_t			value;
 
-	printf("or\n");
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
 		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
@@ -77,7 +75,8 @@ void		op_or(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		printf("or SUCESS\n");
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "or", &prm);
 	}
 	c->pc = prm.newpc;
 }
@@ -95,7 +94,6 @@ void		op_xor(t_vm *vm, t_cursor *c)
 	uint32_t			value2;
 	uint32_t			value;
 
-	printf("xor\n");
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
 		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
@@ -108,7 +106,8 @@ void		op_xor(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		printf("xor SUCESS\n");
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "xor", &prm);
 	}
 	c->pc = prm.newpc;
 }

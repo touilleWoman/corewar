@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:41:19 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 13:02:52 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:37:42 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		op_ld(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		print(c->c_id, "ld", &prm);
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "ld", &prm);
 	}
 	c->pc = prm.newpc;
 }
@@ -58,7 +59,8 @@ void		op_lld(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		print(c->c_id, "lld", &prm);
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "lld", &prm);
 	}
 	c->pc = prm.newpc;
 }
@@ -90,7 +92,8 @@ void		op_ldi(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		print(c->c_id, "lli", &prm);
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "lli", &prm);
 	}
 	c->pc = prm.newpc;
 }
@@ -117,7 +120,8 @@ void		op_lldi(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		print(c->c_id, "lldi", &prm);
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "lldi", &prm);
 	}
 	c->pc = prm.newpc;
 }

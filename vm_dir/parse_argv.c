@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:15:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 14:08:17 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:34:12 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_bool			get_dump_value(int argc, char const **argv, int *i, t_vm *vm)
 {
 	int		dump;
 
+	vm->flags = vm->flags | D_FLAG;
 	if (*i + 1 < argc && is_digit_string(argv[*i + 1]))
 	{
 		dump = ft_atoi(argv[*i + 1]);
@@ -49,6 +50,7 @@ t_bool			get_n_value(char const **argv, int *i, t_vm *vm, t_id_tab id_tab[MAX_PL
 {
 	int		n_value;
 
+	vm->flags = vm->flags | N_FLAG;
 	if (is_digit_string(argv[*i + 1]) == FALSE || is_valid_filename(argv[*i + 2]) == FALSE)
 	{
 		ft_putendl_fd("ERROR: wrong player id or wrong file name\n", 2);
@@ -79,12 +81,19 @@ static void		check_max_player_nb(int player_nb, t_bool *ok)
 }
 
 
-t_bool			is_valid_flag(char *s)
+static void		activate_v_flag(t_vm *vm, int *i)
 {
-	return (ft_strcmp(argv[i], "-dump") == 0 || ft_strcmp(argv[i], "-n") == 0
-		|| ft_strcmp(argv[i], "-v"));
+	vm->flags = vm->flags | V_FLAG;
+	(*i)++;
 }
 
+static void		fill_id_tab(t_vm *vm, int *i, char const *argv, t_id_tab id_tab[MAX_PLAYERS])
+{
+	id_tab[vm->player_nb].argv = argv;
+	id_tab[vm->player_nb].id = 0;
+	(*i)++;
+	vm->player_nb++;
+}
 
 /*
 ** go through argv to :
@@ -105,19 +114,11 @@ t_bool			parse_argv(t_vm *vm, int argc, char const **argv,
 		if (ft_strcmp(argv[i], "-dump") == 0)
 			ok = get_dump_value(argc, argv, &i, vm);
 		else if (ft_strcmp(argv[i], "-v") == 0)
-		{
-			vm->flags = vm->flags | V_FLAG;
-			i++;
-		}
+			activate_v_flag(vm, &i);
 		else if (ft_strcmp(argv[i], "-n") == 0 && i + 2 < argc)
 			ok = get_n_value(argv, &i, vm, id_tab);
 		else if (is_valid_filename(argv[i]))
-		{
-			id_tab[vm->player_nb].argv = argv[i];
-			id_tab[vm->player_nb].id = 0;
-			i++;
-			vm->player_nb++;
-		}
+			fill_id_tab(vm, &i, argv[i], id_tab);
 		else
 			ok = FALSE;
 		check_max_player_nb(vm->player_nb, &ok);

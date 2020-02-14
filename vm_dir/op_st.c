@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 12:52:46 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:39:35 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ void				op_st(t_vm *vm, t_cursor *c)
 		{
 			address = prm.p2 % IDX_MOD + c->pc;
 			write_4_bytes(vm->arena + pos(address), value);
-			ft_printf("P    %d | st r%d %d\n", c->c_id, prm.p1, prm.p2 % IDX_MOD);
+			if (vm->flags & V_FLAG)
+				ft_printf("P    %d | st r%d %d\n", c->c_id, prm.p1, prm.p2 % IDX_MOD);
 		}
 		else
 		{
 			c->regs[prm.p2] = value;
-			ft_printf("P    %d | st r%d r%d\n", c->c_id, prm.p1, prm.p2);
+			if (vm->flags & V_FLAG)
+				ft_printf("P    %d | st r%d r%d\n", c->c_id, prm.p1, prm.p2);
 		}
 
 	}
@@ -78,7 +80,8 @@ void				op_sti(t_vm *vm, t_cursor *c)
 		address = c->pc + (prm.p2 + prm.p3) % IDX_MOD;
 		value = c->regs[prm.p1];
 		write_4_bytes(vm->arena + pos(address), value);
-		print(c->c_id, "sti", &prm);
+		if (vm->flags & V_FLAG)
+			print(c->c_id, "sti", &prm);
 
 	}
 	c->pc = prm.newpc;

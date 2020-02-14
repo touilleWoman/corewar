@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 16:08:33 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:35:08 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,10 @@ t_bool		run_vm(t_vm *vm)
 	{
 		vm->cycle_total++;
 		vm->delta_cycle_counter++;
-		// printf("cursor:%p\n", vm->cursor);
 		run_cursor(vm);
-		// if (all_player_dead(vm))
-		// 	break;
 		if (vm->delta_cycle_counter == vm->cycle_to_die)
 			update_cycle_to_die(vm);
-		if (vm->dump && vm->cycle_total == vm->dump)
+		if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 		{
 			dump_mem(vm->arena);
 			break;
