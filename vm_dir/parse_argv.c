@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:15:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 11:23:17 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:08:17 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,18 @@ static void		check_max_player_nb(int player_nb, t_bool *ok)
 	}
 }
 
+
+t_bool			is_valid_flag(char *s)
+{
+	return (ft_strcmp(argv[i], "-dump") == 0 || ft_strcmp(argv[i], "-n") == 0
+		|| ft_strcmp(argv[i], "-v"));
+}
+
+
 /*
-** go through argv to get :
-** dump value, option n value
-** stock file data dans t_player.file 
+** go through argv to :
+** 1. get dump value, option n value, activate v flag if exist;
+** 2. stock argv of player file in id_tab
 */
 
 t_bool			parse_argv(t_vm *vm, int argc, char const **argv,
@@ -96,6 +104,11 @@ t_bool			parse_argv(t_vm *vm, int argc, char const **argv,
 	{
 		if (ft_strcmp(argv[i], "-dump") == 0)
 			ok = get_dump_value(argc, argv, &i, vm);
+		else if (ft_strcmp(argv[i], "-v") == 0)
+		{
+			vm->flags = vm->flags | V_FLAG;
+			i++;
+		}
 		else if (ft_strcmp(argv[i], "-n") == 0 && i + 2 < argc)
 			ok = get_n_value(argv, &i, vm, id_tab);
 		else if (is_valid_filename(argv[i]))

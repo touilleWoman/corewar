@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 15:32:17 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 12:52:46 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void				op_st(t_vm *vm, t_cursor *c)
 	int 		address;
 	int			value;
 
-	printf("st\n");
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && st_p2_valid(&prm)
 		&& is_absent_type(prm.p3_type) && is_absent_type(prm.p4_type))
@@ -37,19 +36,24 @@ void				op_st(t_vm *vm, t_cursor *c)
 		{
 			address = prm.p2 % IDX_MOD + c->pc;
 			write_4_bytes(vm->arena + pos(address), value);
+			ft_printf("P    %d | st r%d %d\n", c->c_id, prm.p1, prm.p2 % IDX_MOD);
 		}
 		else
+		{
 			c->regs[prm.p2] = value;
-		printf("st SUCCESS\n");
+			ft_printf("P    %d | st r%d r%d\n", c->c_id, prm.p1, prm.p2);
+		}
+
 	}
 	c->pc = prm.newpc;
 }
+
 
 /*
 ** 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
 **	"store index", 1, 1}.
 **
-** sti r2,%4,%5 sti copies REG_SIZE bytes of r2 at address (4 + 5) 
+** sti r2,%4,%5 sti copies REG_SIZE bytes of r2 at address (4 + 5)
 ** Parameters 2 and 3 are indexes. If they are, in fact, registers,
 ** we’ll use their contents as indexes.
 **
@@ -65,7 +69,6 @@ void				op_sti(t_vm *vm, t_cursor *c)
 	int 		address;
 	uint32_t	value;
 
-	printf("sti\n");
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
 		&& is_dir_or_reg(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
@@ -75,7 +78,8 @@ void				op_sti(t_vm *vm, t_cursor *c)
 		address = c->pc + (prm.p2 + prm.p3) % IDX_MOD;
 		value = c->regs[prm.p1];
 		write_4_bytes(vm->arena + pos(address), value);
-		printf("sti SUCCESS\n");
+		print(c->c_id, "sti", &prm);
+
 	}
 	c->pc = prm.newpc;
 }

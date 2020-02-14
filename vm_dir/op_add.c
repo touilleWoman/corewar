@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:10:13 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 14:36:57 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 12:58:06 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void		op_add(t_vm *vm, t_cursor *c)
 	t_params	prm;
 	int 		value;
 
-	printf("add\n");
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && is_reg_type(prm.p2_type, prm.p2)
 		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
@@ -32,7 +31,7 @@ void		op_add(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		printf("add SUCCESS\n");
+		print(c->c_id, "add", &prm);
 	}
 	c->pc = prm.newpc;
 }
@@ -49,19 +48,18 @@ void		op_sub(t_vm *vm, t_cursor *c)
 	uint32_t			value2;
 	uint32_t			value;
 
-	printf("sub\n");
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && is_reg_type(prm.p2_type, prm.p2)
 		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
 	{
-		
+
 		value = c->regs[prm.p1] - c->regs[prm.p2];
 		c->regs[prm.p3] = value;
 		if (value == 0)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		printf("sub SUCESS\n");
+		print(c->c_id, "sub", &prm);
 	}
 	c->pc = prm.newpc;
 }

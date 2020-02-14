@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 18:57:48 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:07:13 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,15 @@
 # define OPCODE_SIZE 1
 # define OCP_SIZE 1
 
+# define D_FLAG 1 << 0
+# define N_FLAG 1 << 1
+# define V_FLAG 1 << 2
+
+
 typedef struct 	s_id_tab
 {
 	const char		*argv;
-	uint8_t			id;	
+	uint8_t			id;
 }				t_id_tab;
 
 typedef enum 		s_type
@@ -70,7 +75,7 @@ typedef struct 		s_params
 ** Cursor doesn't work for a certain player.
 ** It just executes the code it reads from the memory.
 ** During the battle after operations fork or lfork,
-** the new cursor will get all it's values from the parent cursor 
+** the new cursor will get all it's values from the parent cursor
 ** and not from the player.
 **
 ** regs[0] is not used, player_id is stored at regs[1].
@@ -92,7 +97,7 @@ typedef	struct 		s_cursor
 
 /*
 ** delta_cycle_counter :    count nb of cycle since last cycle check
-** last_alive_id :			last player who reported alive in each round, 
+** last_alive_id :			last player who reported alive in each round,
 **							initialised with the highest player id
 */
 typedef	struct		s_vm
@@ -109,6 +114,7 @@ typedef	struct		s_vm
 	t_cursor		*cursor;
 	int				cursor_nb;
 	int				winner;
+	char			flags;
 }					t_vm;
 
 /*
@@ -174,5 +180,7 @@ t_bool				is_dir_or_ind(t_type type);
 t_bool				is_dir_or_reg(t_type type, uint32_t p_value);
 t_bool				is_absent_type(t_type type);
 t_bool				is_reg_type(t_type type, uint32_t p_value);
+void	print(unsigned int id, char *s, t_params *p);
+
 
 #endif

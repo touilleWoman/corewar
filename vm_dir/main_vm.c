@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/10 18:13:49 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 14:01:26 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void 				usage(void)
 	ft_putstr_fd("usage:./corewar [-dump <nb> -n <nb>] \
 file1.cor file2.cor ...\n\
     -dump <nb> : dump memory in hexadecimal after <nb> cycles then quit\n\
-    -n : set id of next player. Player_id must > 0 and <= nb of player_nb\n", 2);
+    -n : set id of next player. Player_id must > 0 and <= player_nb\n\
+    -v : show operations\n", 2);
 }
 
 static void			player_to_arena(t_vm *vm)
