@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:06:08 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 14:43:29 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/13 19:01:28 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void		op_fork(t_vm *vm, t_cursor *c)
 	new->prev = NULL;
 	if (c_lst_add_top(&(vm->cursor), new) == FALSE)
 		return ;
+	vm->cursor_nb++;
+	new->c_id = vm->cursor_nb;
 	printf("fork SUCESS\n");
 }
 
@@ -49,5 +51,7 @@ void		op_lfork(t_vm *vm, t_cursor *c)
 	new->prev = NULL;
 	if (c_lst_add_top(&(vm->cursor), new) == FALSE)
 		return ;
+	vm->cursor_nb++;
+	new->c_id = vm->cursor_nb;
 	printf("lfork SUCESS\n");
 }

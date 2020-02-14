@@ -6,15 +6,14 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:08:35 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 11:34:39 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:36:46 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_bool		read_one_file(int fd, uint8_t **file, int *file_size)
+static t_bool		read_one_file(int fd, uint8_t **file, int *file_size)
 {
-	printf("enter!!!!\n");
 	*file_size = lseek(fd, 0, SEEK_END);
 	if (*file_size < 0)
 	{
@@ -31,27 +30,22 @@ t_bool		read_one_file(int fd, uint8_t **file, int *file_size)
 	if (*file == NULL)
 		return (FALSE);
 	if (lseek(fd, 0, SEEK_SET) != -1 && read(fd, *file, *file_size) > 0)
-	{
-		printf("===============\n");
 		return (TRUE);
-	}
 	else
 	{
-		printf("---------\n");
-
 		free(*file);
 		*file = NULL;
 		return (FALSE);
 	}
 }
 
-t_bool		init_one_player(char const *argv, t_vm *vm, uint8_t id)
+t_bool				init_one_player(char const *argv, t_vm *vm, uint8_t id)
 {
 	int				fd;
 	int 			file_size;
 	uint8_t			*file;
 	t_bool			ret;
-
+	
 	file = NULL;
 	file_size = 0;
 	fd = open(argv, O_RDONLY);

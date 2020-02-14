@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 14:52:46 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/13 19:00:43 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ t_bool		init_cursor_lst(t_vm *vm)
 		if (c_lst_add_top(&(vm->cursor), new) == FALSE)
 			return (FALSE);
 		vm->cursor_nb++;
+		new->c_id = vm->cursor_nb;
 		i++;
 	}
-	printf("init_cursor_lst SUCCESS\n");
 	return (TRUE);
 }

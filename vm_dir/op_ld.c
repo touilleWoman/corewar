@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:41:19 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 14:02:33 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/13 19:02:46 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			op_ld(t_vm *vm, t_cursor *c)
 			c->carry = 1;
 		else
 			c->carry = 0;
-		printf("ld SUCCESS\n");
+		ft_printf("P    %d | ld %d r%d\n", c->c_id, value, prm.p2);
 	}
 	c->pc = prm.newpc;
 }

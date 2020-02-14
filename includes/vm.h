@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 11:20:19 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:57:48 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct 		s_params
 */
 typedef	struct 		s_cursor
 {
+	unsigned int	c_id;
 	t_bool			moved;
 	uint32_t		regs[REG_NUMBER + 1];
 	unsigned int	wait_cycle;

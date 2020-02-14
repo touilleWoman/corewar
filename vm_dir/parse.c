@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:19:28 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 11:25:25 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:37:41 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,22 +109,22 @@ t_bool		parse(t_vm *vm, int argc, char const **argv)
 	t_id_tab		id_tab[MAX_PLAYERS];
 
 	ft_bzero(id_tab, sizeof(t_id_tab) * MAX_PLAYERS);
-	printf("first print id_tab\n");
-	print_id_tab(id_tab);
+	// printf("first print id_tab\n");
+	// print_id_tab(id_tab);
 	if (parse_argv(vm, argc, argv, id_tab) == FALSE
 		|| duplicate_in_id_tab(id_tab))
 	{
 		ft_putendl_fd("ERROR: wrong parameter", 2);
 		return (FALSE);
 	}
-	printf("seond print\n");
-	print_id_tab(id_tab);
+	// printf("seond print\n");
+	// print_id_tab(id_tab);
 
 	set_player_id(id_tab, vm->player_nb);
 	if (init_players(id_tab, vm) == FALSE)
 		return (FALSE);
-	printf("third print\n");
-	print_id_tab(id_tab);
+	// printf("third print\n");
+	// print_id_tab(id_tab);
 	if (parse_file(vm) == FALSE)
 		return (FALSE);
 	return (TRUE);
