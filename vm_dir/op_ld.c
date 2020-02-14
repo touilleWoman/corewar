@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:41:19 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 14:37:42 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 21:24:22 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ void		op_ld(t_vm *vm, t_cursor *c)
 	fill_params(&prm, vm->arena, c);
 	if (is_dir_or_ind(prm.p1_type) && is_reg_type(prm.p2_type, prm.p2) && is_absent_type(prm.p3_type))
 	{
-		if (prm.p1_type == TYPE_IND)
-			prm.p1 = get_reg_size_value(vm, c, prm.p1_type, prm.p1);
+		prm.p1 = get_reg_size_value(vm, c, prm.p1_type, prm.p1);
 		c->regs[prm.p2] = prm.p1;
 		if (prm.p1 == 0)
 			c->carry = 1;
 		else
 			c->carry = 0;
 		if (vm->flags & V_FLAG)
-			print(c->c_id, "ld", &prm);
+			ft_printf("P    %d | ld %d => r%d\n", c->c_id, prm.p1, prm.p2);
 	}
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -60,8 +61,10 @@ void		op_lld(t_vm *vm, t_cursor *c)
 		else
 			c->carry = 0;
 		if (vm->flags & V_FLAG)
-			print(c->c_id, "lld", &prm);
+			ft_printf("P    %d | lld %d => r%d\n", c->c_id, prm.p1, prm.p2);
 	}
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 

@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 19:34:42 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 21:28:57 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		update_cycle_to_die(t_vm *vm)
 		vm->live_counter = 0;
 	}
 	vm->delta_cycle_counter = 0;
-	// clean_dead_cursor(vm);
+	clean_dead_cursor(vm);
 }
 
 char		*get_player_name(t_vm *vm, int id)
