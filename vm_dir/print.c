@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:39:09 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 12:38:52 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 19:03:14 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,4 @@ void	print(unsigned int id, char *s, t_params *p)
 	ft_printf("\n");
 
 }
+

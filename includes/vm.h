@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 14:07:13 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 19:55:20 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define D_FLAG 1 << 0
 # define N_FLAG 1 << 1
 # define V_FLAG 1 << 2
+# define P_FLAG 1 << 3
 
 
 typedef struct 	s_id_tab
@@ -68,7 +69,7 @@ typedef struct 		s_params
 	uint8_t			p3_len;
 	t_type			p4_type;
 	uint8_t			p4_len;
-	uint32_t		newpc;
+	int16_t			newpc;
 }					t_params;
 
 /*

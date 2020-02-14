@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 19:00:43 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 19:37:33 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void		clean_dead_cursor(t_vm *vm)
 			c = NULL;
 		}
 		c = c->next;
-	}	
+	}
 }
 
 /*
 ** Registry r1 will contain the negated number of player id
-*/ 
+*/
 
 t_bool		init_cursor_lst(t_vm *vm)
 {
@@ -78,7 +78,7 @@ t_bool		init_cursor_lst(t_vm *vm)
 		if (c_lst_new(&new) == FALSE)
 			return (FALSE);
 		new->pc =  (MEM_SIZE / vm->player_nb) * i;
-		new->regs[1] = vm->players[i].player_id;
+		new->regs[1] = -(vm->players[i].player_id);// neg id
 		if (c_lst_add_top(&(vm->cursor), new) == FALSE)
 			return (FALSE);
 		vm->cursor_nb++;

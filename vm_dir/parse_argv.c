@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:15:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 14:34:12 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 18:56:28 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ static void		activate_v_flag(t_vm *vm, int *i)
 	(*i)++;
 }
 
+static void		activate_p_flag(t_vm *vm, int *i)
+{
+	vm->flags = vm->flags | P_FLAG;
+	(*i)++;
+}
+
 static void		fill_id_tab(t_vm *vm, int *i, char const *argv, t_id_tab id_tab[MAX_PLAYERS])
 {
 	id_tab[vm->player_nb].argv = argv;
@@ -115,6 +121,8 @@ t_bool			parse_argv(t_vm *vm, int argc, char const **argv,
 			ok = get_dump_value(argc, argv, &i, vm);
 		else if (ft_strcmp(argv[i], "-v") == 0)
 			activate_v_flag(vm, &i);
+		else if (ft_strcmp(argv[i], "-p") == 0)
+			activate_p_flag(vm, &i);
 		else if (ft_strcmp(argv[i], "-n") == 0 && i + 2 < argc)
 			ok = get_n_value(argv, &i, vm, id_tab);
 		else if (is_valid_filename(argv[i]))

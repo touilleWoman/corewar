@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 21:55:43 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 14:40:47 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 19:16:24 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void				op_and(t_vm *vm, t_cursor *c)
 		if (vm->flags & V_FLAG)
 			print(c->c_id, "and", &prm);
 	}
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -77,7 +79,10 @@ void		op_or(t_vm *vm, t_cursor *c)
 			c->carry = 0;
 		if (vm->flags & V_FLAG)
 			print(c->c_id, "or", &prm);
+
 	}
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -109,6 +114,8 @@ void		op_xor(t_vm *vm, t_cursor *c)
 		if (vm->flags & V_FLAG)
 			print(c->c_id, "xor", &prm);
 	}
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 

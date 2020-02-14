@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 14:35:08 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/14 19:34:42 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,6 @@ void		run_cursor(t_vm *vm)
 
 
 
-// t_bool		all_player_dead(t_vm *vm)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < vm->player_nb)
-// 	{
-// 		if (vm->players[i].alive)
-// 			return (FALSE);
-// 		i++;
-// 	}
-// 	return (TRUE);
-// }
 
 
 
