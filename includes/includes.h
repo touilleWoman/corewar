@@ -6,15 +6,12 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/01/11 12:07:35 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/14 08:14:48 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		INCLUDES_H
 # define	INCLUDES_H
-
-/* A DELETE */
-#include <stdio.h>
 
 # include <fcntl.h>
 # include <sys/types.h>
