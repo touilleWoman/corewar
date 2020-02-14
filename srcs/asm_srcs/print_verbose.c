@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:12:32 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/01 16:54:02 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/12 19:52:02 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,6 @@ static void			print_header(t_header *h)
 	ft_putstr("\n\n");
 }
 
-static char			*get_label_by_ptrid(t_label **la, unsigned int id)
-{
-	t_label		*tmp;
-
-	tmp = *la;
-	while (tmp != NULL)
-	{
-		if (tmp->ptr->id == id)
-			return (tmp->label);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
-
 static void			print_type_arg(t_champ *tmp, int pos)
 {
 	if ((tmp->type[pos] & T_REG))
@@ -48,7 +34,9 @@ static void			print_type_arg(t_champ *tmp, int pos)
 		ft_putnbr(tmp->val[pos]);
 		ft_putchar(']');
 	}
-	else if (((tmp->type[pos] & T_IND) || (tmp->type[pos] & T_DIR)) && !(tmp->type[pos] & T_LAB))
+	else if (((tmp->type[pos] & T_IND)
+			|| (tmp->type[pos] & T_DIR))
+			&& !(tmp->type[pos] & T_LAB))
 	{
 		if (tmp->type[pos] & T_IND)
 			ft_putstr("T_IND[");
@@ -63,6 +51,20 @@ static void			print_type_arg(t_champ *tmp, int pos)
 		ft_putnbr(tmp->val[pos]);
 		ft_putchar(']');
 	}
+}
+
+static void			print_one_column(unsigned int address, t_champ *tmp)
+{
+	ft_putnbr(address);
+	ft_putstr("\t\t");
+	ft_putstr(g_op_tab[tmp->op].name);
+	ft_putstr("\t\t");
+	(tmp->type[0] > 0) ? print_type_arg(tmp, 0) : ft_putstr("-\t");
+	ft_putstr("\t");
+	(tmp->type[1] > 0) ? print_type_arg(tmp, 1) : ft_putstr("-\t");
+	ft_putstr("\t");
+	(tmp->type[2] > 0) ? print_type_arg(tmp, 2) : ft_putstr("-\t");
+	ft_putstr("\t");
 }
 
 void				print_champ(t_header *h, t_champ **ch, t_label **la)
@@ -82,16 +84,7 @@ void				print_champ(t_header *h, t_champ **ch, t_label **la)
 		ft_putstr("ADDR\t\tCMD\t\tARG1\t\tARG2\t\tARG3\t\tREF by LABEL\n");
 		while (tmp != NULL)
 		{
-			ft_putnbr(address);
-			ft_putstr("\t\t");
-			ft_putstr(g_op_tab[tmp->op].name);
-			ft_putstr("\t\t");
-			(tmp->type[0] > 0) ? print_type_arg(tmp, 0) : ft_putstr("-\t");
-			ft_putstr("\t");
-			(tmp->type[1] > 0) ? print_type_arg(tmp, 1) : ft_putstr("-\t");
-			ft_putstr("\t");
-			(tmp->type[2] > 0) ? print_type_arg(tmp, 2) : ft_putstr("-\t");
-			ft_putstr("\t");
+			print_one_column(address, tmp);
 			if ((label = get_label_by_ptrid(la, tmp->id)) != NULL)
 				ft_putstr(label);
 			ft_putchar('\n');

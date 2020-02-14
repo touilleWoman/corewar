@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:44:05 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/01 07:02:32 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/12 17:28:26 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_champ				*champ_new(int op)
 {
-	static unsigned int		id = 0;
-	t_champ		*ptr;
+	static unsigned int	id = 0;
+	t_champ				*ptr;
 
 	ptr = NULL;
 	if (op >= 0 && op < 16)

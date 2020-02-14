@@ -6,27 +6,27 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:46:52 by nabih             #+#    #+#             */
-/*   Updated: 2020/01/31 17:09:07 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/12 17:35:07 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-int					open_file(char *file)
+int				open_file(char *file)
 {
-    int         fd;
+	int		fd;
 
-    if ((fd = open(file, O_RDONLY)) < 3)
-        return (ASM_ERROR);
-    return (fd);
+	if ((fd = open(file, O_RDONLY)) < 3)
+		return (ASM_ERROR);
+	return (fd);
 }
 
-static int			open_n_free_file(t_asm *a, char **file)
+static int		open_n_free_file(t_asm *a, char **file)
 {
-    if ((a->fd = open(*file, O_CREAT | O_TRUNC | O_WRONLY, 0644)) < 3)
+	if ((a->fd = open(*file, O_CREAT | O_TRUNC | O_WRONLY, 0644)) < 3)
 	{
 		ft_memdel((void**)file);
-        return (ASM_ERROR);
+		return (ASM_ERROR);
 	}
 	ft_putstr("creation .cor: ");
 	ft_putstr(*file);
@@ -35,7 +35,7 @@ static int			open_n_free_file(t_asm *a, char **file)
 	return (a->fd);
 }
 
-int					create_new_file(t_asm *a, char *file)
+int				create_new_file(t_asm *a, char *file)
 {
 	int			i;
 	int			size;

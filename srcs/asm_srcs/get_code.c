@@ -6,11 +6,24 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 15:01:11 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/11 21:08:53 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/12 18:43:02 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
+
+static void			check_op_bis(char *str, size_t size)
+{
+	if (str[size] == DIRECT_CHAR)
+		str[size - 1] = '\0';
+	else
+		str[size] = '\0';
+	if (str[size] == DIRECT_CHAR)
+		ft_memmove(str, &(str[size]), ft_strlen(&(str[size])) + 1);
+	else
+		ft_memmove(str, &(str[size + 1]),
+					ft_strlen(&(str[size + 1])) + 1);
+}
 
 int8_t				check_op(char *str, size_t size)
 {
@@ -21,16 +34,10 @@ int8_t				check_op(char *str, size_t size)
 	{
 		if (ft_strncmp(g_op_tab[op_code].name, str, size) == 0)
 		{
-			if (str[size] == ' ' || str[size] == '\t' || str[size] == DIRECT_CHAR)
+			if (str[size] == ' ' || str[size] == '\t'
+				|| str[size] == DIRECT_CHAR)
 			{
-				if (str[size] == DIRECT_CHAR)
-					str[size - 1] = '\0';
-				else
-					str[size] = '\0';
-				if (str[size] == DIRECT_CHAR)
-					ft_memmove(str, &(str[size]), ft_strlen(&(str[size])) + 1);
-				else
-					ft_memmove(str, &(str[size + 1]), ft_strlen(&(str[size + 1])) + 1);
+				check_op_bis(str, size);
 				skip_start(str);
 				return (op_code);
 			}
@@ -52,16 +59,14 @@ int8_t				check_line(t_asm *a, int *lab)
 	{
 		size = 0;
 		while ((a->line)[size] != ' ' && (a->line)[size] != '\t'
-			   && (a->line)[size] != DIRECT_CHAR && (a->line)[size] != '\0')
+				&& (a->line)[size] != DIRECT_CHAR && (a->line)[size] != '\0')
 			size++;
 		if ((a->op_code = check_op(a->line, size)) == ASM_ERROR)
-		{
 			return (ASM_ERROR);
-		}
 		else
 		{
 			if ((tmp = arguments_analysis(a)) == NULL)
-			  	return (ASM_ERROR);
+				return (ASM_ERROR);
 			champ_pushfront(&(a->champ), tmp);
 			if (*lab == 1 && a->champ)
 			{

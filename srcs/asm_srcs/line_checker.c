@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:52:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/01/30 14:33:11 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/12 17:22:44 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,5 @@ int8_t				header_checker(char *line, int flg)
 	(void)line;
 	if (check_multi_nc(&type, flg) == ASM_ERROR)
 		return (ASM_ERROR);
-	/*
-	**-------**
-	|   CODE  |
-	**-------**
-	*/
 	return (ASM_SUCCESS);
 }

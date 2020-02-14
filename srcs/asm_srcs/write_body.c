@@ -6,40 +6,26 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 03:50:49 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/11 19:45:22 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/12 19:55:08 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-static void			write_ocp(int fd, t_champ *c)
+static void			calc_size(uint32_t id, t_champ **c, int pos, t_champ *tmpc)
 {
-	int		i;
-	int		pos;
-	char	ocp;
+	int			flg;
 
-	i = 7;
-	pos = -1;
-	ocp = 0;
-	while (++pos < c->nb_arg)
+	flg = (tmpc->id == (*c)->id) ? 1 : 0;
+	while (tmpc->id != id)
 	{
-		if (c->type[pos] & T_REG)
-		{
-			ocp |= 1 << (--i);
-			--i;
-		}
-		else if (c->type[pos] & T_DIR)
-		{
-			ocp |= 1 << i;
-			i -= 2;
-		}
-		else if (c->type[pos] & T_IND)
-		{
-			ocp |= 1 << (i--);
-			ocp |= 1 << (i--);
-		}
+		if (flg == 0)
+			(*c)->val[pos] -= tmpc->size;
+		else
+			(*c)->val[pos] += tmpc->size;
+		tmpc = tmpc->next;
 	}
-	write(fd, &ocp, 1);
+	(*c)->val[pos] -= 1;
 }
 
 static void			convert_label(t_label **l, t_champ **c, int pos)
@@ -50,28 +36,12 @@ static void			convert_label(t_label **l, t_champ **c, int pos)
 
 	lab = ((*c)->val[pos] == 1) ? (*c)->lab1 : (*c)->lab2;
 	tmpl = lab_get(l, lab);
-	if (tmpl->ptr && tmpl->ptr->id < (*c)->id)
-	{
-		tmpc = tmpl->ptr;
-		while (tmpc->id != (*c)->id)
-		{
-			(*c)->val[pos] -= tmpc->size;
-			tmpc = tmpc->next;
-		}
-		(*c)->val[pos] -= 1;
-	}
-	else if (tmpl->ptr && tmpl->ptr->id > (*c)->id)
-	{
-		tmpc = *c;
-		while (tmpc->id != tmpl->ptr->id)
-		{
-			(*c)->val[pos] += tmpc->size;
-			tmpc = tmpc->next;
-		}
-		(*c)->val[pos] -= 1;
-	}
-	else if (tmpl->ptr && tmpl->ptr->id == (*c)->id)
+	if (tmpl->ptr && tmpl->ptr->id == (*c)->id)
 		(*c)->val[pos] = 0;
+	else if (tmpl->ptr && tmpl->ptr->id < (*c)->id)
+		calc_size((*c)->id, c, pos, tmpl->ptr);
+	else if (tmpl->ptr && tmpl->ptr->id > (*c)->id)
+		calc_size(tmpl->ptr->id, c, pos, *c);
 	else
 	{
 		tmpc = *c;
@@ -84,13 +54,29 @@ static void			convert_label(t_label **l, t_champ **c, int pos)
 	}
 }
 
-void				write_body(t_asm *a, int fd, t_label **l, t_champ **c)
+static void			check_type_body(int fd, t_label **l, t_champ *tmp, int pos)
+{
+	if (tmp->type[pos] & T_LAB)
+		convert_label(l, &tmp, pos);
+	if (tmp->type[pos] & T_REG)
+		write_int_one_byte(fd, tmp->val[pos]);
+	else if (tmp->type[pos] & T_DIR)
+	{
+		if (g_op_tab[tmp->op].dir_type == false)
+			write_int_four_bytes(fd, tmp->val[pos]);
+		else
+			write_int_two_bytes(fd, tmp->val[pos]);
+	}
+	else if (tmp->type[pos] & T_IND)
+		write_int_two_bytes(fd, tmp->val[pos]);
+}
+
+void				write_body(int fd, t_label **l, t_champ **c)
 {
 	int			pos;
 	t_champ		*tmp;
 	char		op;
 
-	(void)a;
 	if (c && *c)
 	{
 		tmp = *c;
@@ -103,19 +89,7 @@ void				write_body(t_asm *a, int fd, t_label **l, t_champ **c)
 				write_ocp(fd, tmp);
 			while (pos < tmp->nb_arg)
 			{
-				if (tmp->type[pos] & T_LAB)
-					convert_label(l, &tmp, pos);
-				if (tmp->type[pos] & T_REG)
-					write_int_one_byte(fd, tmp->val[pos]);
-				else if (tmp->type[pos] & T_DIR)
-				{
-					if (g_op_tab[tmp->op].dir_type == false)
-						write_int_four_bytes(fd, tmp->val[pos]);
-					else
-						write_int_two_bytes(fd, tmp->val[pos]);
-				}
-				else if (tmp->type[pos] & T_IND)
-					write_int_two_bytes(fd, tmp->val[pos]);
+				check_type_body(fd, l, tmp, pos);
 				pos++;
 			}
 			tmp = tmp->next;
