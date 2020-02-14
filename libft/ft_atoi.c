@@ -3,72 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naali <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 13:52:21 by naali             #+#    #+#             */
-/*   Updated: 2018/11/16 01:29:32 by naali            ###   ########.fr       */
+/*   Updated: 2020/01/26 16:01:47 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-static int	ft_isspace(int c)
-{
-	if ((c >= 7 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-
-static int	ft_signe(int c, int *signe)
-{
-	if (c == 43)
-	{
-		*signe = -1;
-		return (1);
-	}
-	else if (c == 45)
-	{
-		*signe = 1;
-		return (1);
-	}
-	*signe = -1;
-	return (0);
-}
-
-static int	check_size(int siz, int sig)
-{
-	if (siz >= 20 && sig == 1)
-		return (0);
-	else if (siz >= 20 && sig == -1)
-		return (-1);
-	return (1);
-}
-
-int			ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
 	int		i;
-	int		num;
-	int		signe;
-	int		size;
+	int		ret;
+	int		neg;
 
+	neg = 1;
 	i = 0;
-	num = 0;
-	signe = 0;
-	size = 0;
-	while (ft_isspace(str[i]) == 1)
-		i = i + 1;
-	if (ft_signe(str[i], &signe) == 1)
-		i = i + 1;
-	while (ft_isdigit(str[i]) == 1)
+	ret = 0;
+	while (((str[i] <= 13) && (str[i] >= 9)) || (str[i] == 32))
 	{
-		num = num * 10 + ((str[i] - '0') * -1);
-		size = size + 1;
-		i = i + 1;
+		i++;
 	}
-	if (check_size(size, signe) == -1)
-		return (-1);
-	if (check_size(size, signe) == 0)
-		return (0);
-	num = num * signe;
-	return (num);
+	if ((str[i] == '+') || (str[i] == '-'))
+	{
+		if (str[i] == '-')
+		{
+			neg = -neg;
+		}
+		i++;
+	}
+	while ((str[i] != 0) && (str[i] >= '0') && (str[i] <= '9'))
+	{
+		ret = ret * 10 + str[i] - '0';
+		i++;
+	}
+	return (ret * neg);
 }

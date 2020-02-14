@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2019/11/30 02:56:34 by nabih            ###   ########.fr        #
+#    Updated: 2020/02/01 06:56:06 by nabih            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,22 +14,29 @@ rose			=	\033[1;31m
 neutre			=	\033[0m
 vertfonce		=	\033[0;32m
 
-NAME			=	Corewar
+NAME			=	corewar
+NAME_ASM		=	asm
 
 CC				=	gcc
 
 CFLAG 			=	-Wall -Wextra -Werror
 
-INCLUDES		=	-I./includes	\
-					-I./libft
+INCLUDES		=	-I./includes			\
+					-I./libft				\
+					-I./asm/incs			\
+					-I./asm/libft/includes	\
 
 OBJ_PATH		=	./objs
 
-SRC				=	main.c
+SRC_CORE		=	main.c
 
-OBJ 			=	$(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
+SRC_ASM			=	main.c
+
+OBJ_CORE		=	$(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
 LIB_PATH		=	-L./libft
+
+ASM_PATH		=	./srcs/asm_srcs
 
 LIBS 			=	-lft
 
@@ -39,7 +46,7 @@ LFLAG			=	$(LIB_PATH) $(LIBS)
 
 vpath %.c ./srcs/:
 
-all				:	libs $(NAME)
+all				:	asm libs $(NAME)
 
 $(NAME)			:	$(OBJ)
 					@echo "${vertfonce}Compiling ...${neutre}\c"
@@ -55,6 +62,7 @@ $(OBJ_PATH)/%.o	:	%.c
 clean			:
 					@echo "${rose}Cleaning the project ...${neutre}\c"
 					@make clean -C libft
+					@make clean -C $(ASM_PATH)
 					@rm -rf $(OBJ_PATH)
 					@echo "${vertfonce}DONE${neutre}"
 
@@ -62,11 +70,22 @@ fclean			:	clean
 					@echo "${rose}Fcleaning the project ...${neutre}\c"
 					@make fclean -C libft
 					@rm -rf $(NAME)
+					@make fclean -C $(ASM_PATH)
+					@rm -rf $(NAME_ASM)
 					@echo "${vertfonce}DONE${neutre}"
 
 libs			:
 					make -C ./libft/
 
+asm				:
+					@make -C $(ASM_PATH)
+					@mv $(ASM_PATH)/asm ./asm
+
+asm_re			:
+					@make fclean -C $(ASM_PATH)
+					@make -C $(ASM_PATH)
+					@mv $(ASM_PATH)/asm ./asm
+
 re				:	fclean all
 
-.PHONY			:	all clean fclean re image
+.PHONY			:	all clean fclean re image asm
