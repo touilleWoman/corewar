@@ -6,10 +6,11 @@
 /*   By: naali <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 14:49:50 by naali             #+#    #+#             */
-/*   Updated: 2018/11/16 01:24:01 by naali            ###   ########.fr       */
+/*   Updated: 2020/01/31 18:33:35 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "./libft.h"
 
@@ -28,7 +29,7 @@ char		*ft_strsub(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if ((r = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
-	while ((start + i) < (len + start))
+	while (i < len)
 	{
 		r[i] = s[start + i];
 		i = i + 1;

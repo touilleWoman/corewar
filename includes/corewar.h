@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/24 18:53:57 by nabih             #+#    #+#             */
-/*   Updated: 2019/12/08 07:06:08 by nabih            ###   ########.fr       */
+/*   Created: 2019/12/06 17:11:49 by nabih             #+#    #+#             */
+/*   Updated: 2019/12/06 17:12:01 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef		COREWAR_H
+# define	COREWAR_H
 
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-# define BUFF_SIZE 1000
-
-int				get_next_line(int const fd, char **line);
+# include <includes.h>
 
 #endif

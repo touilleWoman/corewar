@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/24 18:53:57 by nabih             #+#    #+#             */
-/*   Updated: 2019/12/08 07:06:08 by nabih            ###   ########.fr       */
+/*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
+/*   Updated: 2020/01/11 12:07:35 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef		INCLUDES_H
+# define	INCLUDES_H
 
+/* A DELETE */
+#include <stdio.h>
+
+# include <fcntl.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdlib.h>
 
-# define BUFF_SIZE 1000
-
-int				get_next_line(int const fd, char **line);
+# include <op.h>
+# include <libft.h>
+# include <get_next_line.h>
 
 #endif
