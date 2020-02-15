@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 03:50:49 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 19:55:08 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/14 18:54:12 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void			convert_label(t_label **l, t_champ **c, int pos)
 	t_champ		*tmpc;
 	char		*lab;
 
+	tmpc = NULL;
 	lab = ((*c)->val[pos] == 1) ? (*c)->lab1 : (*c)->lab2;
 	tmpl = lab_get(l, lab);
 	if (tmpl->ptr && tmpl->ptr->id == (*c)->id)

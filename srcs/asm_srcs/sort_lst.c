@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 01:55:13 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/01 16:12:03 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/14 18:53:46 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int8_t		label_recheck(t_asm *a, t_champ **cmp, char *lab)
 {
 	t_champ		*tmp;
 
+	tmp = NULL;
 	if (lab_get(&(a->lab), lab) == NULL)
 	{
 		tmp = *cmp;

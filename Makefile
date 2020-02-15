@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2020/02/14 08:07:39 by naali            ###   ########.fr        #
+#    Updated: 2020/02/15 05:28:44 by nabih            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,6 @@ NAME_ASM		=	asm
 CC				=	gcc
 
 CFLAG 			=	-Wall -Wextra -Werror
-CFLAG 			+=	-g
 
 INCLUDES		=	-I./includes			\
 					-I./libft				\
