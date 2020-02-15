@@ -6,7 +6,7 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 20:55:08 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/15 18:44:47 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct		s_asm
 ***--------------**
 */
 void				print_error(int error_type, char *str, int line);
+void				error_arg_check(int pos, char *args, t_champ **ret);
 
 /*
 ***--------------**

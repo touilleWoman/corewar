@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:05 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 18:47:51 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/15 18:44:02 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ t_champ				*arguments_analysis(t_asm *a)
 			&& check_between(&(args[size]),
 				&size, pos + 1, ret->nb_arg) == ASM_ERROR)
 			pos = -1;
-		ft_memmove(args, &(args[size]), ft_strlen(&(args[size])) + 1);
+		if (pos != -1)
+			ft_memmove(args, &(args[size]), ft_strlen(&(args[size])) + 1);
 		pos = (pos >= 0) ? pos + 1 : -1;
 	}
-	if (pos == -1)
-		ft_memdel((void**)&ret);
+	error_arg_check(pos, args, &ret);
 	return (ret);
 }
