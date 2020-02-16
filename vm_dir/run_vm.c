@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/16 14:46:03 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/16 15:57:26 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,18 @@ void		run_cursor(t_vm *vm)
 
 void		update_cycle_to_die(t_vm *vm)
 {
-	if (vm->live_counter < NBR_LIVE)
-		vm->max_check_counter++;
+	vm->delta_cycle_counter = 0;
 	if (vm->max_check_counter == MAX_CHECKS || vm->live_counter >= NBR_LIVE)
 	{
 		vm->cycle_to_die -= CYCLE_DELTA;
-		vm->max_check_counter = 0;
 		vm->live_counter = 0;
+		vm->max_check_counter = 0;
+		if (vm->flags & V_FLAG)
+			ft_printf("=================cycle_to_die is now[%d]====================\n", vm->cycle_to_die);
 	}
-	vm->delta_cycle_counter = 0;
+	else
+		vm->max_check_counter++;
+
 	clean_dead_cursor(vm);
 }
 
@@ -81,16 +84,21 @@ t_bool		run_vm(t_vm *vm)
 {
 	while (vm->cursor_nb && vm->cycle_to_die > 0)
 	{
+		ft_printf("It is now cycle %d\n", vm->cycle_total);
+
 		run_cursor(vm);
-		if (vm->delta_cycle_counter == vm->cycle_to_die)
-			update_cycle_to_die(vm);
+
 		if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 		{
 			dump_mem(vm->arena);
 			break;
 		}
 		vm->cycle_total++;
-		vm->delta_cycle_counter++;
+		if (vm->delta_cycle_counter == vm->cycle_to_die)
+			update_cycle_to_die(vm);
+		else
+			vm->delta_cycle_counter++;
+
 	}
 	ft_printf("Player %d (%s) has won\n", vm->winner, get_player_name(vm, vm->winner));
 	return (TRUE);

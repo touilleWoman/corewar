@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 21:29:07 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/16 15:05:47 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		clean_dead_cursor(t_vm *vm)
 	{
 		if (c->alive == FALSE)
 		{
+			printf("cursor %d is dead !!!!!======================\n", c->c_id);
 			if (c == vm->cursor)
 			{
 				vm->cursor = c->next;
@@ -58,6 +59,7 @@ void		clean_dead_cursor(t_vm *vm)
 			}
 			free(c);
 			c = NULL;
+			vm->cursor_nb--;
 		}
 		c = c->next;
 	}
