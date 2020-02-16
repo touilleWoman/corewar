@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:15:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 18:56:28 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:45:35 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ t_bool			get_dump_value(int argc, char const **argv, int *i, t_vm *vm)
 	if (*i + 1 < argc && is_digit_string(argv[*i + 1]))
 	{
 		dump = ft_atoi(argv[*i + 1]);
-		if (dump <= 0)
+		if (dump < 0)
 		{
-			ft_putendl_fd("ERROR: dump value must > 0\n", 2);
+			ft_putendl_fd("ERROR: dump value must >= 0\n", 2);
 			return (FALSE);
 		}
 		vm->dump = dump;

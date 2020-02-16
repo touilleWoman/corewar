@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 21:28:57 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:46:03 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ void		run_cursor(t_vm *vm)
 	}
 }
 
-
-
-
-
-
 void		update_cycle_to_die(t_vm *vm)
 {
 	if (vm->live_counter < NBR_LIVE)
@@ -86,8 +81,6 @@ t_bool		run_vm(t_vm *vm)
 {
 	while (vm->cursor_nb && vm->cycle_to_die > 0)
 	{
-		vm->cycle_total++;
-		vm->delta_cycle_counter++;
 		run_cursor(vm);
 		if (vm->delta_cycle_counter == vm->cycle_to_die)
 			update_cycle_to_die(vm);
@@ -96,6 +89,8 @@ t_bool		run_vm(t_vm *vm)
 			dump_mem(vm->arena);
 			break;
 		}
+		vm->cycle_total++;
+		vm->delta_cycle_counter++;
 	}
 	ft_printf("Player %d (%s) has won\n", vm->winner, get_player_name(vm, vm->winner));
 	return (TRUE);
