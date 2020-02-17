@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 16:31:56 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:17:33 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ typedef struct 		s_player
 typedef struct 		s_params
 {
 	uint8_t 		ocp;
-	uint32_t		p1;
-	uint32_t		p2;
-	uint32_t		p3;
+	int32_t			p1;
+	int32_t			p2;
+	int32_t			p3;
 	t_type			p1_type;
 	t_type			p2_type;
 	t_type			p3_type;
@@ -90,7 +90,6 @@ typedef	struct 		s_cursor
 	int16_t			pc;
 	uint8_t		 	op;
 	t_bool			carry;
-	t_bool			moved;
 	struct s_cursor	*next;
 	struct s_cursor	*prev;
 }					t_cursor;
@@ -167,11 +166,11 @@ void				op_xor(t_vm *vm, t_cursor *c);
 **	tools for instructions
 */
 void				fill_params(t_params *prm, uint8_t *arena, t_cursor *c);
-uint32_t 			read_bytes(uint8_t *s, uint8_t nb_of_bytes);
+int32_t 			read_bytes(uint8_t *s, uint8_t nb_of_bytes);
 void				write_4_bytes(uint8_t *arena, uint32_t value);
 int16_t 			pos(int16_t pc);
-uint32_t			get_reg_size_value(t_vm *vm, t_cursor *c, t_type type, uint32_t p);
-uint16_t			get_ind_size_value(t_vm *vm, t_cursor *c, t_type type, uint32_t p);
+uint32_t			get_reg_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p);
+uint16_t			get_ind_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p);
 t_bool				op_code_valid(unsigned char op);
 uint8_t				get_dir_len(uint8_t opcode);
 t_bool				is_3_types(t_type type, uint32_t p_value);
@@ -179,7 +178,7 @@ t_bool				is_dir_or_ind(t_type type);
 t_bool				is_dir_or_reg(t_type type, uint32_t p_value);
 t_bool				is_absent_type(t_type type);
 t_bool				is_reg_type(t_type type, uint32_t p_value);
-void	print(unsigned int id, char *s, t_params *p);
+void				print(unsigned int id, char *s, t_params *p);
 
 
 #endif

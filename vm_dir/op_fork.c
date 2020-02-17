@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:06:08 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 17:23:15 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:49:16 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		op_fork(t_vm *vm, t_cursor *c)
 	ft_memcpy(new, c, sizeof(t_cursor));
 	p1 = read_bytes(vm->arena + pos(c->pc + 1), 2);
 	new->pc = pos(c->pc + p1 % IDX_MOD);
+	new->wait_cycle = -1;
 	new->next = NULL;
 	new->prev = NULL;
 	if (c_lst_add_top(&(vm->cursor), new) == FALSE)
@@ -50,6 +51,7 @@ void		op_lfork(t_vm *vm, t_cursor *c)
 		return ;
 	ft_memcpy(new, c, sizeof(t_cursor));
 	new->pc = c->pc + p1;
+	new->wait_cycle = -1;
 	new->next = NULL;
 	new->prev = NULL;
 	if (c_lst_add_top(&(vm->cursor), new) == FALSE)

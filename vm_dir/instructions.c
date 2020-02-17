@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 20:48:09 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 17:27:06 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:53:53 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,5 @@ void		execute_instruction(t_vm *vm, t_cursor *c)
 		op_sti, op_fork, op_lld, op_lldi, op_lfork, op_aff
 	};
 
-	// if (op_code_valid(c->op) == FALSE)
-		// c->op = vm->arena[c->pc + 1];
-	// else
-	// {
-		op_dispatch[c->op](vm, c);
-	// }
-	c->moved = TRUE;
+	op_dispatch[c->op](vm, c);
 }

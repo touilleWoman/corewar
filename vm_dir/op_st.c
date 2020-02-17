@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 19:03:38 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:32:44 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void				op_st(t_vm *vm, t_cursor *c)
 			c->regs[prm.p2] = value;
 		}
 		if (vm->flags & V_FLAG)
-			ft_printf("P    %d | st r%d[%d] => %d\n", c->c_id, prm.p1, value, prm.p2);
-		if (vm->flags & P_FLAG)
-			ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
+			ft_printf("P    %d | st r%d(%d) => %d\n", c->c_id, prm.p1, value, prm.p2);
 	}
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -68,7 +68,7 @@ void				op_sti(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
 	int 		address;
-	uint32_t	value;
+	int32_t		value;
 
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
@@ -80,9 +80,9 @@ void				op_sti(t_vm *vm, t_cursor *c)
 		value = c->regs[prm.p1];
 		write_4_bytes(vm->arena + pos(address), value);
 		if (vm->flags & V_FLAG)
-			ft_printf("P    %d | sti r%d[%d] => %d + %d\n", c->c_id, prm.p1, value, prm.p2, prm.p3);
-		if (vm->flags & P_FLAG)
-			ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
+			ft_printf("P    %d | sti r%d(%d) => %d + %d\n", c->c_id, prm.p1, value, prm.p2, prm.p3);
 	}
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }

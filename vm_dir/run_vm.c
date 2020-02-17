@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 16:57:25 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:26:55 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,21 @@ void			run_cursor(t_vm *vm)
 	c = vm->cursor;
 	while (c)
 	{
-		if (vm->cycle_total == 1 || c->moved)
+		if (vm->cycle_total == 1 || c->wait_cycle == -1)
 		{
 			c->op = vm->arena[c->pc];
 			if (op_code_valid(c->op))
 				c->wait_cycle = get_wait_cycle(c->op);
 			else
-			{
 				c->pc++;
-				c->moved = TRUE;
-				c->wait_cycle = 0;
-			}
 		}
 		if (c->wait_cycle > 0)
 			c->wait_cycle--;
 		if (c->wait_cycle == 0 && op_code_valid(c->op))
+		{
 			execute_instruction(vm, c);
-		else
-			c->moved = FALSE;
+			c->wait_cycle = -1;
+		}
 		c = c->next;
 	}
 }
@@ -93,7 +90,7 @@ void			run_vm(t_vm *vm)
 	{
 		while (delta_cycle_counter < vm->cycle_to_die)
 		{
-			printf("cycle[%d]\n", vm->cycle_total);
+			// printf("cycle[%d]\n", vm->cycle_total);
 			run_cursor(vm);
 			if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 			{

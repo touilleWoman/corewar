@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:17:19 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 20:48:50 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void		op_live(t_vm *vm, t_cursor *c)
 
 	new_pc = pos(c->pc + OPCODE_SIZE);
 	player_id = read_bytes(vm->arena + new_pc, 4);
-	player_id = -player_id; //neg id
 	new_pc += 4;
 	if (player_id_valid(vm, player_id, &player_index))
 	{
@@ -67,16 +66,12 @@ void		op_zjmp(t_vm *vm, t_cursor *c)
 	int16_t		jump;
 	int16_t		new_pc;
 
+	jump = read_bytes(vm->arena + pos(c->pc + OPCODE_SIZE), IND_SIZE);
 	if (c->carry == 1)
-	{
-		jump = read_bytes(vm->arena + pos(c->pc + OPCODE_SIZE), IND_SIZE);
 		new_pc = pos(c->pc + jump % IDX_MOD);
-	}
 	else
 		new_pc = pos(c->pc + OPCODE_SIZE + IND_SIZE);
 	if (vm->flags & V_FLAG)
 		ft_printf("P    %d | zjmp %d %s\n", c->c_id, jump, (c->carry == 1) ? "OK" : "FAILED");
-	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", jump, c->pc, new_pc);
 	c->pc = new_pc;
 }
