@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:23:25 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:33:37 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		run_cursor(t_vm *vm)
 	}
 }
 
-void		update_cycle_to_die(t_vm *vm)
+void		check(t_vm *vm)
 {
 	if (vm->max_check_counter == MAX_CHECKS - 1 || vm->live_counter >= NBR_LIVE)
 	{
@@ -60,9 +60,8 @@ void		update_cycle_to_die(t_vm *vm)
 	else
 		vm->max_check_counter++;
 	vm->live_counter = 0;
-	vm->delta_cycle_counter = 0;
-	printf("cycle_total[%d] cycle_to_die[%d]\n", vm->cycle_total, vm->cycle_to_die );
-	clean_dead_cursor(vm);
+	// printf("cycle_total[%d] cycle_to_die[%d]\n", vm->cycle_total, vm->cycle_to_die );
+	update_cursor(vm);
 }
 
 static char		*get_player_name(t_vm *vm, int id)
@@ -82,24 +81,25 @@ static char		*get_player_name(t_vm *vm, int id)
 
 void			run_vm(t_vm *vm)
 {
-	char *winner_name;
+	char	*winner_name;
+	int		delta_cycle_counter;
 
-	// while (vm->cursor_nb && vm->cycle_to_die > 0)
+	delta_cycle_counter = 0;
 	while (vm->cursor_nb)
 	{
-		run_cursor(vm);
-		if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
+		while (delta_cycle_counter < vm->cycle_to_die)
 		{
-			dump_mem(vm->arena);
-			return ;
+			run_cursor(vm);
+			if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
+			{
+				dump_mem(vm->arena);
+				return ;
+			}
+			delta_cycle_counter++;
+			vm->cycle_total++;
 		}
-		if (vm->delta_cycle_counter == vm->cycle_to_die || vm->cycle_to_die < 0)
-			update_cycle_to_die(vm);
-		else
-		{
-			vm->delta_cycle_counter++;
-		}
-		vm->cycle_total++;
+		check(vm);
+		delta_cycle_counter = 0;
 	}
 	winner_name = get_player_name(vm, vm->winner);
 	if (winner_name)

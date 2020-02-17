@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:14:38 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:32:54 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ typedef	struct		s_vm
 	uint8_t			player_nb;
 	uint8_t			arena[MEM_SIZE];
 	int				cycle_total;
-	int				delta_cycle_counter;
 	int				cycle_to_die;
 	int				max_check_counter;
 	int				live_counter;
@@ -139,7 +138,7 @@ t_bool				init_players(t_id_tab id_tab[MAX_PLAYERS], t_vm *vm);
 void				run_vm(t_vm *vm);
 t_bool				init_cursor_lst(t_vm *vm);
 void				execute_instruction(t_vm *vm, t_cursor *c);
-void				clean_dead_cursor(t_vm *vm);
+void				update_cursor(t_vm *vm);
 t_bool				c_lst_new(t_cursor **new);
 t_bool				c_lst_add_top(t_cursor **alst, t_cursor *new);
 void				free_vm(t_vm *vm);

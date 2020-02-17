@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:15:26 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:32:42 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool		c_lst_add_top(t_cursor **alst, t_cursor *new)
 	return (TRUE);
 }
 
-void		clean_dead_cursor(t_vm *vm)
+void		update_cursor(t_vm *vm)
 {
 	t_cursor	*c;
 	t_cursor	*keep_next;
