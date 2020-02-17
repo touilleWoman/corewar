@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 14:05:28 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:14:38 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ typedef struct 		s_params
 */
 typedef	struct 		s_cursor
 {
+	unsigned int 	live_counter;
 	unsigned int	c_id;
-	t_bool			moved;
 	uint32_t		regs[REG_NUMBER + 1];
 	unsigned int	wait_cycle;
 	int16_t			pc;
-	t_bool			carry;
 	uint8_t		 	op;
-	t_bool 			alive;
+	t_bool			carry;
+	t_bool			moved;
 	struct s_cursor	*next;
 	struct s_cursor	*prev;
 }					t_cursor;
@@ -136,7 +136,7 @@ t_bool				init_players(t_id_tab id_tab[MAX_PLAYERS], t_vm *vm);
 /*
 ** vm
 */
-t_bool				run_vm(t_vm *vm);
+void				run_vm(t_vm *vm);
 t_bool				init_cursor_lst(t_vm *vm);
 void				execute_instruction(t_vm *vm, t_cursor *c);
 void				clean_dead_cursor(t_vm *vm);
