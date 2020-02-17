@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 19:55:20 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:05:28 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ void				clean_dead_cursor(t_vm *vm);
 t_bool				c_lst_new(t_cursor **new);
 t_bool				c_lst_add_top(t_cursor **alst, t_cursor *new);
 void				free_vm(t_vm *vm);
-char				*get_player_name(t_vm *vm, int id);
 
 /*
 ** 16 instructions

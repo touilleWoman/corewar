@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/16 15:05:47 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:06:46 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ t_bool		c_lst_add_top(t_cursor **alst, t_cursor *new)
 void		clean_dead_cursor(t_vm *vm)
 {
 	t_cursor	*c;
+	t_cursor	*keep_next;
 
 	c = vm->cursor;
 	while(c)
 	{
+		keep_next = c->next;
 		if (c->alive == FALSE)
 		{
 			printf("cursor %d is dead !!!!!======================\n", c->c_id);
@@ -54,14 +56,15 @@ void		clean_dead_cursor(t_vm *vm)
 			}
 			else
 			{
-				c->prev = c->next;
+				c->prev->next = c->next;
 				c->next->prev = c->prev;
 			}
 			free(c);
 			c = NULL;
 			vm->cursor_nb--;
+
 		}
-		c = c->next;
+		c = keep_next;
 	}
 }
 

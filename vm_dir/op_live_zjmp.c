@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 21:15:28 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:42:08 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		op_live(t_vm *vm, t_cursor *c)
 		vm->live_counter++;
 		c->alive = TRUE;
 		vm->winner = player_id;
-		ft_printf("Player %d (%s) is alive\n", player_id, get_player_name(vm, player_id));
+		// ft_printf("Player %d (%s) is alive\n", player_id, get_player_name(vm, player_id));
 	}
 	if (vm->flags & V_FLAG)
 		ft_printf("P    %d | live %d\n", c->c_id, player_id);

@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/16 15:57:26 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:06:17 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ void		update_cycle_to_die(t_vm *vm)
 	}
 	else
 		vm->max_check_counter++;
-
+	printf("cycle_total[%d] cycle_to_die[%d]\n", vm->cycle_total, vm->cycle_to_die );
 	clean_dead_cursor(vm);
 }
 
-char		*get_player_name(t_vm *vm, int id)
+static char		*get_player_name(t_vm *vm, int id)
 {
 	int 	i;
 
@@ -76,30 +76,30 @@ char		*get_player_name(t_vm *vm, int id)
 			return (vm->players[i].prog_name);
 		i++;
 	}
-	ft_putendl_fd("ERROR: Wrong player id", 2);
+	ft_putendl_fd("ERROR: Winner id doesn't exist", 2);
 	return (NULL);
 }
 
-t_bool		run_vm(t_vm *vm)
+t_bool			run_vm(t_vm *vm)
 {
+	char *winner_name;
+
 	while (vm->cursor_nb && vm->cycle_to_die > 0)
 	{
-		ft_printf("It is now cycle %d\n", vm->cycle_total);
-
 		run_cursor(vm);
-
 		if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 		{
 			dump_mem(vm->arena);
 			break;
 		}
-		vm->cycle_total++;
 		if (vm->delta_cycle_counter == vm->cycle_to_die)
 			update_cycle_to_die(vm);
 		else
 			vm->delta_cycle_counter++;
-
+		vm->cycle_total++;
 	}
-	ft_printf("Player %d (%s) has won\n", vm->winner, get_player_name(vm, vm->winner));
+	winner_name = get_player_name(vm, vm->winner);
+	if (winner_name)
+		ft_printf("Player %d (%s) has won\n", vm->winner, winner_name);
 	return (TRUE);
 }
