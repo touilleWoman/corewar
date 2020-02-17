@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:33:37 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:57:25 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 /*
 ** op_wait[0] is not used.
 */
-int 		get_wait_cycle(unsigned char op)
+static int 		get_wait_cycle(unsigned char op)
 {
 	static int op_wait[17] = {-1, 10, 5, 5, 10, 10, 6, 6, 6, 20, 25,
 		25, 800, 10, 50, 1000, 2};
 
-	if (op_code_valid(op) == FALSE)
-		return (1);
-	else
-		return (op_wait[op]);
+	return (op_wait[op]);
 }
 
-void		run_cursor(t_vm *vm)
+void			run_cursor(t_vm *vm)
 {
 	t_cursor 		*c;
 
@@ -36,11 +33,18 @@ void		run_cursor(t_vm *vm)
 		if (vm->cycle_total == 1 || c->moved)
 		{
 			c->op = vm->arena[c->pc];
-			c->wait_cycle = get_wait_cycle(c->op);
+			if (op_code_valid(c->op))
+				c->wait_cycle = get_wait_cycle(c->op);
+			else
+			{
+				c->pc++;
+				c->moved = TRUE;
+				c->wait_cycle = 0;
+			}
 		}
 		if (c->wait_cycle > 0)
 			c->wait_cycle--;
-		if (c->wait_cycle == 0)
+		if (c->wait_cycle == 0 && op_code_valid(c->op))
 			execute_instruction(vm, c);
 		else
 			c->moved = FALSE;
@@ -89,6 +93,7 @@ void			run_vm(t_vm *vm)
 	{
 		while (delta_cycle_counter < vm->cycle_to_die)
 		{
+			printf("cycle[%d]\n", vm->cycle_total);
 			run_cursor(vm);
 			if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 			{

@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 16:05:13 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:21:47 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,22 @@ void		update_cursor(t_vm *vm)
 		keep_next = c->next;
 		if (c->live_counter == 0)
 		{
-			printf("cursor %d is dead !!!!!======================\n", c->c_id);
+			// printf("cursor %d is dead !!!!!======================\n", c->c_id);
 			if (c == vm->cursor)
-			{
-				printf("top\n");
 				vm->cursor = c->next;
-				if (c->next)
-					c->next->prev = NULL;
-			}
-			else
-			{
-				printf("not top\n");
+			if (c->prev)
 				c->prev->next = c->next;
-				if (c->next)
-					c->next->prev = c->prev;
-			}
+			if (c->next)
+				c->next->prev = c->prev;
 			free(c);
 			c = NULL;
 			vm->cursor_nb--;
-
 		}
 		else
 			c->live_counter = 0;
 		c = keep_next;
 	}
 }
-
-/*
-** Registry r1 will contain the negated number of player id
-*/
 
 t_bool		init_cursor_lst(t_vm *vm)
 {

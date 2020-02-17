@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:06:08 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:36:33 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:23:15 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@ void		op_fork(t_vm *vm, t_cursor *c)
 	t_cursor	*new;
 	int16_t		p1;
 
-	p1 = read_bytes(vm->arena + pos(c->pc) + 1, 2);
 	if (c_lst_new(&new) == FALSE)
 		return ;
 	ft_memcpy(new, c, sizeof(t_cursor));
-	new->pc = c->pc + p1 % IDX_MOD;
+	p1 = read_bytes(vm->arena + pos(c->pc + 1), 2);
+	new->pc = pos(c->pc + p1 % IDX_MOD);
 	new->next = NULL;
 	new->prev = NULL;
 	if (c_lst_add_top(&(vm->cursor), new) == FALSE)
 		return ;
 	vm->cursor_nb++;
 	new->c_id = vm->cursor_nb;
-	ft_printf("P    %d | fork P   %d at %%%d\n", c->c_id, new->c_id, p1);
+	if (vm->flags & V_FLAG)
+		ft_printf("P    %d | fork  %d(%d)\n", c->c_id, p1, new->pc);
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  3 (%#06x -> %#06x)\n", c->pc, c->pc + 3);
+	c->pc += 3;
 
 }
 
@@ -52,5 +56,9 @@ void		op_lfork(t_vm *vm, t_cursor *c)
 		return ;
 	vm->cursor_nb++;
 	new->c_id = vm->cursor_nb;
-	ft_printf("P    %d | lfork P   %d at %%%d\n", c->c_id, new->c_id, p1);
+	if (vm->flags & V_FLAG)
+		ft_printf("P    %d | lfork %d(%d)\n", c->c_id, p1, new->pc);
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  3 (%#06x -> %#06x)\n", c->pc, c->pc + 3);
+	c->pc += 3;
 }

@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 16:05:43 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:31:56 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef	struct 		s_cursor
 	unsigned int 	live_counter;
 	unsigned int	c_id;
 	uint32_t		regs[REG_NUMBER + 1];
-	unsigned int	wait_cycle;
+	int				wait_cycle;
 	int16_t			pc;
 	uint8_t		 	op;
 	t_bool			carry;
