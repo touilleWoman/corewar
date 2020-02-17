@@ -32,7 +32,7 @@ void			run_cursor(t_vm *vm)
 	{
 		if (vm->cycle_total == 1 || c->wait_cycle == -1)
 		{
-			c->op = vm->arena[c->pc];
+			c->op = vm->arena[pos(c->pc)];
 			if (op_code_valid(c->op))
 				c->wait_cycle = get_wait_cycle(c->op);
 			else
@@ -76,7 +76,7 @@ static char		*get_player_name(t_vm *vm, int id)
 			return (vm->players[i].prog_name);
 		i++;
 	}
-	ft_putendl_fd("ERROR: Winner id doesn't exist", 2);
+	ft_printf("ERROR: Winner id(%d) doesn't exist\n", id);
 	return (NULL);
 }
 
