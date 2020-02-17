@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:06:08 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 12:57:01 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:36:33 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void		op_lfork(t_vm *vm, t_cursor *c)
 	int16_t		p1;
 
 	p1 = read_bytes(vm->arena + pos(c->pc + 1), 2);
-	printf("lfork\n");
 	if (c_lst_new(&new) == FALSE)
 		return ;
 	ft_memcpy(new, c, sizeof(t_cursor));

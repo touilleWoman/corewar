@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:32:42 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:05:13 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,17 @@ void		update_cursor(t_vm *vm)
 			printf("cursor %d is dead !!!!!======================\n", c->c_id);
 			if (c == vm->cursor)
 			{
+				printf("top\n");
 				vm->cursor = c->next;
 				if (c->next)
 					c->next->prev = NULL;
 			}
 			else
 			{
+				printf("not top\n");
 				c->prev->next = c->next;
-				c->next->prev = c->prev;
+				if (c->next)
+					c->next->prev = c->prev;
 			}
 			free(c);
 			c = NULL;

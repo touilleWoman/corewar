@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/16 15:07:49 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:53:48 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ static void			player_to_arena(t_vm *vm)
 
 	i = 0;
 	size = MEM_SIZE / vm->player_nb;
+	ft_printf("Introducing contestants...\n");
 	while (i < vm->player_nb)
 	{
+		ft_printf("* Player %d, weighing %d bytes, '%s' ('%s') !\n",
+			vm->players[i].player_id,
+			vm->players[i].file_size - sizeof(t_header),
+			vm->players[i].prog_name, vm->players[i].comment);
 		ft_memcpy(vm->arena + (size * i),
 			vm->players[i].prog_data, vm->players[i].prog_size);
 		i++;
@@ -51,7 +56,6 @@ int 				main(int argc, char const **argv)
 	if (parse(&vm, argc, argv) && init_cursor_lst(&vm))
 	{
 		player_to_arena(&vm);
-		printf("cursor_nb:%d\n", vm.cursor_nb);
 		run_vm(&vm);
 	}
 	free_vm(&vm);

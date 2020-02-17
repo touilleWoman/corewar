@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:08:35 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 18:36:46 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:45:44 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_bool				init_one_player(char const *argv, t_vm *vm, uint8_t id)
 	int 			file_size;
 	uint8_t			*file;
 	t_bool			ret;
-	
+
 	file = NULL;
 	file_size = 0;
 	fd = open(argv, O_RDONLY);
