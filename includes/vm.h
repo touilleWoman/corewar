@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 19:17:33 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 11:46:59 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef	struct		s_vm
 	uint8_t			arena[MEM_SIZE];
 	int				cycle_total;
 	int				cycle_to_die;
+	int 			delta_cycle_counter;
 	int				max_check_counter;
 	int				live_counter;
 	t_cursor		*cursor;

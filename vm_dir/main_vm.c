@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:53:48 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 11:53:04 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ static void			player_to_arena(t_vm *vm)
 	ft_printf("Introducing contestants...\n");
 	while (i < vm->player_nb)
 	{
-		ft_printf("* Player %d, weighing %d bytes, '%s' ('%s') !\n",
+		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
 			vm->players[i].player_id,
 			vm->players[i].file_size - sizeof(t_header),
 			vm->players[i].prog_name, vm->players[i].comment);
 		ft_memcpy(vm->arena + (size * i),
 			vm->players[i].prog_data, vm->players[i].prog_size);
+		vm->winner = vm->players[i].player_id;
 		i++;
 	}
 }

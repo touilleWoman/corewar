@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 18:26:55 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 11:51:15 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,11 @@ static char		*get_player_name(t_vm *vm, int id)
 void			run_vm(t_vm *vm)
 {
 	char	*winner_name;
-	int		delta_cycle_counter;
 
-	delta_cycle_counter = 0;
+	vm->delta_cycle_counter = 0;
 	while (vm->cursor_nb)
 	{
-		while (delta_cycle_counter < vm->cycle_to_die)
+		while (vm->delta_cycle_counter < vm->cycle_to_die)
 		{
 			// printf("cycle[%d]\n", vm->cycle_total);
 			run_cursor(vm);
@@ -97,13 +96,13 @@ void			run_vm(t_vm *vm)
 				dump_mem(vm->arena);
 				return ;
 			}
-			delta_cycle_counter++;
+			vm->delta_cycle_counter++;
 			vm->cycle_total++;
 		}
 		check(vm);
-		delta_cycle_counter = 0;
+		vm->delta_cycle_counter = 0;
 	}
 	winner_name = get_player_name(vm, vm->winner);
 	if (winner_name)
-		ft_printf("Player %d (%s) has won\n", vm->winner, winner_name);
+		ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner, winner_name);
 }

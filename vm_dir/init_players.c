@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:08:35 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 15:45:44 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 11:13:39 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static t_bool		read_one_file(int fd, uint8_t **file, int *file_size)
 	*file_size = lseek(fd, 0, SEEK_END);
 	if (*file_size < 0)
 	{
-		ft_putendl_fd("ERROR : lseek failed\n", 2);
+		ft_putendl_fd("ERROR : lseek failed", 2);
 		return (FALSE);
 	}
 	if ((unsigned int)*file_size < sizeof(t_header)
 		|| *file_size - sizeof(t_header) > CHAMP_MAX_SIZE)
 	{
-		ft_putendl_fd("ERROR : file size wrong \n", 2);
+		ft_putendl_fd("ERROR : file size wrong", 2);
 		return (FALSE);
 	}
 	*file = (uint8_t*)malloc(sizeof(uint8_t) * (*file_size));
@@ -73,7 +73,6 @@ t_bool		init_players(t_id_tab id_tab[MAX_PLAYERS], t_vm *vm)
 	uint8_t i;
 
 	i = 0;
-	printf("totoal player nb: %d\n", vm->player_nb);
 	while (i < vm->player_nb)
 	{
 		if (init_one_player(id_tab[i].argv, vm, id_tab[i].id) == FALSE)

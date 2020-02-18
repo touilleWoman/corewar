@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 12:27:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 18:58:28 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 11:14:02 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ by 4 bytes of 0\n" ,2);
 }
 
 /*
-** parcourir header dans .cor, stock "prog_name" et "comments", 
+** parcourir header dans .cor, stock "prog_name" et "comments",
 ** verifier "magic" et "prog_size".
-** 
+**
 ** typedef struct		header_s
 ** {
 **   unsigned int		magic;
@@ -57,7 +57,7 @@ static t_bool		parse_one_player_header(t_player *p)
 	s = p->file;
 	if (read_bytes(s, 4) != COREWAR_EXEC_MAGIC)
 	{
-		ft_putendl_fd("ERROR: wrong magic nb in header\n" ,2);
+		ft_putendl_fd("ERROR: wrong magic nb in header" ,2);
 		return (FALSE);
 	}
 	s += sizeof(unsigned int);
@@ -67,7 +67,7 @@ static t_bool		parse_one_player_header(t_player *p)
 	p->prog_size = read_bytes(s, 4);
 	if (p->prog_size != p->file_size - sizeof(t_header))
 	{
-		ft_putendl_fd("ERROR: wrong prog_size in header\n" ,2);
+		ft_putendl_fd("ERROR: wrong prog_size in header" ,2);
 		return (FALSE);
 	}
 	s += 4;
