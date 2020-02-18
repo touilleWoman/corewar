@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 11:46:59 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:38:45 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef	struct 		s_cursor
 	unsigned int	c_id;
 	uint32_t		regs[REG_NUMBER + 1];
 	int				wait_cycle;
+	int 			no_live_cycle;
 	int16_t			pc;
 	uint8_t		 	op;
 	t_bool			carry;
@@ -108,7 +109,6 @@ typedef	struct		s_vm
 	uint8_t			arena[MEM_SIZE];
 	int				cycle_total;
 	int				cycle_to_die;
-	int 			delta_cycle_counter;
 	int				max_check_counter;
 	int				live_counter;
 	t_cursor		*cursor;

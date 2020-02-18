@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 11:51:15 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:38:36 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void			run_cursor(t_vm *vm)
 			execute_instruction(vm, c);
 			c->wait_cycle = -1;
 		}
+		c->no_live_cycle++;
 		c = c->next;
 	}
 }
@@ -83,24 +84,25 @@ static char		*get_player_name(t_vm *vm, int id)
 void			run_vm(t_vm *vm)
 {
 	char	*winner_name;
+	int		delta_cycle_counter;
 
-	vm->delta_cycle_counter = 0;
+	delta_cycle_counter = 0;
 	while (vm->cursor_nb)
 	{
-		while (vm->delta_cycle_counter < vm->cycle_to_die)
+		while (delta_cycle_counter < vm->cycle_to_die)
 		{
-			// printf("cycle[%d]\n", vm->cycle_total);
+			// ft_printf("cycle[%d]\n", vm->cycle_total);
 			run_cursor(vm);
 			if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 			{
 				dump_mem(vm->arena);
 				return ;
 			}
-			vm->delta_cycle_counter++;
+			delta_cycle_counter++;
 			vm->cycle_total++;
 		}
 		check(vm);
-		vm->delta_cycle_counter = 0;
+		delta_cycle_counter = 0;
 	}
 	winner_name = get_player_name(vm, vm->winner);
 	if (winner_name)

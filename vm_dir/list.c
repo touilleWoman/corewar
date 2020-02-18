@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 11:51:49 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:36:13 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		update_cursor(t_vm *vm)
 		{
 			if (vm->flags & V_FLAG)
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
-				c->c_id, vm->delta_cycle_counter, vm->cycle_to_die);
+				c->c_id, c->no_live_cycle, vm->cycle_to_die);
 			if (c == vm->cursor)
 				vm->cursor = c->next;
 			if (c->prev)
