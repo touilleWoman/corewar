@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/18 14:42:17 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:45:26 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,37 @@
 # define ASM_H
 
 /*
-<<<<<<< HEAD
 ***-------------**
 **|   Includes   |
 ***-------------**
-=======
-**------------**
-|   Includes   |
-**------------**
->>>>>>> vm
+
 */
 # include <includes.h>
 
 /*
-<<<<<<< HEAD
 ***-----------**
 **|   Return   |
 ***-----------**
-=======
-**----------**
-|   Return   |
-**----------**
->>>>>>> vm
+
 */
 # define ASM_SUCCESS		1
 # define ASM_ERROR			-1
 # define ASM_IGNORE			0
 
 /*
-<<<<<<< HEAD
 ***------------**
 **|   Boolean   |
 ***------------**
-=======
-**-----------**
-|   Boolean   |
-**-----------**
->>>>>>> vm
+
 */
 # define ASM_TRUE			1
 # define ASM_FALSE			0
 
 /*
-<<<<<<< HEAD
 ***---------------**
 **|   Error Type   |
 ***---------------**
-=======
-**--------------**
-|   Error Type   |
-**--------------**
->>>>>>> vm
+
 */
 # define ASM_ERROR_AC		-1
 # define ASM_ERROR_FILE		-2
@@ -73,15 +53,10 @@
 # define ASM_ERROR_OTHER	-404
 
 /*
-<<<<<<< HEAD
 ***------------------**
 **|   Commande Type   |
 ***------------------**
-=======
-**-----------------**
-|   Commande Type   |
-**-----------------**
->>>>>>> vm
+
 */
 # define T_NAME				2
 # define T_COMMENT			4
@@ -207,37 +182,16 @@ int8_t				get_code(t_asm *a);
 ***---------**
 **|   Skip   |
 ***---------**
-=======
-**---------**
-|   Files   |
-**---------**
-*/
-int                 open_file(char *file);
-int					create_new_file(t_asm *a, char *file);
-int8_t				get_info(t_asm *a);
-int8_t				get_name_comment(t_asm *a);
-int8_t				get_code(t_asm *a);
 
-/*
-**--------**
-|   Skip   |
-**--------**
->>>>>>> vm
 */
 void				skip_start(char *str);
 uint8_t				is_empty(char *str);
 void				skip_empty(t_asm *a);
 
 /*
-<<<<<<< HEAD
 ***--------------------**
 **|   Label functions   |
 ***--------------------**
-=======
-**-------------------**
-|   Label functions   |
-**-------------------**
->>>>>>> vm
 */
 t_label				*lab_new(char const *str);
 void				lab_pushfront(t_label **lst, t_label *ptr);
@@ -253,14 +207,7 @@ char				*get_label_by_ptrid(t_label **la, unsigned int id);
 ***--------------------**
 **|   Champ functions   |
 ***--------------------**
-=======
-void				print_lab(t_label **lst);
 
-/*
-**-------------------**
-|   Champ functions   |
-**-------------------**
->>>>>>> vm
 */
 t_champ				*champ_new(int op);
 void				champ_pushfront(t_champ **lst, t_champ *ptr);
@@ -276,14 +223,7 @@ int					champ_size_calc(t_champ *c);
 ***-----------------**
 **|   Print Memory   |
 ***-----------------**
-=======
-void				print_champ(t_champ **lst);
 
-/*
-**----------------**
-|   Print Memory   |
-**----------------**
->>>>>>> vm
 */
 void				write_str_type(int fd, char *str, int size);
 void				write_int_four_bytes(int fd, int nb);
@@ -304,26 +244,14 @@ void				print_champ(t_header *h, t_champ **ch, t_label **la);
 ***-------------------**
 **|   Release Memory   |
 ***-------------------**
-=======
-
-/*
-**------------------**
-|   Release Memory   |
-**------------------**
->>>>>>> vm
 */
 void				clear_all(t_asm *a);
 
 /*
-<<<<<<< HEAD
 ***---------------**
 **|   Global Var   |
 ***---------------**
-=======
-**--------------**
-|   Global Var   |
-**--------------**
->>>>>>> vm
+
 */
 extern t_op			g_op_tab[17];
 

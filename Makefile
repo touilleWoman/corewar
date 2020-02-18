@@ -14,7 +14,7 @@ rose			=	\033[1;31m
 neutre			=	\033[0m
 vertfonce		=	\033[0;32m
 
-NAME			=	corewar
+NAME_VM			=	corewar
 NAME_ASM		=	asm
 
 CC				=	gcc
@@ -38,6 +38,8 @@ LIB_PATH		=	-L./libft
 
 ASM_PATH		=	./srcs/asm_srcs
 
+VM_PATH			=	./vm_dir
+
 LIBS 			=	-lft
 
 LFLAG			=	$(LIB_PATH) $(LIBS)
@@ -46,23 +48,25 @@ LFLAG			=	$(LIB_PATH) $(LIBS)
 
 vpath %.c ./srcs/:
 
-all				:	asm libs $(NAME)
+all				:	asm vm libs
+# all				:	asm libs $(NAME)
 
-$(NAME)			:	$(OBJ)
-					@echo "${vertfonce}Compiling ...${neutre}\c"
-					@$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG) $(INCLUDES)
-					@echo "${rose}DONE${neutre}"
+# $(NAME)			:	$(OBJ)
+					# @echo "${vertfonce}Compiling ...${neutre}\c"
+					# @$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG) $(INCLUDES)
+					# @echo "${rose}DONE${neutre}"
 
-$(OBJ_PATH)/%.o	:	%.c
-					@mkdir $(OBJ_PATH) 2> /dev/null || true
-					@echo "${vertfonce}Creating $@ ...\c${neutre}"
-					@$(CC) $(CFLAG) -o $@ -c $< $(INCLUDES)
-					@echo "${rose}DONE${neutre}"
+# $(OBJ_PATH)/%.o	:	%.c
+# 					@mkdir $(OBJ_PATH) 2> /dev/null || true
+# 					@echo "${vertfonce}Creating $@ ...\c${neutre}"
+# 					@$(CC) $(CFLAG) -o $@ -c $< $(INCLUDES)
+# 					@echo "${rose}DONE${neutre}"
 
 clean			:
 					@echo "${rose}Cleaning the project ...${neutre}\c"
 					@make clean -C libft
 					@make clean -C $(ASM_PATH)
+					@make clean -C $(VM_PATH)
 					@rm -rf $(OBJ_PATH)
 					@echo "${vertfonce}DONE${neutre}"
 
@@ -71,7 +75,9 @@ fclean			:	clean
 					@make fclean -C libft
 					@rm -rf $(NAME)
 					@make fclean -C $(ASM_PATH)
+					@make fclean -C $(VM_PATH)
 					@rm -rf $(NAME_ASM)
+					@rm -rf $(NAME_VM)
 					@echo "${vertfonce}DONE${neutre}"
 
 libs			:
@@ -80,6 +86,10 @@ libs			:
 asm				:
 					@make -C $(ASM_PATH)
 					@mv $(ASM_PATH)/asm ./asm
+vm				:
+					make -C $(VM_PATH)
+					@mv $(VM_PATH)/corewar .
+
 
 asm_re			:
 					@make fclean -C $(ASM_PATH)
