@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 13:38:36 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:56:26 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void			run_vm(t_vm *vm)
 	int		delta_cycle_counter;
 
 	delta_cycle_counter = 0;
+	vm->cycle_total = 1;
 	while (vm->cursor_nb)
 	{
 		while (delta_cycle_counter < vm->cycle_to_die)
@@ -104,6 +105,7 @@ void			run_vm(t_vm *vm)
 		check(vm);
 		delta_cycle_counter = 0;
 	}
+	ft_printf("cycle_total:%d\n", vm->cycle_total );
 	winner_name = get_player_name(vm, vm->winner);
 	if (winner_name)
 		ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner, winner_name);
