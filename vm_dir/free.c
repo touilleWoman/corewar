@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 13:52:21 by naali             #+#    #+#             */
-/*   Updated: 2020/01/26 16:01:47 by jleblond         ###   ########.fr       */
+/*   Created: 2020/01/23 11:13:06 by jleblond          #+#    #+#             */
+/*   Updated: 2020/02/09 14:58:17 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "vm.h"
 
-int		ft_atoi(const char *str)
+void		free_vm(t_vm *vm)
 {
-	int		i;
-	int		ret;
-	int		neg;
+	t_cursor	*keep;
 
-	neg = 1;
-	i = 0;
-	ret = 0;
-	while (((str[i] <= 13) && (str[i] >= 9)) || (str[i] == 32))
+	while (vm->player_nb)
 	{
-		i++;
+		free(vm->players[vm->player_nb - 1].file);
+		vm->players[vm->player_nb - 1].file = NULL;
+		vm->player_nb--;
 	}
-	if ((str[i] == '+') || (str[i] == '-'))
+	while (vm->cursor)
 	{
-		if (str[i] == '-')
-		{
-			neg = -neg;
-		}
-		i++;
+		keep = vm->cursor->next;
+		free(vm->cursor);
+		vm->cursor = keep;
 	}
-	while ((str[i] != 0) && (str[i] >= '0') && (str[i] <= '9'))
-	{
-		ret = ret * 10 + str[i] - '0';
-		i++;
-	}
-	return (ret * neg);
+
 }

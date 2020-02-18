@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jleblond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/18 14:41:08 by jleblond         ###   ########.fr       */
+/*   Created: 2018/12/01 17:30:19 by jleblond          #+#    #+#             */
+/*   Updated: 2018/12/01 17:34:09 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		INCLUDES_H
-# define	INCLUDES_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-/* A DELETE */
-#include <stdio.h>
+# include "libft.h"
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-# include <op.h>
-# include <libft.h>
-# include <get_next_line.h>
+# define BUFF_SIZE 40
+# define ERROR -1
+# define SUCCESS 1
+# define FINISHED 0
 
 #endif
