@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 13:38:45 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/18 18:29:40 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ typedef	struct 		s_cursor
 */
 typedef	struct		s_vm
 {
-	int				dump;
 	t_player		players[MAX_PLAYERS];
-	uint8_t			player_nb;
 	uint8_t			arena[MEM_SIZE];
+	int				dump;
+	uint8_t			player_nb;
 	int				cycle_total;
 	int				cycle_to_die;
 	int				max_check_counter;
@@ -120,6 +120,8 @@ typedef	struct		s_vm
 /*
 ** parser
 */
+int 				main_c_for_python(int argc, char const **argv);
+
 
 void 				usage(void);
 t_bool				parse(t_vm *vm, int argc, char const **argv);

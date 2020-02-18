@@ -6,15 +6,15 @@
 #    By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 16:07:39 by jleblond          #+#    #+#              #
-#    Updated: 2020/02/14 11:39:26 by jleblond         ###   ########.fr        #
+#    Updated: 2020/02/18 17:41:33 by jleblond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re
 
 CC		=	gcc
-# CFLAGS =	-Wall -Werror -Wextra -g
-CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS =	-Wall -Werror -Wextra -g
+# CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
 NAME	=	corewar
 
 SRCS	=	main_vm.c parse.c free.c parse_file.c parse_argv.c list.c run_vm.c \
@@ -45,6 +45,9 @@ $(NAME):$(OBJ) $(LIBFTA)
 
 $(LIBFTA): FORCE
 	make -C libft2
+
+dylib:
+	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  corewar.dylib
 
 FORCE:
 
