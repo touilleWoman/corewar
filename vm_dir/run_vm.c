@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 16:40:45 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:57:00 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** op_wait[0] is not used.
 */
-static int 		get_wait_cycle(unsigned char op)
+static int	get_wait_cycle(unsigned char op)
 {
 	static int op_wait[17] = {-1, 10, 5, 5, 10, 10, 6, 6, 6, 20, 25,
 		25, 800, 10, 50, 1000, 2};
@@ -68,7 +68,7 @@ void			check(t_vm *vm)
 
 static char		*get_player_name(t_vm *vm, int id)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (i < vm->player_nb)
@@ -108,5 +108,6 @@ void			run_vm(t_vm *vm)
 	// ft_printf("cycle_total:%d\n", vm->cycle_total - 1);
 	winner_name = get_player_name(vm, vm->winner);
 	if (winner_name)
-		ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner, winner_name);
+		// ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner, winner_name);
+		ft_printf("Contestant %d, \"%s\", has won !\n", -(vm->winner), winner_name);
 }

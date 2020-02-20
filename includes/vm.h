@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 18:29:40 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:43:34 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ typedef enum 		s_type
 
 typedef struct 		s_player
 {
-	uint8_t			player_id;
-	uint8_t			*file;
-	unsigned int	file_size;
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
-	int				prog_size;
 	uint8_t			prog_data[CHAMP_MAX_SIZE];
+	unsigned int	file_size;
+	uint8_t			*file;
+	int				prog_size;
 	int				live_counter;
+	int8_t			player_id;
 }					t_player;
 
 typedef struct 		s_params
@@ -83,22 +83,21 @@ typedef struct 		s_params
 */
 typedef	struct 		s_cursor
 {
-	unsigned int 	live_counter;
-	unsigned int	c_id;
 	uint32_t		regs[REG_NUMBER + 1];
+	unsigned int	live_counter;
+	unsigned int	c_id;
 	int				wait_cycle;
-	int 			no_live_cycle;
+	int				no_live_cycle;
 	int16_t			pc;
 	uint8_t		 	op;
 	t_bool			carry;
 	struct s_cursor	*next;
 	struct s_cursor	*prev;
 }					t_cursor;
-// If read value is not a valid operation code, save value and set wait_cycles = 0.
 
 /*
 ** delta_cycle_counter :    count nb of cycle since last cycle check
-** last_alive_id :			last player who reported alive in each round,
+** winner :					last player who reported alive in each round,
 **							initialised with the highest player id
 */
 typedef	struct		s_vm

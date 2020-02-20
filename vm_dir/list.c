@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 07:12:26 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 13:36:13 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:46:56 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ t_bool		init_cursor_lst(t_vm *vm)
 		if (c_lst_new(&new) == FALSE)
 			return (FALSE);
 		new->pc =  (MEM_SIZE / vm->player_nb) * i;
-		// new->regs[1] = -(vm->players[i].player_id);// neg id
 		new->regs[1] = vm->players[i].player_id;
 		if (c_lst_add_top(&(vm->cursor), new) == FALSE)
 			return (FALSE);

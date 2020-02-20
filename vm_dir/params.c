@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:14:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/08 14:49:54 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:39:42 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_type		get_type(uint8_t ocp, uint8_t param_index)
 	}
 }
 
-int 		get_type_len(char type, char dir_size)
+int			get_type_len(char type, char dir_size)
 {
 	if (type == TYPE_REG)
 		return (1);
