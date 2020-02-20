@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:41:19 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 19:28:59 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:41:07 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		op_ld(t_vm *vm, t_cursor *c)
 void		op_lld(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int 		address;
+	int	address;
 
 	fill_params(&prm, vm->arena, c);
 	if (is_dir_or_ind(prm.p1_type) && is_reg_type(prm.p2_type, prm.p2) && is_absent_type(prm.p3_type))

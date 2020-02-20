@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:10:13 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 20:21:35 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:41:08 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void		op_add(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int 		value;
+	int	value;
 
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && is_reg_type(prm.p2_type, prm.p2)

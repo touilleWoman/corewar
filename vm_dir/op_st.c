@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 19:32:44 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:40:50 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_bool		st_p2_valid(t_params *prm)
 void				op_st(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int 		address;
+	int	address;
 	int			value;
 
 	fill_params(&prm, vm->arena, c);
@@ -58,8 +58,6 @@ void				op_st(t_vm *vm, t_cursor *c)
 ** Parameters 2 and 3 are indexes. If they are, in fact, registers,
 ** we’ll use their contents as indexes.
 **
-** size of type_dir is 2
-**
 ** if ocp invalid, jump the size indicated with the wrong ocp
 ** and not execute operation.
 */
@@ -67,7 +65,7 @@ void				op_st(t_vm *vm, t_cursor *c)
 void				op_sti(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int 		address;
+	int	address;
 	int32_t		value;
 
 	fill_params(&prm, vm->arena, c);

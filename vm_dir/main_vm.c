@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 11:53:04 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:46:20 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ file1.cor file2.cor ...\n\
 
 static void			player_to_arena(t_vm *vm)
 {
-	int 		i;
-	int 		size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = MEM_SIZE / vm->player_nb;
@@ -33,7 +33,8 @@ static void			player_to_arena(t_vm *vm)
 	while (i < vm->player_nb)
 	{
 		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
-			vm->players[i].player_id,
+			-(vm->players[i].player_id),
+			// vm->players[i].player_id,
 			vm->players[i].file_size - sizeof(t_header),
 			vm->players[i].prog_name, vm->players[i].comment);
 		ft_memcpy(vm->arena + (size * i),
@@ -43,7 +44,7 @@ static void			player_to_arena(t_vm *vm)
 	}
 }
 
-int 				main(int argc, char const **argv)
+int			main(int argc, char const **argv)
 {
 	t_vm	vm;
 

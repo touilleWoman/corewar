@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 13:38:45 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:43:34 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef enum 		s_type
 
 typedef struct 		s_player
 {
-	uint8_t			player_id;
+	int8_t			player_id;
 	uint8_t			*file;
 	unsigned int	file_size;
 	char			prog_name[PROG_NAME_LENGTH + 1];
@@ -83,11 +83,11 @@ typedef struct 		s_params
 */
 typedef	struct 		s_cursor
 {
-	unsigned int 	live_counter;
+	unsigned int	live_counter;
 	unsigned int	c_id;
 	uint32_t		regs[REG_NUMBER + 1];
 	int				wait_cycle;
-	int 			no_live_cycle;
+	int				no_live_cycle;
 	int16_t			pc;
 	uint8_t		 	op;
 	t_bool			carry;

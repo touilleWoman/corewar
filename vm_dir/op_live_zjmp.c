@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 13:34:48 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:44:46 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool		player_id_valid(t_vm *vm, int id, int *index)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (i < vm->player_nb)
@@ -35,9 +35,9 @@ t_bool		player_id_valid(t_vm *vm, int id, int *index)
 
 void		op_live(t_vm *vm, t_cursor *c)
 {
-	int 	player_id;
-	int 	player_index;
-	int 	new_pc;
+	int		player_id;
+	int		player_index;
+	int		new_pc;
 
 	new_pc = pos(c->pc + OPCODE_SIZE);
 	player_id = read_bytes(vm->arena + new_pc, 4);
