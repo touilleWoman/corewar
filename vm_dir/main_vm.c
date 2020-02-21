@@ -68,4 +68,3 @@ int			main(int argc, char const **argv)
 	free_vm(&vm);
 	return (0);
 }
-

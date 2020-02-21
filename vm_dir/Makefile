@@ -46,7 +46,7 @@ $(NAME):$(OBJ) $(LIBFTA)
 $(LIBFTA): FORCE
 	make -C libft2
 
-dylib:
+dylib: $(LIBFTA)
 	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  corewar.dylib
 
 FORCE:
@@ -57,6 +57,6 @@ clean:
 
 fclean: clean
 	make fclean -C libft2
-	rm -f $(NAME)
+	rm -f $(NAME) corewar.dylib
 
 re: fclean all

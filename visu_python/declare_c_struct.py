@@ -1,5 +1,11 @@
+"""
+    t_vm (delclared in vm.h) is the main C structure for virtual machine.
+    I use module "ctypes" to declare this structure in python,
+    then pass it to C functions.
+"""
+
 import ctypes
-import sys
+
 
 MEM_SIZE = 4*1024
 PROG_NAME_LENGTH = 128
@@ -7,8 +13,6 @@ COMMENT_LENGTH = 2048
 CHAMP_MAX_SIZE = int(MEM_SIZE / 6)
 MAX_PLAYERS = 4
 REG_NUMBER = 16
-
-
 
 # declare the c structure
 class Bool(ctypes.Structure):
@@ -56,34 +60,3 @@ class Vm(ctypes.Structure):
     ("cursor_nb", ctypes.c_int),
     ("winner", ctypes.c_int),
     ("flags", ctypes.c_char)]
-
-
-def main():
-    # get all the c functions for Corewar
-    Corewar = ctypes.CDLL('./corewar.dylib')
-
-
-    if len(sys.argv) < 2:
-        Corewar.usage()
-    else:
-        # vm is the main structure to be given to C program
-        vm = ctypes.pointer(Vm())
-        Corewar.init_vm(vm)
-
-        # convert sys.argv to argv for C program
-        LP_c_char = ctypes.POINTER(ctypes.c_char)
-        LP_LP_c_char = ctypes.POINTER(LP_c_char)
-        argc = len(sys.argv)
-        argv = (LP_c_char * (argc + 1))()
-        for i, arg in enumerate(sys.argv):
-            enc_arg = arg.encode('utf-8')
-            argv[i] = ctypes.create_string_buffer(enc_arg)
-
-        if (Corewar.parse(vm, argc, argv) and Corewar.init_cursor_lst(vm)):
-            Corewar.player_to_arena(vm)
-            Corewar.run_vm(vm)
-        Corewar.free_vm(vm)
-
-
-if __name__ == "__main__":
-    main()
