@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:43:34 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:56:17 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ t_bool				parse(t_vm *vm, int argc, char const **argv);
 t_bool				get_digital_value_succeed(char *s, int *value);
 t_bool				parse_argv(t_vm *vm, int argc, char const **argv,
 							t_id_tab id_tab[MAX_PLAYERS]);
+t_bool				get_dump_value(int argc, char const **argv, int *i, t_vm *vm);
+t_bool				get_n_value(char const **argv, int *i, t_vm *vm, t_id_tab id_tab[MAX_PLAYERS]);
 t_bool				parse_file(t_vm *vm);
 void				dump_mem(uint8_t *arena);
 t_bool				is_valid_filename(char const *s);

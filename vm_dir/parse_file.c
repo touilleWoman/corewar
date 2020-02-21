@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 12:27:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/18 11:14:02 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:35:56 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_bool		get_comment(uint8_t *s, t_player *p)
 	s += COMMENT_LENGTH;
 	if (s[0] || s[1] || s[2] || s[3])
 	{
-		ft_putendl_fd("ERROR: name string shold be followed \
+		ft_putendl_fd("ERROR: comment string shold be followed \
 by 4 bytes of 0\n" ,2);
 		return (FALSE);
 	}
@@ -50,6 +50,7 @@ by 4 bytes of 0\n" ,2);
 **   char				comment[COMMENT_LENGTH + 1];
 ** }					t_header;
 */
+
 static t_bool		parse_one_player_header(t_player *p)
 {
 	uint8_t 			*s;
