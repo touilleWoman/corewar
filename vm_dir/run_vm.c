@@ -101,6 +101,7 @@ void			run_vm(t_vm *vm)
 			}
 			delta_cycle_counter++;
 			vm->cycle_total++;
+			sleep(1);
 		}
 		check(vm);
 		delta_cycle_counter = 0;
