@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/23 13:17:58 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:50:05 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ void			run_vm(t_vm *vm)
 	{
 		while (vm->delta_cycle_counter < vm->cycle_to_die)
 		{
-			if (one_round (vm)== FALSE)
+			if (one_round(vm)== FALSE)
 				return ;
 		}
 		check(vm);
 	}
+	declare_winner(vm);
 }

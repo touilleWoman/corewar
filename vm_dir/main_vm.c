@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/23 13:10:15 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:51:21 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void				player_to_arena(t_vm *vm)
 	}
 }
 
-
 void		init_vm(t_vm *vm)
 {
 	ft_bzero(vm, sizeof(t_vm));
@@ -67,7 +66,6 @@ int			main(int argc, char const **argv)
 	{
 		player_to_arena(&vm);
 		run_vm(&vm);
-		declare_winner(&vm);
 	}
 	free_vm(&vm);
 	return (0);

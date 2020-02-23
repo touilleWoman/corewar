@@ -6,7 +6,7 @@
 #    By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 16:07:39 by jleblond          #+#    #+#              #
-#    Updated: 2020/02/23 13:09:52 by jleblond         ###   ########.fr        #
+#    Updated: 2020/02/23 13:23:51 by jleblond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(LIBFTA): FORCE
 	make -C libft2
 
 dylib: $(LIBFTA)
-	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  corewar.dylib
+	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  C_lib.dylib
 
 FORCE:
 
@@ -57,6 +57,6 @@ clean:
 
 fclean: clean
 	make fclean -C libft2
-	rm -f $(NAME) corewar.dylib
+	rm -f $(NAME) C_lib.dylib
 
 re: fclean all
