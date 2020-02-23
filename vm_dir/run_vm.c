@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:57:00 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:17:58 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** op_wait[0] is not used.
 */
-static int	get_wait_cycle(unsigned char op)
+static int		get_wait_cycle(unsigned char op)
 {
 	static int op_wait[17] = {-1, 10, 5, 5, 10, 10, 6, 6, 6, 20, 25,
 		25, 800, 10, 50, 1000, 2};
@@ -62,53 +62,33 @@ void			check(t_vm *vm)
 	else
 		vm->max_check_counter++;
 	vm->live_counter = 0;
+	vm->delta_cycle_counter = 0;
 	// ft_printf("cycle_total[%d] cycle_to_die[%d]\n", vm->cycle_total, vm->cycle_to_die );
 	update_cursor(vm);
 }
 
-static char		*get_player_name(t_vm *vm, int id)
+t_bool			one_round(t_vm *vm)
 {
-	int		i;
-
-	i = 0;
-	while (i < vm->player_nb)
+	run_cursor(vm);
+	if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 	{
-		if (id == vm->players[i].player_id)
-			return (vm->players[i].prog_name);
-		i++;
+		dump_mem(vm->arena);
+		return (FALSE);
 	}
-	ft_printf("ERROR: Winner id(%d) doesn't exist\n", id);
-	return (NULL);
+	vm->delta_cycle_counter++;
+	vm->cycle_total++;
+	return (TRUE);
 }
 
 void			run_vm(t_vm *vm)
 {
-	char	*winner_name;
-	int		delta_cycle_counter;
-
-	delta_cycle_counter = 0;
-	vm->cycle_total = 1;
 	while (vm->cursor_nb)
 	{
-		while (delta_cycle_counter < vm->cycle_to_die)
+		while (vm->delta_cycle_counter < vm->cycle_to_die)
 		{
-			// ft_printf("cycle[%d]\n", vm->cycle_total);
-			run_cursor(vm);
-			if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
-			{
-				dump_mem(vm->arena);
+			if (one_round (vm)== FALSE)
 				return ;
-			}
-			delta_cycle_counter++;
-			vm->cycle_total++;
-			sleep(1);
 		}
 		check(vm);
-		delta_cycle_counter = 0;
 	}
-	// ft_printf("cycle_total:%d\n", vm->cycle_total - 1);
-	winner_name = get_player_name(vm, vm->winner);
-	if (winner_name)
-		// ft_printf("Contestant %d, \"%s\", has won !\n", vm->winner, winner_name);
-		ft_printf("Contestant %d, \"%s\", has won !\n", -(vm->winner), winner_name);
 }

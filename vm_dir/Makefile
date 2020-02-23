@@ -6,7 +6,7 @@
 #    By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 16:07:39 by jleblond          #+#    #+#              #
-#    Updated: 2020/02/18 17:41:33 by jleblond         ###   ########.fr        #
+#    Updated: 2020/02/23 13:09:52 by jleblond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME	=	corewar
 
 SRCS	=	main_vm.c parse.c free.c parse_file.c parse_argv.c list.c run_vm.c \
 			dump_mem.c instructions.c tools.c params.c params_bis.c bytes.c \
-			init_players.c print.c \
+			init_players.c print.c winner.c \
 			op_add_sub.c op_live_zjmp.c op_ld.c op_st.c op_fork.c\
 			op_and_or.c op_aff.c
 

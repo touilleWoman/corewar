@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:43:34 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:10:04 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef	struct		s_vm
 	int				cycle_total;
 	int				cycle_to_die;
 	int				max_check_counter;
+	int				delta_cycle_counter;
 	int				live_counter;
 	t_cursor		*cursor;
 	int				cursor_nb;
@@ -119,9 +120,6 @@ typedef	struct		s_vm
 /*
 ** parser
 */
-int 				main_c_for_python(int argc, char const **argv);
-
-
 void 				usage(void);
 t_bool				parse(t_vm *vm, int argc, char const **argv);
 t_bool				get_digital_value_succeed(char *s, int *value);
@@ -142,6 +140,7 @@ void				execute_instruction(t_vm *vm, t_cursor *c);
 void				update_cursor(t_vm *vm);
 t_bool				c_lst_new(t_cursor **new);
 t_bool				c_lst_add_top(t_cursor **alst, t_cursor *new);
+void				declare_winner(t_vm *vm);
 void				free_vm(t_vm *vm);
 
 /*

@@ -55,6 +55,7 @@ class Vm(Structure):
     ("cycle_total", c_int),
     ("cycle_to_die", c_int),
     ("max_check_counter", c_int),
+    ("delta_cycle_counter", c_int),
     ("live_counter", c_int),
     ("Cursor", POINTER(Cursor)),
     ("cursor_nb", c_int),

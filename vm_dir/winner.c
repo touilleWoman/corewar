@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dump_mem.c                                         :+:      :+:    :+:   */
+/*   winner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/03 20:03:37 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/23 13:11:45 by jleblond         ###   ########.fr       */
+/*   Created: 2020/02/23 12:14:35 by jleblond          #+#    #+#             */
+/*   Updated: 2020/02/23 12:15:54 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		dump_mem(uint8_t *arena)
+static char		*get_player_name(t_vm *vm, int id)
 {
-	size_t	i;
+	int		i;
 
 	i = 0;
-	while (i < MEM_SIZE)
+	while (i < vm->player_nb)
 	{
-		if (i % 32 == 0)
-			ft_printf("0x%04x : ", i);
-		ft_printf("%02hhx ", arena[i]);
-		if ((i + 1) % 32 == 0)
-			ft_printf("\n");
+		if (id == vm->players[i].player_id)
+			return (vm->players[i].prog_name);
 		i++;
 	}
+	ft_printf("ERROR: Winner id(%d) doesn't exist\n", id);
+	return (NULL);
+}
+
+void			declare_winner(t_vm *vm)
+{
+	char	*winner_name;
+
+	winner_name = get_player_name(vm, vm->winner);
+	if (winner_name)
+		ft_printf("Contestant %d, \"%s\", has won !\n", -(vm->winner),
+			winner_name);
 }

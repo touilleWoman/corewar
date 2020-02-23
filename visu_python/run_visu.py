@@ -1,6 +1,5 @@
 import ctypes
 import pygame
-from threading import Thread
 
 white = (255, 255, 255)
 green = (0, 255, 0)
@@ -35,8 +34,5 @@ def run_visu(p_vm, Corewar, vm):
 
     font = pygame.font.Font('freesansbold.ttf', 32)
     while True:
-        Thread(target = Corewar.run_vm(p_vm))
-        Thread(target = visu_loop(vm, screen, font).start())
-    # visu_loop(vm, screen, font)
 
     # Corewar.run_vm(p_vm)
