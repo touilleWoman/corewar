@@ -55,7 +55,9 @@ def main():
             #=====visualiser========
             run_visu(p_vm, C_lib, vm)
             #=====visualiser========
+        print("FREE==========")
         C_lib.free_vm(p_vm)
+        sys.exit()
 
 
 if __name__ == "__main__":
