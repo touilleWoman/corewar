@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:14:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:39:42 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/21 17:39:33 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_type		get_type(uint8_t ocp, uint8_t param_index)
 		return ((ocp & 0b00110000) >> 4);
 	else if (param_index == 3)
 		return ((ocp & 0b00001100) >> 2);
-	else if(param_index == 4)
+	else if (param_index == 4)
 		return (ocp & 0b00000011);
 	else
 	{
