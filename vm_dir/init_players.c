@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:08:35 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:43:24 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/21 14:30:17 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_bool		read_one_file(int fd, uint8_t **file, int *file_size)
 t_bool				init_one_player(char const *argv, t_vm *vm, uint8_t id)
 {
 	int				fd;
-	int		file_size;
+	int				file_size;
 	uint8_t			*file;
 	t_bool			ret;
 

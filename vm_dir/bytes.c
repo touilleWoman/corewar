@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 14:45:55 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 20:48:23 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/21 17:04:14 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int32_t 	read_bytes(uint8_t *s, uint8_t nb_of_bytes)
 		ret = (int8_t)(s[0]);
 	else
 	{
-		printf("nb_of_bytes [%d] wrong\n", nb_of_bytes);
+		ft_printf("nb_of_bytes [%d] wrong\n", nb_of_bytes);
 	}
 	return (ret);
 }

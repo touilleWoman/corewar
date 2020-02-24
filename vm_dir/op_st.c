@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:40:50 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/21 17:43:43 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void				op_st(t_vm *vm, t_cursor *c)
 void				op_sti(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int	address;
+	int			address;
 	int32_t		value;
 
 	fill_params(&prm, vm->arena, c);
