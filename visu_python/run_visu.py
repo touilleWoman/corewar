@@ -1,10 +1,14 @@
 import ctypes
 import pygame
 from pygame.locals import *
+import binascii
 
+import sys
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
-blue = (0, 0, 128)
+BLUE = (0, 0, 128)
+RED = (245, 78, 66)
+GREY = (135, 133, 132)
 
 SCREEN_X = 1200
 SCREEN_Y = 900
@@ -12,21 +16,6 @@ CAPTION = "Corewar"
 MEM_SIZE = 4*1024
 
 
-class Sprite(pygame.sprite.DirtySprite):
-    """docstring for Sprite"""
-    def __init__(self, vm):
-        pygame.sprite.DirtySprite.__init__(self)
-        # self.image, self.rect = pygame.load_image('sprite.png', -1)
-        self.vm = vm
-        self.image = pygame.image.load("sprite1.png").convert()
-        self.rect = self.image.get_rect()
-
-
-    def update(self):
-        pass
-         # they will only be updated if they have dirty = 1
-        # if vm.:
-            # self.dirty = 1
 
 
 
@@ -34,13 +23,14 @@ class Visu():
     def __init__(self, vm):
         self.done = False
         self.screen = pygame.display.set_mode((SCREEN_X , SCREEN_Y))
-        # self.screen = pygame.display.get_surface()
+        self.screen = pygame.display.get_surface()
         # self.screen_rect = self.screen.get_rect()
         self.clock = pygame.time.Clock()
         self.fps = 60.0
         self.keys = pygame.key.get_pressed()
         self.vm = vm
         self.font = pygame.font.Font('freesansbold.ttf', 32)
+        self.cube_size = (SCREEN_Y - 50) / 64
 
         # self.background = pygame.Surface(self.screen.get_size())
         # self.background = self.background.convert()
@@ -83,11 +73,17 @@ class Visu():
         return (allsprites)
 
     def draw_arena(self):
+        data = binascii.hexlify(self.vm.arena, ' ')
+        sys.exit
         cube_len = (SCREEN_Y - 50) / 64
+
         for x in range(0,64):
             for y in range(0,64):
-                rec = (x * cube_len, cube_len * y + 25, cube_len , cube_len)
+                rec = (x * cube_len, cube_len * y + 25, cube_len, cube_len)
                 pygame.draw.rect(self.screen, WHITE, rec, 1)
+
+
+
 
 
     def update(self):

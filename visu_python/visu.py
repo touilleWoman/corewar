@@ -13,7 +13,7 @@ def get_C_lib():
         # make dylib
         makefile_path = Path(__file__).parent.absolute()
         makefile_path = makefile_path / '..' / 'vm_dir'
-        output = subprocess.run(['make', '-C', makefile_path])
+        output = subprocess.run(['make', 'dylib', '-C', makefile_path])
 
         # open dylib to get all the C functions
         lib_path = Path(__file__).parent.absolute()
