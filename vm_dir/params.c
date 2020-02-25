@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:14:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/21 17:39:33 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:55:58 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			get_type_len(char type, char dir_size)
 /*
 ** Doesn't read p4, only need p4_len to calculate newpc in case ocp wrong.
 */
+
 void		fill_params(t_params *prm, uint8_t *arena, t_cursor *c)
 {
 	uint8_t	dir_len;

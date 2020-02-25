@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/24 15:29:19 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:50:22 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void		op_live(t_vm *vm, t_cursor *c)
 	{
 		vm->players[player_index].live_counter++;
 		vm->winner = player_id;
-		// ft_printf("Player %d (%s) is alive\n", player_id, get_player_name(vm, player_id));
+		ft_printf("Player %d (%s) is alive\n", player_id,
+				get_player_name(vm, player_id));
 	}
 	c->no_live_cycle = 0;
 	c->live_counter++;
@@ -73,6 +74,7 @@ void		op_zjmp(t_vm *vm, t_cursor *c)
 	else
 		new_pc = pos(c->pc + OPCODE_SIZE + IND_SIZE);
 	if (vm->flags & V_FLAG)
-		ft_printf("P    %d | zjmp %d %s\n", c->c_id, jump, (c->carry == 1) ? "OK" : "FAILED");
+		ft_printf("P    %d | zjmp %d %s\n", c->c_id, jump,
+				(c->carry == 1) ? "OK" : "FAILED");
 	c->pc = new_pc;
 }

@@ -6,23 +6,11 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:15:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/21 14:01:11 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:55:16 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-static void		check_max_player_nb(int player_nb, t_bool *ok) //Surement del
-{
-	if (player_nb > MAX_PLAYERS)
-	{
-		ft_putstr_fd("ERROR: number of Player surpassed ", 2);
-		ft_putnbr_fd(MAX_PLAYERS, 2);
-		ft_putchar_fd('\n', 2);
-		*ok = FALSE;
-	}
-}
-
 
 static void		activate_v_flag(t_vm *vm, int *i)
 {
@@ -36,7 +24,8 @@ static void		activate_p_flag(t_vm *vm, int *i)
 	(*i)++;
 }
 
-static t_bool	fill_id_tab(t_vm *vm, int *i, char const *argv, t_id_tab id_tab[MAX_PLAYERS]) //si pas check avant overflow dans id_tab
+static t_bool	fill_id_tab(t_vm *vm, int *i, char const *argv,
+		t_id_tab id_tab[MAX_PLAYERS])
 {
 	if (vm->player_nb == 4)
 	{
@@ -78,7 +67,6 @@ t_bool			parse_argv(t_vm *vm, int argc, char const **argv,
 			ok = fill_id_tab(vm, &i, argv[i], id_tab);
 		else
 			ok = FALSE;
-		check_max_player_nb(vm->player_nb, &ok);
 	}
 	return (ok);
 }

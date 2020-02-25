@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 12:27:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/21 12:35:56 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:00:22 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_bool		get_name(uint8_t *s, t_player *p)
 	if (s[0] || s[1] || s[2] || s[3])
 	{
 		ft_putendl_fd("ERROR: name string shold be followed \
-by 4 bytes of 0\n" ,2);
+by 4 bytes of 0\n", 2);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -32,7 +32,7 @@ static t_bool		get_comment(uint8_t *s, t_player *p)
 	if (s[0] || s[1] || s[2] || s[3])
 	{
 		ft_putendl_fd("ERROR: comment string shold be followed \
-by 4 bytes of 0\n" ,2);
+by 4 bytes of 0\n", 2);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -53,12 +53,12 @@ by 4 bytes of 0\n" ,2);
 
 static t_bool		parse_one_player_header(t_player *p)
 {
-	uint8_t 			*s;
+	uint8_t			*s;
 
 	s = p->file;
 	if (read_bytes(s, 4) != COREWAR_EXEC_MAGIC)
 	{
-		ft_putendl_fd("ERROR: wrong magic nb in header" ,2);
+		ft_putendl_fd("ERROR: wrong magic nb in header", 2);
 		return (FALSE);
 	}
 	s += sizeof(unsigned int);
@@ -68,7 +68,7 @@ static t_bool		parse_one_player_header(t_player *p)
 	p->prog_size = read_bytes(s, 4);
 	if (p->prog_size != p->file_size - sizeof(t_header))
 	{
-		ft_putendl_fd("ERROR: wrong prog_size in header" ,2);
+		ft_putendl_fd("ERROR: wrong prog_size in header", 2);
 		return (FALSE);
 	}
 	s += 4;
@@ -77,13 +77,12 @@ static t_bool		parse_one_player_header(t_player *p)
 	return (TRUE);
 }
 
-
-static void				cp_prog_data(t_player *p)
+static void			cp_prog_data(t_player *p)
 {
 	ft_memcpy(p->prog_data, p->file + sizeof(t_header), p->prog_size);
 }
 
-t_bool					parse_file(t_vm *vm)
+t_bool				parse_file(t_vm *vm)
 {
 	int		i;
 

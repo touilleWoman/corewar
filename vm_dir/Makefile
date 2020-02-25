@@ -6,7 +6,7 @@
 #    By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 16:07:39 by jleblond          #+#    #+#              #
-#    Updated: 2020/02/24 17:32:58 by flhember         ###   ########.fr        #
+#    Updated: 2020/02/25 16:23:33 by flhember         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 CC		=	gcc
 CFLAGS =	-Wall -Werror -Wextra
-# CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
+#CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
 NAME	=	corewar
 
 
