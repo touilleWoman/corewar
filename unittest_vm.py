@@ -4,13 +4,27 @@ import re
 import random
 from pathlib import Path
 
+TEST_NB_CHAMPS = 2
+DUMP_CYCPLE = None
 
-my_pos = Path(__file__).parent.absolute()
 
-all_champs_path = Path(my_pos/'champs').glob('**/*')
-all_champs = [x for x in all_champs_path]
 
-CHAMP_PATH = ['./champs/bigzork.cor', './champs/zork.cor', './champ_path/turtle.cor', './champs/Gagnant.cor']
+def get_all_champs():
+    """compile and get all the *.cor """
+    subprocess.run(['make'])
+    my_pos = Path(__file__).parent.absolute()
+    champs_path = Path(my_pos/'champs').glob('**/*.cor')
+    s_path = Path(my_pos/'champs').glob('**/*.s')
+    all_s = [x for x in s_path]
+    for x in all_s:
+        subprocess.run(['./asm', str(x)], capture_output=True)
+        # uncomment this line to see asm error message
+        # subprocess.run(['./asm', str(x)])
+    all_champs = [x for x in champs_path]
+    return(all_champs)
+
+
+
 
 def get_my_dump(dump_cyle, champ_path):
     try:
@@ -49,17 +63,27 @@ def get_the_2_dump(dump_cyle, champ_path):
     zaz_dump = strip_useless(zaz_dump)
     return (my_dump, zaz_dump)
 
+def get_certain_champs(all_champs, nb):
+    lst = []
+    for x in range(0, nb):
+        lst.append(str(random.choice(all_champs)))
+    return lst
+
+all_champs = get_all_champs()
+test_champs = get_certain_champs(all_champs, TEST_NB_CHAMPS)
 
 class TestDump(unittest.TestCase):
-    # def setUp(self, champ_path):
-    #     self.champ_path = C
 
     maxDiff=None
     def test_dump_output(self, maxDiff=None):
         for i in range(0,1):
             dump_cyle = random.randint(0, 10000)
-            # print('tested dump_cyle is:', dump_cyle)
-            my_dump, zaz_dump = get_the_2_dump(dump_cyle, CHAMP_PATH)
+            print('=============test_champs===============')
+            print(test_champs)
+            if DUMP_CYCPLE is not None:
+                dump_cyle = DUMP_CYCPLE
+            print('dump_cyle is:', dump_cyle)
+            my_dump, zaz_dump = get_the_2_dump(dump_cyle, test_champs)
             with self.subTest(i=dump_cyle):
                 self.assertEqual(my_dump, zaz_dump)
 
@@ -67,7 +91,9 @@ class TestDump(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    subprocess.run(['make'])
-    print(all_champs)
+    unittest.main()
+
+
+    # print(all_champs)
 
     # unittest.main()
