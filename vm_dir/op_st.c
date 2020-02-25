@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/21 17:43:43 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:37:07 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 static t_bool		st_p2_valid(t_params *prm)
 {
-	return (prm->p2_type == TYPE_IND ||  is_reg_type(prm->p2_type, prm->p2));
+	return (prm->p2_type == TYPE_IND || is_reg_type(prm->p2_type, prm->p2));
 }
 
 void				op_st(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int	address;
+	int			address;
 	int			value;
 
 	fill_params(&prm, vm->arena, c);
@@ -38,17 +38,16 @@ void				op_st(t_vm *vm, t_cursor *c)
 			write_4_bytes(vm->arena + pos(address), value);
 		}
 		else
-		{
 			c->regs[prm.p2] = value;
-		}
 		if (vm->flags & V_FLAG)
-			ft_printf("P    %d | st r%d(%d) => %d\n", c->c_id, prm.p1, value, prm.p2);
+			ft_printf("P    %d | st r%d(%d) => %d\n", c->c_id, prm.p1,
+					value, prm.p2);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
+				prm.newpc);
 	c->pc = prm.newpc;
 }
-
 
 /*
 ** 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
@@ -78,9 +77,11 @@ void				op_sti(t_vm *vm, t_cursor *c)
 		value = c->regs[prm.p1];
 		write_4_bytes(vm->arena + pos(address), value);
 		if (vm->flags & V_FLAG)
-			ft_printf("P    %d | sti r%d(%d) => %d + %d\n", c->c_id, prm.p1, value, prm.p2, prm.p3);
+			ft_printf("P    %d | sti r%d(%d) => %d + %d\n", c->c_id, prm.p1,
+					value, prm.p2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
+				prm.newpc);
 	c->pc = prm.newpc;
 }

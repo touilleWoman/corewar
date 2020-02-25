@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:06:08 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/17 17:49:16 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:28:19 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void		op_fork(t_vm *vm, t_cursor *c)
 	if (vm->flags & P_FLAG)
 		ft_printf("ADV  3 (%#06x -> %#06x)\n", c->pc, c->pc + 3);
 	c->pc += 3;
-
 }
 
 void		op_lfork(t_vm *vm, t_cursor *c)

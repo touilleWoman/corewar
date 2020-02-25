@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 14:05:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 14:38:29 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:24:49 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void		op_aff(t_vm *vm, t_cursor *c)
 		ft_printf("aff:%c\n", value);
 		if (vm->flags & V_FLAG)
 			ft_printf("P    %d |  aff r%d\n", c->c_id, prm.p1);
-
 	}
 	c->pc = prm.newpc;
 }

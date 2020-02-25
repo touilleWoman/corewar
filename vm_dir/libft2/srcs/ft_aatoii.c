@@ -6,7 +6,7 @@
 /*   By: jleblond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 09:07:20 by jleblond          #+#    #+#             */
-/*   Updated: 2019/02/20 09:07:25 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 13:54:50 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		*ft_aatoii(char **pptr)
 	{
 		x++;
 	}
+	if (x == 0)
+		return (0);
 	tab = (int*)malloc(x * sizeof(int));
 	if (tab == NULL)
 		return (0);

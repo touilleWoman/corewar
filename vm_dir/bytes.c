@@ -6,15 +6,15 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 14:45:55 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/21 17:04:14 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:05:52 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int32_t 	read_bytes(uint8_t *s, uint8_t nb_of_bytes)
+int32_t		read_bytes(uint8_t *s, uint8_t nb_of_bytes)
 {
-	int32_t 	ret;
+	int32_t	ret;
 
 	ret = 0;
 	if (nb_of_bytes == 4)
@@ -32,8 +32,8 @@ int32_t 	read_bytes(uint8_t *s, uint8_t nb_of_bytes)
 
 void		write_4_bytes(uint8_t *arena, uint32_t value)
 {
-	arena[0] = (value & 0xff000000) >> 24 ;
-	arena[1] = (value & 0x00ff0000) >> 16 ;
+	arena[0] = (value & 0xff000000) >> 24;
+	arena[1] = (value & 0x00ff0000) >> 16;
 	arena[2] = (value & 0x0000ff00) >> 8;
 	arena[3] = (value & 0x000000ff);
 }

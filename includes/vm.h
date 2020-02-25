@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/24 14:12:17 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:20:14 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ t_bool				init_players(t_id_tab id_tab[MAX_PLAYERS], t_vm *vm);
 void				run_vm(t_vm *vm);
 t_bool				init_cursor_lst(t_vm *vm);
 void				execute_instruction(t_vm *vm, t_cursor *c);
-void				update_cursor(t_vm *vm);
+void				update_cursor(t_vm *vm, t_cursor *c);
 t_bool				c_lst_new(t_cursor **new);
 t_bool				c_lst_add_top(t_cursor **alst, t_cursor *new);
 void				declare_winner(t_vm *vm);
@@ -182,6 +182,7 @@ t_bool				is_dir_or_reg(t_type type, uint32_t p_value);
 t_bool				is_absent_type(t_type type);
 t_bool				is_reg_type(t_type type, uint32_t p_value);
 void				print(unsigned int id, char *s, t_params *p);
+char				*get_player_name(t_vm *vm, int id);
 
 
 #endif

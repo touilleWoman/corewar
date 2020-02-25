@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:13:06 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/09 14:58:17 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:06:35 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ void		free_vm(t_vm *vm)
 		free(vm->cursor);
 		vm->cursor = keep;
 	}
-
 }

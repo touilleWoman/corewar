@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/24 14:10:31 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:19:47 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** op_wait[0] is not used.
 */
+
 static int		get_wait_cycle(unsigned char op)
 {
 	static int op_wait[17] = {-1, 10, 5, 5, 10, 10, 6, 6, 6, 20, 25,
@@ -25,7 +26,7 @@ static int		get_wait_cycle(unsigned char op)
 
 void			run_cursor(t_vm *vm)
 {
-	t_cursor 		*c;
+	t_cursor	*c;
 
 	c = vm->cursor;
 	while (c)
@@ -63,8 +64,7 @@ void			check(t_vm *vm)
 		vm->max_check_counter++;
 	vm->live_counter = 0;
 	vm->delta_cycle_counter = 0;
-	// ft_printf("cycle_total[%d] cycle_to_die[%d]\n", vm->cycle_total, vm->cycle_to_die );
-	update_cursor(vm);
+	update_cursor(vm, NULL);
 }
 
 t_bool			one_round(t_vm *vm)
@@ -86,7 +86,7 @@ void			run_vm(t_vm *vm)
 	{
 		while (vm->delta_cycle_counter < vm->cycle_to_die)
 		{
-			if (one_round(vm)== FALSE)
+			if (one_round(vm) == FALSE)
 				return ;
 		}
 		check(vm);

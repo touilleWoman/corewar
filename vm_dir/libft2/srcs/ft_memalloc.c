@@ -6,7 +6,7 @@
 /*   By: jleblond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 12:28:18 by jleblond          #+#    #+#             */
-/*   Updated: 2018/11/28 13:00:49 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 13:52:19 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memalloc(size_t size)
 	size_t	i;
 
 	i = 0;
-	ptr = (char *)malloc(size * sizeof(size_t));
+	ptr = (char *)malloc(size * sizeof(size_t)); // mod
 	if (ptr == NULL)
 	{
 		return (NULL);

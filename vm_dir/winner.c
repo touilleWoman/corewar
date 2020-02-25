@@ -6,13 +6,13 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 12:14:35 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/23 15:01:48 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:43:51 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static char		*get_player_name(t_vm *vm, int id)
+char		*get_player_name(t_vm *vm, int id)
 {
 	int		i;
 
@@ -27,7 +27,7 @@ static char		*get_player_name(t_vm *vm, int id)
 	return (NULL);
 }
 
-void			declare_winner(t_vm *vm)
+void		declare_winner(t_vm *vm)
 {
 	char	*winner_name;
 

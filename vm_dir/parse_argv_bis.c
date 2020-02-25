@@ -6,7 +6,7 @@
 /*   By: flhember <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 18:24:11 by flhember          #+#    #+#             */
-/*   Updated: 2020/02/24 13:48:12 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:58:16 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_bool	is_digit_string(char const *s)
 	while (*s)
 	{
 		if (ft_isdigit(*s))
-			s+= 1;
+			s += 1;
 		else
 			return (FALSE);
 	}
@@ -65,13 +65,14 @@ t_bool			get_dump_value(int argc, char const **argv, int *i, t_vm *vm)
 	return (FALSE);
 }
 
-
-t_bool			get_n_value(char const **argv, int *i, t_vm *vm, t_id_tab id_tab[MAX_PLAYERS])
+t_bool			get_n_value(char const **argv, int *i, t_vm *vm,
+					t_id_tab id_tab[MAX_PLAYERS])
 {
 	int		n_value;
 
 	vm->flags = vm->flags | N_FLAG;
-	if (is_digit_string(argv[*i + 1]) == FALSE || is_valid_filename(argv[*i + 2]) == FALSE)
+	if (is_digit_string(argv[*i + 1]) == FALSE
+			|| is_valid_filename(argv[*i + 2]) == FALSE)
 	{
 		ft_putendl_fd("ERROR: wrong player id or wrong file name\n", 2);
 		return (FALSE);
@@ -82,7 +83,7 @@ t_bool			get_n_value(char const **argv, int *i, t_vm *vm, t_id_tab id_tab[MAX_PL
 		return (FALSE);
 	}
 	n_value = ft_atoi(argv[*i + 1]);
-	if (n_value <= 0 || n_value > MAX_PLAYERS )
+	if (n_value <= 0 || n_value > MAX_PLAYERS)
 	{
 		ft_putendl_fd("ERROR: player id must '> 0' and '<= nb of players'", 2);
 		return (FALSE);
