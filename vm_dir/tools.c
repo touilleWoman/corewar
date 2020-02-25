@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:39:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/21 17:47:08 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/25 12:57:48 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ uint32_t		get_reg_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p)
 	uint32_t	value;
 	uint16_t	address;
 
+	value = 0;				//modi
 	if (type == TYPE_REG)
 		value = c->regs[p];
 	if (type == TYPE_IND)
@@ -61,6 +62,7 @@ uint16_t		get_ind_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p)
 	int16_t		value;
 	uint16_t	address;
 
+	value = 0;			//modi
 	if (type == TYPE_REG)
 		value = (int16_t)(c->regs[p]);
 	if (type == TYPE_IND)

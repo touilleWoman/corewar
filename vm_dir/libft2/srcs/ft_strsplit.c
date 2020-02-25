@@ -6,7 +6,7 @@
 /*   By: jleblond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2018/11/26 12:49:40 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/25 13:47:56 by flhember         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ char			**ft_strsplit(char const *s, char c)
 	s1 = to_zero(ft_strcpy(s1, s), c);
 	pptr = (char**)malloc(sizeof(char*) * (word_nbr + 1));
 	if (pptr == 0)
+	{
+		free(s1);		//modi
 		return (0);
+	}
 	pptr = fill_array(s, s1, pptr);
 	free(s1);
 	return (pptr);
