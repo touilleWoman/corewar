@@ -3,9 +3,17 @@ import subprocess
 import re
 import random
 from pathlib import Path
+my_pos = Path(__file__).parent.absolute()
+champ_path = my_pos/'champs'
 
-TEST_NB_CHAMPS = 2
+
+
+TEST_NB_CHAMPS = 1
 DUMP_CYCPLE = None
+TEST_CHAMP = ['./champs/zork.cor', './champs/toto.cor']
+# TEST_CHAMP = ['./champs/zork.cor']
+# TEST_CHAMP = None
+
 
 
 
@@ -57,6 +65,10 @@ def strip_useless(string):
     return (string)
 
 def get_the_2_dump(dump_cyle, champ_path):
+    if TEST_CHAMP is not None:
+        champ_path = TEST_CHAMP
+    print('=============test_champs===============')
+    print(champ_path)
     my_dump = get_my_dump(dump_cyle, champ_path)
     my_dump = strip_useless(my_dump)
     zaz_dump = get_zaz_dump(dump_cyle, champ_path)
@@ -78,10 +90,10 @@ class TestDump(unittest.TestCase):
     def test_dump_output(self, maxDiff=None):
         for i in range(0,1):
             dump_cyle = random.randint(0, 10000)
-            print('=============test_champs===============')
-            print(test_champs)
+
             if DUMP_CYCPLE is not None:
                 dump_cyle = DUMP_CYCPLE
+
             print('dump_cyle is:', dump_cyle)
             my_dump, zaz_dump = get_the_2_dump(dump_cyle, test_champs)
             with self.subTest(i=dump_cyle):
