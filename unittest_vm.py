@@ -10,8 +10,8 @@ champ_path = my_pos/'champs'
 
 TEST_NB_CHAMPS = 1
 DUMP_CYCPLE = None
-TEST_CHAMP = ['./champs/zork.cor', './champs/toto.cor']
-# TEST_CHAMP = ['./champs/zork.cor']
+# TEST_CHAMP = ['./champs/zork.cor', './champs/toto.cor']
+TEST_CHAMP = ['./champs/helltrain.cor']
 # TEST_CHAMP = None
 
 
@@ -88,7 +88,7 @@ class TestDump(unittest.TestCase):
 
     maxDiff=None
     def test_dump_output(self, maxDiff=None):
-        for i in range(0,1):
+        for i in range(0,100):
             dump_cyle = random.randint(0, 10000)
 
             if DUMP_CYCPLE is not None:
