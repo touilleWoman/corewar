@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/26 15:14:32 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:29:51 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int				main(int argc, char const **argv)
 	init_vm(&vm);
 	if (parse(&vm, argc, argv) && init_cursor_lst(&vm))
 	{
+		// printf("dum_value:%d\n", vm.dump  );
 		player_to_arena(&vm);
 		run_vm(&vm);
 	}

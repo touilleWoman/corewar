@@ -53,7 +53,7 @@ def main():
         if (C_lib.parse(p_vm, argc, argv) and C_lib.init_cursor_lst(p_vm)):
             C_lib.player_to_arena(p_vm)
             #=====visualiser========
-            run_visu(p_vm, C_lib, vm)
+            # run_visu(p_vm, C_lib, vm)
             #=====visualiser========
         print("FREE==========")
         C_lib.free_vm(p_vm)

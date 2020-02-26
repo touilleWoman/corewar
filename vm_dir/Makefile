@@ -6,14 +6,14 @@
 #    By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 16:07:39 by jleblond          #+#    #+#              #
-#    Updated: 2020/02/25 16:23:33 by flhember         ###   ########.fr        #
+#    Updated: 2020/02/26 18:48:29 by jleblond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re
 
 CC		=	gcc
-CFLAGS =	-Wall -Werror -Wextra
+CFLAGS =	-Wall -Werror -Wextra -g
 #CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
 NAME	=	corewar
 
