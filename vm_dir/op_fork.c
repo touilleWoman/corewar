@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:06:08 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/26 17:26:26 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:16:09 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,10 @@ void		op_fork(t_vm *vm, t_cursor *c)
 	int16_t		p1;
 
 
-	// if (read_bytes(vm->arena + pos(c->pc), 1) != 12)
-	// {
-	// 	c->pc += 3;
-	// 	printf("folk not executed================================\n");
-	// 	return;
-	// }
-
 	if (c_lst_new(&new) == FALSE)
 		return ;
 	ft_memcpy(new, c, sizeof(t_cursor));
-	p1 = read_bytes(vm->arena + pos(c->pc + 1), 2);
+	p1 = read_bytes(vm->arena, c->pc + 1, 2);
 	new->pc = pos(c->pc + p1 % IDX_MOD);
 	new->wait_cycle = -1;
 	new->next = NULL;
@@ -53,7 +46,7 @@ void		op_lfork(t_vm *vm, t_cursor *c)
 	t_cursor	*new;
 	int16_t		p1;
 
-	p1 = read_bytes(vm->arena + pos(c->pc + 1), 2);
+	p1 = read_bytes(vm->arena, c->pc + 1, 2);
 	if (c_lst_new(&new) == FALSE)
 		return ;
 	ft_memcpy(new, c, sizeof(t_cursor));

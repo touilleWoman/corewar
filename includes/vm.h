@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/26 18:01:24 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:14:15 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,8 +168,8 @@ void				op_xor(t_vm *vm, t_cursor *c);
 **	tools for instructions
 */
 void				fill_params(t_params *prm, uint8_t *arena, t_cursor *c);
-int32_t 			read_bytes(uint8_t *s, uint8_t nb_of_bytes);
-void				write_4_bytes(uint8_t *arena, uint32_t value);
+int32_t				read_bytes(uint8_t *s, int16_t addr, uint8_t nb_of_bytes);
+void				write_4_bytes(uint8_t *arena, int16_t address, uint32_t value);
 int16_t 			pos(int16_t pc);
 uint32_t			get_reg_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p);
 uint16_t			get_ind_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p);

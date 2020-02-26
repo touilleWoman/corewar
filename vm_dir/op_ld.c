@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:41:19 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 14:52:49 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:10:04 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			op_lld(t_vm *vm, t_cursor *c)
 		if (prm.p1_type == TYPE_IND)
 		{
 			address = c->pc + ((uint16_t)prm.p1);
-			prm.p1 = read_bytes(vm->arena + pos(address), 4);
+			prm.p1 = read_bytes(vm->arena, address, 4);
 		}
 		c->regs[prm.p2] = prm.p1;
 		if (prm.p1 == 0)
@@ -94,7 +94,7 @@ void			op_ldi(t_vm *vm, t_cursor *c)
 		value1 = get_ind_size_value(vm, c, prm.p1_type, prm.p1);
 		value2 = get_ind_size_value(vm, c, prm.p2_type, prm.p2);
 		address = c->pc + (value1 + value2) % IDX_MOD;
-		c->regs[prm.p3] = read_bytes(vm->arena + pos(address), REG_SIZE);
+		c->regs[prm.p3] = read_bytes(vm->arena, address, REG_SIZE);
 		if (c->regs[prm.p3] == 0)
 			c->carry = 1;
 		else
@@ -128,7 +128,7 @@ void			op_lldi(t_vm *vm, t_cursor *c)
 		value1 = get_ind_size_value(vm, c, prm.p1_type, prm.p1);
 		value2 = get_ind_size_value(vm, c, prm.p2_type, prm.p2);
 		address = c->pc + value1 + value2;
-		c->regs[prm.p3] = read_bytes(vm->arena + pos(address), REG_SIZE);
+		c->regs[prm.p3] = read_bytes(vm->arena, address, REG_SIZE);
 		if (c->regs[prm.p3] == 0)
 			c->carry = 1;
 		else

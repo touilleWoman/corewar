@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/26 16:55:38 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:10:53 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void		op_live(t_vm *vm, t_cursor *c)
 	int		player_index;
 	int		new_pc;
 
-	new_pc = pos(c->pc + OPCODE_SIZE);
-	player_id = read_bytes(vm->arena + new_pc, 4);
+	new_pc = c->pc + OPCODE_SIZE;
+	player_id = read_bytes(vm->arena, new_pc, 4);
 	new_pc += 4;
 	if (player_id_valid(vm, player_id, &player_index))
 	{
@@ -68,7 +68,7 @@ void		op_zjmp(t_vm *vm, t_cursor *c)
 	int16_t		jump;
 	int16_t		new_pc;
 
-	jump = read_bytes(vm->arena + pos(c->pc + OPCODE_SIZE), IND_SIZE);
+	jump = read_bytes(vm->arena, c->pc + OPCODE_SIZE, IND_SIZE);
 	if (c->carry == 1)
 		new_pc = pos(c->pc + (jump % IDX_MOD));
 	else

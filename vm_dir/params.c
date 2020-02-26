@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:14:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/26 18:10:40 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:15:13 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,17 @@ void		fill_params(t_params *prm, uint8_t *arena, t_cursor *c)
 	prm->p1_type = get_type(prm->ocp, 1);
 	prm->p1_len = get_type_len(prm->p1_type, dir_len);
 	if (prm->p1_type != TYPE_ABSENT)
-		prm->p1 = read_bytes(arena + pos(prm->newpc), prm->p1_len);
+		prm->p1 = read_bytes(arena, prm->newpc, prm->p1_len);
 	prm->newpc += prm->p1_len;
 	prm->p2_type = get_type(prm->ocp, 2);
 	prm->p2_len = get_type_len(prm->p2_type, dir_len);
 	if (prm->p2_type != TYPE_ABSENT)
-		prm->p2 = read_bytes(arena + pos(prm->newpc), prm->p2_len);
+		prm->p2 = read_bytes(arena, prm->newpc, prm->p2_len);
 	prm->newpc += prm->p2_len;
 	prm->p3_type = get_type(prm->ocp, 3);
 	prm->p3_len = get_type_len(prm->p3_type, dir_len);
 	if (prm->p3_type != TYPE_ABSENT)
-		prm->p3 = read_bytes(arena + pos(prm->newpc), prm->p3_len);
+		prm->p3 = read_bytes(arena, prm->newpc, prm->p3_len);
 	prm->newpc += prm->p3_len;
 	prm->p4_type = get_type(prm->ocp, 4);
 }

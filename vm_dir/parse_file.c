@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 12:27:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 15:00:22 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:15:48 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ by 4 bytes of 0\n", 2);
 	return (TRUE);
 }
 
+static int32_t		read_four_bytes(uint8_t *s)
+{
+	int32_t	ret;
+
+	ret = s[0] << 24 | s[1] << 16 | s[2] << 8 | s[3];
+	return (ret);
+}
+
 /*
 ** parcourir header dans .cor, stock "prog_name" et "comments",
 ** verifier "magic" et "prog_size".
@@ -56,7 +64,7 @@ static t_bool		parse_one_player_header(t_player *p)
 	uint8_t			*s;
 
 	s = p->file;
-	if (read_bytes(s, 4) != COREWAR_EXEC_MAGIC)
+	if (read_four_bytes(s) != COREWAR_EXEC_MAGIC)
 	{
 		ft_putendl_fd("ERROR: wrong magic nb in header", 2);
 		return (FALSE);
@@ -65,7 +73,7 @@ static t_bool		parse_one_player_header(t_player *p)
 	if (get_name(s, p) == FALSE)
 		return (FALSE);
 	s += PROG_NAME_LENGTH + 4;
-	p->prog_size = read_bytes(s, 4);
+	p->prog_size = read_four_bytes(s);
 	if (p->prog_size != p->file_size - sizeof(t_header))
 	{
 		ft_putendl_fd("ERROR: wrong prog_size in header", 2);

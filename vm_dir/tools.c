@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:39:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 15:43:19 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:16:38 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ uint32_t		get_reg_size_value(t_vm *vm, t_cursor *c, t_type type,
 	if (type == TYPE_IND)
 	{
 		address = c->pc + p % IDX_MOD;
-		value = read_bytes(vm->arena + address, REG_SIZE);
+		value = read_bytes(vm->arena, address, REG_SIZE);
 	}
 	if (type == TYPE_DIR)
 		value = p;
@@ -70,8 +70,8 @@ uint16_t		get_ind_size_value(t_vm *vm, t_cursor *c, t_type type,
 		value = (int16_t)(c->regs[p]);
 	if (type == TYPE_IND)
 	{
-		address = pos(c->pc + (int16_t)p % IDX_MOD);
-		value = read_bytes(vm->arena + address, IND_SIZE);
+		address = c->pc + (int16_t)p % IDX_MOD;
+		value = read_bytes(vm->arena, address, IND_SIZE);
 	}
 	if (type == TYPE_DIR)
 		value = (int16_t)p;

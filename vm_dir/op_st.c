@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 14:37:07 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 00:06:06 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void				op_st(t_vm *vm, t_cursor *c)
 		if (prm.p2_type == TYPE_IND)
 		{
 			address = prm.p2 % IDX_MOD + c->pc;
-			write_4_bytes(vm->arena + pos(address), value);
+			write_4_bytes(vm->arena, address, value);
 		}
 		else
 			c->regs[prm.p2] = value;
@@ -75,7 +75,7 @@ void				op_sti(t_vm *vm, t_cursor *c)
 		prm.p3 = get_reg_size_value(vm, c, prm.p3_type, prm.p3);
 		address = c->pc + (prm.p2 + prm.p3) % IDX_MOD;
 		value = c->regs[prm.p1];
-		write_4_bytes(vm->arena + pos(address), value);
+		write_4_bytes(vm->arena, address, value);
 		if (vm->flags & V_FLAG)
 			ft_printf("P    %d | sti r%d(%d) => %d + %d\n", c->c_id, prm.p1,
 					value, prm.p2, prm.p3);
