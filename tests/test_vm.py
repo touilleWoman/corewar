@@ -23,11 +23,11 @@ def get_all_champs():
 
 
     #one champ OK
-    champs_path = Path(base_dir / "champs").glob("**/turtle.cor")
+    # champs_path = Path(base_dir / "champs").glob("**/turtle.cor")
     # champs_path = Path(base_dir / "champs").glob("**/bee_gees.cor")
 
     #one champs ERROR
-    # champs_path = Path(base_dir / "champs").glob("**/toto.cor")
+    champs_path = Path(base_dir / "champs").glob("**/toto.cor")
 
 
 
@@ -83,7 +83,7 @@ def get_the_2_dump(dump_cyle, champ_path):
 
 
 @given(
-    dump_cyle=st.integers(min_value=1, max_value=10000),
+    dump_cyle=st.integers(min_value=0, max_value=5000),
     test_champs=st.sets(st.sampled_from(get_all_champs()), min_size=1, max_size=1),
 
 )

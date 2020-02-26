@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:14:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 14:55:58 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:10:40 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,4 @@ void		fill_params(t_params *prm, uint8_t *arena, t_cursor *c)
 		prm->p3 = read_bytes(arena + pos(prm->newpc), prm->p3_len);
 	prm->newpc += prm->p3_len;
 	prm->p4_type = get_type(prm->ocp, 4);
-	prm->p4_len = get_type_len(prm->p4_type, dir_len);
-	prm->newpc += prm->p4_len;
 }

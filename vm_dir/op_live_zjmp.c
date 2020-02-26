@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 17:39:51 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/26 16:55:38 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ void		op_zjmp(t_vm *vm, t_cursor *c)
 
 	jump = read_bytes(vm->arena + pos(c->pc + OPCODE_SIZE), IND_SIZE);
 	if (c->carry == 1)
-		new_pc = pos(c->pc + jump % IDX_MOD);
+		new_pc = pos(c->pc + (jump % IDX_MOD));
 	else
 		new_pc = pos(c->pc + OPCODE_SIZE + IND_SIZE);
 	if (vm->flags & V_FLAG)
 		ft_printf("P    %d | zjmp %d %s\n", c->c_id, jump,
 				(c->carry == 1) ? "OK" : "FAILED");
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", new_pc - c->pc, c->pc, new_pc);
 	c->pc = new_pc;
 }

@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:06:08 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 18:36:26 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/26 17:26:26 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ void		op_fork(t_vm *vm, t_cursor *c)
 {
 	t_cursor	*new;
 	int16_t		p1;
+
+
+	// if (read_bytes(vm->arena + pos(c->pc), 1) != 12)
+	// {
+	// 	c->pc += 3;
+	// 	printf("folk not executed================================\n");
+	// 	return;
+	// }
 
 	if (c_lst_new(&new) == FALSE)
 		return ;

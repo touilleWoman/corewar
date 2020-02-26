@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 16:20:14 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:01:24 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct 		s_params
 	uint8_t			p2_len;
 	uint8_t			p3_len;
 	t_type			p4_type;
-	uint8_t			p4_len;
 	int16_t			newpc;
 }					t_params;
 
