@@ -18,7 +18,20 @@ def get_all_champs():
     all_s = [x for x in s_path]
     for x in all_s:
         subprocess.run([f'{base_dir}/asm', str(x)])
-    champs_path = Path(base_dir / "champs").glob("**/*.cor")
+    #all champs
+    # champs_path = Path(base_dir / "champs").glob("**/*.cor")
+
+
+    #one champ OK
+    champs_path = Path(base_dir / "champs").glob("**/turtle.cor")
+    # champs_path = Path(base_dir / "champs").glob("**/bee_gees.cor")
+
+    #one champs ERROR
+    # champs_path = Path(base_dir / "champs").glob("**/toto.cor")
+
+
+
+
     all_champs = list(champs_path)
     return all_champs
 
@@ -71,7 +84,8 @@ def get_the_2_dump(dump_cyle, champ_path):
 
 @given(
     dump_cyle=st.integers(min_value=1, max_value=10000),
-    test_champs=st.sets(st.sampled_from(get_all_champs()), min_size=1, max_size=4),
+    test_champs=st.sets(st.sampled_from(get_all_champs()), min_size=1, max_size=1),
+
 )
 def test_dump_output(dump_cyle, test_champs):
     my_dump, zaz_dump = get_the_2_dump(dump_cyle, test_champs)

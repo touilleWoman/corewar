@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 16:23:52 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/26 15:14:32 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		init_vm(t_vm *vm)
 {
 	ft_bzero(vm, sizeof(t_vm));
 	vm->cycle_to_die = CYCLE_TO_DIE;
-	vm->cycle_total = 1;
+	vm->cycle_total = 0;
 	vm->delta_cycle_counter = 0;
 }
 
