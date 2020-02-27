@@ -4,8 +4,7 @@ import ctypes
 from pathlib import Path
 
 from declare_c_struct import Vm
-from run_visu import run_visu
-
+import pdb
 
 
 def get_C_lib():
@@ -24,6 +23,13 @@ def get_C_lib():
     except:
         print("ERROR: Failed to get dylib")
         exit()
+
+
+def run_vm(vm, p_vm, C_lib):
+    while vm.cursor_nb:
+        while vm.delta_cycle_counter < vm.cycle_to_die:
+            C_lib.one_round(p_vm)
+    C_lib.declare_winner(p_vm)
 
 
 def main():
@@ -52,7 +58,8 @@ def main():
 
         if (C_lib.parse(p_vm, argc, argv) and C_lib.init_cursor_lst(p_vm)):
             C_lib.player_to_arena(p_vm)
-            C_lib.run_vm(p_vm)
+            run_vm(vm, p_vm, C_lib)
+
         C_lib.free_vm(p_vm)
 
 

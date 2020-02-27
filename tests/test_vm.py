@@ -1,4 +1,4 @@
-# from hypothesis import given, strategies as st
+from hypothesis import given, strategies as st
 import subprocess
 import re
 import random
@@ -20,14 +20,14 @@ def get_all_champs():
     for x in all_s:
         subprocess.run([f'{base_dir}/asm', str(x)])
     #all champs
-    # champs_path = Path(base_dir / "champs").glob("**/*.cor")
+    champs_path = Path(base_dir / "champs").glob("**/*.cor")
 
     #one champ OK
     # champs_path = Path(base_dir / "champs").glob("**/turtle.cor")
     # champs_path = Path(base_dir / "champs").glob("**/bee_gees.cor")
 
     #one champs ERROR
-    champs_path = Path(base_dir / "champs").glob("**/toto.cor")
+    # champs_path = Path(base_dir / "champs").glob("**/toto.cor")
 
     all_champs = [str(i) for i in champs_path]
     return all_champs
@@ -78,7 +78,7 @@ def get_the_2_dump(dump_cyle, test_champs):
 # test if my dump result is the same with the zaz_vm
 @given(
     dump_cyle=st.integers(min_value=0, max_value=5000),
-    test_champs=st.sets(st.sampled_from(get_all_champs()), min_size=1, max_size=4),
+    test_champs=st.sets(st.sampled_from(get_all_champs()), min_size=3, max_size=4),
 
 )
 def test_dump_output(dump_cyle, test_champs):
@@ -87,13 +87,13 @@ def test_dump_output(dump_cyle, test_champs):
 
 
 
-def get_my_cycle(test_champs):
-    command = ["./corewar", *test_champs, '-v', '|', 'grep', 'Contestant', '-2']
-    end_cycle = subprocess.run(
-        command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    )
+# def get_my_cycle(test_champs):
+#     command = ["./corewar", *test_champs, '-v', '|', 'grep', 'Contestant', '-2']
+#     end_cycle = subprocess.run(
+#         command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+#     )
 
-    return dump.stdout.decode("utf-8")
+#     return dump.stdout.decode("utf-8")
 
 # # @given(
 # #     test_champs=st.sets(st.sampled_from(get_all_champs()), min_size=1, max_size=4),
