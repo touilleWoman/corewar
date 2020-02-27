@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 21:55:43 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 14:35:09 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 10:39:46 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			op_and(t_vm *vm, t_cursor *c)
 
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
-		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
+		&& is_reg_type(prm.p3_type, prm.p3))
 	{
 		value1 = get_reg_size_value(vm, c, prm.p1_type, prm.p1);
 		value2 = get_reg_size_value(vm, c, prm.p2_type, prm.p2);
@@ -63,7 +63,7 @@ void			op_or(t_vm *vm, t_cursor *c)
 
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
-		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
+		&& is_reg_type(prm.p3_type, prm.p3))
 	{
 		value1 = get_reg_size_value(vm, c, prm.p1_type, prm.p1);
 		value2 = get_reg_size_value(vm, c, prm.p2_type, prm.p2);
@@ -97,7 +97,7 @@ void			op_xor(t_vm *vm, t_cursor *c)
 
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
-		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
+		&& is_reg_type(prm.p3_type, prm.p3))
 	{
 		value1 = get_reg_size_value(vm, c, prm.p1_type, prm.p1);
 		value2 = get_reg_size_value(vm, c, prm.p2_type, prm.p2);

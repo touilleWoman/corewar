@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 00:14:15 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:01:40 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct 		s_params
 	uint8_t			p1_len;
 	uint8_t			p2_len;
 	uint8_t			p3_len;
-	t_type			p4_type;
+	// t_type			p4_type;
 	int16_t			newpc;
 }					t_params;
 
@@ -182,6 +182,7 @@ t_bool				is_absent_type(t_type type);
 t_bool				is_reg_type(t_type type, uint32_t p_value);
 void				print(unsigned int id, char *s, t_params *p);
 char				*get_player_name(t_vm *vm, int id);
+void	print_bytes(t_vm *vm, int addr, int nb_bytes);
 
 
 #endif

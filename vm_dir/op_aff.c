@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 14:05:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 14:24:49 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 11:53:52 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void		op_aff(t_vm *vm, t_cursor *c)
 	uint32_t			value;
 
 	fill_params(&prm, vm->arena, c);
-	if (is_reg_type(prm.p1_type, prm.p1) && is_absent_type(prm.p2_type)
-		&& is_absent_type(prm.p3_type) && is_absent_type(prm.p4_type))
+	if (is_reg_type(prm.p1_type, prm.p1))
+	// if (is_reg_type(prm.p1_type, prm.p1) && is_absent_type(prm.p2_type)
+	// 	&& is_absent_type(prm.p3_type))
 	{
 		value = c->regs[prm.p1] % 256;
 		ft_printf("aff:%c\n", value);

@@ -19,7 +19,7 @@ def get_all_champs():
     for x in all_s:
         subprocess.run([f'{base_dir}/asm', str(x)])
     #all champs
-    # champs_path = Path(base_dir / "champs").glob("**/*.cor")
+    champs_path = Path(base_dir / "champs").glob("**/*.cor")
 
 
     #one champ OK
@@ -27,7 +27,7 @@ def get_all_champs():
     # champs_path = Path(base_dir / "champs").glob("**/bee_gees.cor")
 
     #one champs ERROR
-    champs_path = Path(base_dir / "champs").glob("**/toto.cor")
+    # champs_path = Path(base_dir / "champs").glob("**/toto.cor")
 
 
 
@@ -36,8 +36,8 @@ def get_all_champs():
     return all_champs
 
 
-def get_my_dump(dump_cyle, champ_path):
-    command_lst = ["./corewar", *champ_path, "-dump", str(dump_cyle)]
+def get_my_dump(dump_cyle, test_champs):
+    command_lst = ["./corewar", *test_champs, "-dump", str(dump_cyle)]
     dump = subprocess.run(
         command_lst, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
@@ -45,8 +45,8 @@ def get_my_dump(dump_cyle, champ_path):
     return dump.stdout.decode("utf-8")
 
 
-def get_zaz_dump(dump_cyle, champ_path):
-    command_lst = ["./champs/zaz_corewar", *champ_path, "-d",str(dump_cyle) ]
+def get_zaz_dump(dump_cyle, test_champs):
+    command_lst = ["./champs/zaz_corewar", *test_champs, "-d",str(dump_cyle) ]
     dump = subprocess.run(
         command_lst, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
@@ -73,9 +73,9 @@ def strip_useless(src):
 
 
 
-def get_the_2_dump(dump_cyle, champ_path):
-    my_dump = get_my_dump(dump_cyle, champ_path)
-    zaz_dump = get_zaz_dump(dump_cyle, champ_path)
+def get_the_2_dump(dump_cyle, test_champs):
+    my_dump = get_my_dump(dump_cyle, test_champs)
+    zaz_dump = get_zaz_dump(dump_cyle, test_champs)
     zaz_dump = strip_useless(zaz_dump)
     return (my_dump, zaz_dump)
 

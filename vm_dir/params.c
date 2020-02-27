@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:14:14 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 00:15:13 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 10:39:11 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void		fill_params(t_params *prm, uint8_t *arena, t_cursor *c)
 	if (prm->p3_type != TYPE_ABSENT)
 		prm->p3 = read_bytes(arena, prm->newpc, prm->p3_len);
 	prm->newpc += prm->p3_len;
-	prm->p4_type = get_type(prm->ocp, 4);
+	// prm->p4_type = get_type(prm->ocp, 4);
 }

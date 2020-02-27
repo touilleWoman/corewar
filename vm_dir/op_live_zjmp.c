@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 00:10:53 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:05:01 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void		op_live(t_vm *vm, t_cursor *c)
 	if (vm->flags & V_FLAG)
 		ft_printf("P    %d | live %d\n", c->c_id, player_id);
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", new_pc - c->pc, c->pc, new_pc);
+	{
+		ft_printf("ADV  %d (%#06x -> %#06x)", new_pc - c->pc, c->pc, new_pc);
+		print_bytes(vm, c->pc, 5);
+	}
 	c->pc = new_pc;
 }
 

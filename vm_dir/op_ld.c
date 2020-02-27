@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:41:19 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 00:10:04 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 10:41:40 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void			op_ldi(t_vm *vm, t_cursor *c)
 
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_dir_or_reg(prm.p2_type, prm.p2)
-		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
+		&& is_reg_type(prm.p3_type, prm.p3))
 	{
 		value1 = get_ind_size_value(vm, c, prm.p1_type, prm.p1);
 		value2 = get_ind_size_value(vm, c, prm.p2_type, prm.p2);
@@ -123,7 +123,7 @@ void			op_lldi(t_vm *vm, t_cursor *c)
 
 	fill_params(&prm, vm->arena, c);
 	if (is_3_types(prm.p1_type, prm.p1) && is_dir_or_reg(prm.p2_type, prm.p2)
-		&& is_reg_type(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
+		&& is_reg_type(prm.p3_type, prm.p3))
 	{
 		value1 = get_ind_size_value(vm, c, prm.p1_type, prm.p1);
 		value2 = get_ind_size_value(vm, c, prm.p2_type, prm.p2);

@@ -6,32 +6,25 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:39:09 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 15:43:37 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:05:11 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	print(unsigned int id, char *s, t_params *p)
+void	print_bytes(t_vm *vm, int addr, int nb_bytes)
 {
-	ft_printf("P    %u | %s", id, s);
-	if (p->p1_type == TYPE_REG)
-		ft_printf(" r%d", p->p1);
-	else if (p->p1_type == TYPE_DIR)
-		ft_printf(" %%%d", p->p1);
-	else if (p->p1_type == TYPE_IND)
-		ft_printf(" %d", p->p1);
-	if (p->p2_type == TYPE_REG)
-		ft_printf(" r%d", p->p2);
-	else if (p->p2_type == TYPE_DIR)
-		ft_printf(" %%%d", p->p2);
-	else if (p->p2_type == TYPE_IND)
-		ft_printf(" %d", p->p2);
-	if (p->p3_type == TYPE_REG)
-		ft_printf(" r%d", p->p3);
-	else if (p->p3_type == TYPE_DIR)
-		ft_printf(" %%%d", p->p3);
-	else if (p->p3_type == TYPE_IND)
-		ft_printf(" %d", p->p3);
+	int		i;
+	uint8_t	p;
+
+	if (nb_bytes < 1 || nb_bytes > 10)
+		return ;
+	i = 0;
+	while (i < nb_bytes)
+	{
+		p = vm->arena[pos(addr + i)];
+		i++;
+		ft_printf(" %02x", p);
+	}
 	ft_printf("\n");
 }
