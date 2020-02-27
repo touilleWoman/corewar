@@ -6,7 +6,7 @@
 #    By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 16:07:39 by jleblond          #+#    #+#              #
-#    Updated: 2020/02/26 18:48:29 by jleblond         ###   ########.fr        #
+#    Updated: 2020/02/27 14:41:47 by flhember         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@
 
 CC		=	gcc
 CFLAGS =	-Wall -Werror -Wextra -g
-#CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS =	-Wextra
+CFLAGS =	-Werror
+#CFLAGS =	-g3 -fsanitize=address
 NAME	=	corewar
 
 
@@ -27,14 +29,14 @@ SRCS	=	main_vm.c parse.c free.c parse_file.c parse_argv.c parse_argv_bis.c \
 OBJ		=	$(SRCS:.c=.o)
 
 HEAD_P	=	../includes \
-			libft2/includes
+			../libft2/includes
 
 IFLAG	=	$(foreach dir, $(HEAD_P), -I$(dir))
 
 HEADER	=	../includes/*.h \
-			libft2/includes/*.h
+			../libft2/includes/*.h
 
-LIBFTA	=	./libft2/libft.a
+LIBFTA	=	../libft2/libft.a
 
 all: $(NAME)
 
@@ -45,7 +47,7 @@ $(NAME):$(OBJ) $(LIBFTA)
 	$(CC) $(CFLAGS) -o $@ -c $< $(IFLAG)
 
 $(LIBFTA): FORCE
-	make -C libft2
+	make -C ../libft2
 
 dylib: $(LIBFTA)
 	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  C_lib.dylib
@@ -53,11 +55,11 @@ dylib: $(LIBFTA)
 FORCE:
 
 clean:
-	make clean -C libft2
-	rm -f $(OBJ)
+	make clean -C ../libft2
+	$(RM) -f $(OBJ)
 
 fclean: clean
-	make fclean -C libft2
-	rm -f $(NAME) C_lib.dylib
+	make fclean -C ../libft2
+	$(RM) -f $(NAME) C_lib.dylib
 
 re: fclean all
