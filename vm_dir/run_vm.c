@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 18:05:18 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 11:43:31 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:25:49 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,7 @@ void			check(t_vm *vm)
 
 t_bool			one_round(t_vm *vm)
 {
-	// int tmp = vm->dump;
-
 	run_cursor(vm);
-	// if (vm->dump != tmp ){
-	// 	printf("Now cycle[%d], dump: %d\n", vm->cycle_total, vm->dump);
-	// 	exit(0);
-	// }
-	// printf("dumping flag:%d, [%d ?= %d] \n", vm->flags & D_FLAG, vm->cycle_total, vm->dump);
 	if ((vm->flags & D_FLAG) && vm->cycle_total == vm->dump)
 	{
 		dump_mem(vm->arena);
@@ -99,6 +92,6 @@ void			run_vm(t_vm *vm)
 		check(vm);
 	}
 	if (vm->flags & V_FLAG)
-		printf("Now cycle[%d]\n", vm->cycle_total);
+		ft_printf("Now cycle at [%d]\n", vm->cycle_total);
 	declare_winner(vm);
 }

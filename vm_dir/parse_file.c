@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 12:27:04 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 00:15:48 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:34:54 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,6 @@ by 4 bytes of 0\n", 2);
 		return (FALSE);
 	}
 	return (TRUE);
-}
-
-static int32_t		read_four_bytes(uint8_t *s)
-{
-	int32_t	ret;
-
-	ret = s[0] << 24 | s[1] << 16 | s[2] << 8 | s[3];
-	return (ret);
 }
 
 /*

@@ -6,16 +6,11 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 14:48:39 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/21 17:39:24 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:30:20 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-t_bool		is_absent_type(t_type type)
-{
-	return (type == TYPE_ABSENT);
-}
 
 t_bool		is_reg_type(t_type type, uint32_t p_value)
 {

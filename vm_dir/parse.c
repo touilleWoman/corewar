@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:19:28 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/25 16:24:54 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:27:24 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,6 @@ t_bool		duplicate_in_id_tab(t_id_tab id_tab[MAX_PLAYERS])
 		j = i + 1;
 	}
 	return (FALSE);
-}
-
-void		print_id_tab(t_id_tab id_tab[MAX_PLAYERS])
-{
-	int i;
-
-	i = 0;
-	while (i < MAX_PLAYERS)
-	{
-		ft_printf("tab [%d] has id [%d] argv[%s]\n", i, id_tab[i].id,
-				id_tab[i].argv);
-		i++;
-	}
 }
 
 /*

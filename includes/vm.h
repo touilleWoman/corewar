@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 12:19:54 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:34:30 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ t_bool				parse_file(t_vm *vm);
 void				dump_mem(uint8_t *arena);
 t_bool				is_valid_filename(char const *s);
 t_bool				init_players(t_id_tab id_tab[MAX_PLAYERS], t_vm *vm);
+int32_t				read_four_bytes(uint8_t *s);
 
 
 /*
@@ -178,7 +179,6 @@ uint8_t				get_dir_len(uint8_t opcode);
 t_bool				is_3_types(t_type type, uint32_t p_value);
 t_bool				is_dir_or_ind(t_type type);
 t_bool				is_dir_or_reg(t_type type, uint32_t p_value);
-t_bool				is_absent_type(t_type type);
 t_bool				is_reg_type(t_type type, uint32_t p_value);
 void				print(unsigned int id, char *s, t_params *p);
 char				*get_player_name(t_vm *vm, int id);

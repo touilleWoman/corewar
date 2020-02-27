@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 12:26:54 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:31:17 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void				op_st(t_vm *vm, t_cursor *c)
 	int			value;
 
 	fill_params(&prm, vm->arena, c);
-	if (is_reg_type(prm.p1_type, prm.p1) && st_p2_valid(&prm)
-		&& is_absent_type(prm.p3_type))
+	if (is_reg_type(prm.p1_type, prm.p1) && st_p2_valid(&prm))
 	{
 		value = c->regs[prm.p1];
 		if (prm.p2_type == TYPE_IND)
