@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 11:45:11 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:26:54 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void				op_st(t_vm *vm, t_cursor *c)
 	int			address;
 	int			value;
 
-	ft_printf("opcode in st is [%d]", c->op);
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && st_p2_valid(&prm)
 		&& is_absent_type(prm.p3_type))
@@ -45,8 +44,7 @@ void				op_st(t_vm *vm, t_cursor *c)
 					value, prm.p2);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
-				prm.newpc);
+		print_pc_movement(vm, 5, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -82,7 +80,6 @@ void				op_sti(t_vm *vm, t_cursor *c)
 					value, prm.p2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
-				prm.newpc);
+		print_pc_movement(vm, 7, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }

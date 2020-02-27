@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 21:55:43 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 10:39:46 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:25:36 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void			op_and(t_vm *vm, t_cursor *c)
 					value2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
-				prm.newpc);
+		print_pc_movement(vm, 8, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -78,8 +77,7 @@ void			op_or(t_vm *vm, t_cursor *c)
 					value2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
-				prm.newpc);
+		print_pc_movement(vm, 8, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -112,7 +110,6 @@ void			op_xor(t_vm *vm, t_cursor *c)
 					value2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
-				prm.newpc);
+		print_pc_movement(vm, 8, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }

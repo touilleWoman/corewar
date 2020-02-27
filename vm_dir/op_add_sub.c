@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:10:13 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 10:38:54 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:27:29 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void		op_add(t_vm *vm, t_cursor *c)
 					prm.p2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
-				prm.newpc);
+		print_pc_movement(vm, 5, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
 
@@ -65,7 +64,6 @@ void		op_sub(t_vm *vm, t_cursor *c)
 					prm.p2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc,
-				prm.newpc);
+		print_pc_movement(vm, 5, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
