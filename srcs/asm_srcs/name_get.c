@@ -6,7 +6,7 @@
 /*   By: naali <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 19:57:17 by naali             #+#    #+#             */
-/*   Updated: 2020/02/12 20:00:06 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 19:39:56 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,16 @@ int8_t				get_name(t_asm *a, char **str, int *flg)
 {
 	int32_t		i;
 
-	i = 0;
+	i = ft_strlen(NAME_CMD_STRING);
 	if (*flg & T_NAME)
 		return (ASM_ERROR);
 	*flg |= T_NAME;
 	while ((*str)[i] != '\"' && (*str)[i] != '\0')
+	{
+		if ((*str)[i] != ' ' && (*str)[i] != '\t')
+			return (ASM_ERROR);
 		i++;
+	}
 	if ((*str)[i] == '\0')
 		return (ASM_ERROR);
 	i++;

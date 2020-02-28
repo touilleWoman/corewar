@@ -6,7 +6,7 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:20:25 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 17:20:12 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 16:38:22 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char				*check_file(t_asm *a, int ac, char **av)
 		a->verbose = 1;
 		i++;
 	}
-	size = 0;
 	str = NULL;
 	while (i < ac)
 	{

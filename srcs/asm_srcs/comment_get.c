@@ -6,7 +6,7 @@
 /*   By: naali <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 19:58:40 by naali             #+#    #+#             */
-/*   Updated: 2020/02/12 19:59:51 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 19:43:00 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ int8_t				get_comment(t_asm *a, char **str, int *flg)
 {
 	int32_t		i;
 
-	i = 0;
+	i = ft_strlen(COMMENT_CMD_STRING);
 	if (*flg & T_COMMENT)
 		return (ASM_ERROR);
 	*flg |= T_COMMENT;
 	while ((*str)[i] != '\"' && (*str)[i] != '\0')
+	{
+		if ((*str)[i] != ' ' && (*str)[i] != '\t')
+			return (ASM_ERROR);
 		i++;
+	}
 	if ((*str)[i] == '\0')
 		return (ASM_ERROR);
 	i++;

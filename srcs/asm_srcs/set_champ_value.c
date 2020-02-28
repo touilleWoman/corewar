@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 06:55:52 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/11 21:15:59 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/28 19:19:42 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,19 @@ int8_t				set_register(t_champ *champ, char *arg, int size, int pos)
 	arg[size] = '\0';
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
-	while (arg[i] != '\0')
+	while (arg[i] != '\0' && arg[i] != COMMENT_CHAR && arg[i] != COMMENT_CHAR2)
 	{
 		if (arg[i] < '0' || arg[i] > '9')
 			return (ASM_ERROR);
 		i++;
 	}
+	if (((arg[i] == COMMENT_CHAR || arg[i] == COMMENT_CHAR2) 
+			&& pos < champ->nb_arg - 1) || arg[i - 1] == 'r')
+		return (ASM_ERROR);
 	(champ->type)[pos] = T_REG;
 	(champ->val)[pos] = ft_atoi(arg + 1);
-	if ((champ->val)[pos] < 1 || (champ->val)[pos] > REG_NUMBER)
-		return (ASM_ERROR);
+//	if ((champ->val)[pos] < 1 || (champ->val)[pos] > REG_NUMBER)
+//		return (ASM_ERROR);
 	arg[size] = c;
 	return (ASM_SUCCESS);
 }
@@ -57,6 +60,9 @@ int8_t				set_direct(t_champ *champ, char *arg, int size, int pos)
 			return (ASM_ERROR);
 		i++;
 	}
+	if (((arg[i] == COMMENT_CHAR || arg[i] == COMMENT_CHAR2) 
+			&& pos < champ->nb_arg - 1) || arg[i - 1] == '%')
+		return (ASM_ERROR);
 	(champ->type)[pos] = T_DIR;
 	(champ->val)[pos] = ft_atoi(arg + 1);
 	arg[size] = c;
@@ -75,12 +81,15 @@ int8_t				set_indirect(t_champ *champ, char *arg, int size, int pos)
 	arg[size] = '\0';
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
-	while (arg[i] != '\0')
+	while (arg[i] != '\0' && arg[i] != COMMENT_CHAR && arg[i] != COMMENT_CHAR2)
 	{
 		if (arg[i] < '0' || arg[i] > '9')
 			return (ASM_ERROR);
 		i++;
 	}
+	if (((arg[i] == COMMENT_CHAR || arg[i] == COMMENT_CHAR2) 
+			&& pos < champ->nb_arg - 1) || arg[i - 1] == ' ' || arg[i - 1] == ',')
+		return (ASM_ERROR);
 	(champ->type)[pos] = T_IND;
 	(champ->val)[pos] = ft_atoi(arg);
 	arg[size] = c;

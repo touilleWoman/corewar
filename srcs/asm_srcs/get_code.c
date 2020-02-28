@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 15:01:11 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 18:43:02 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 15:20:12 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,14 @@ int8_t				check_op(char *str, size_t size)
 				return (op_code);
 			}
 			else
+			{
+				ft_putstr_fd("Command not well formated\n", 2);
 				return (ASM_ERROR);
+			}
 		}
 		op_code++;
 	}
+	ft_putstr_fd("Error 404 command not found\n", 2);
 	return (ASM_ERROR);
 }
 

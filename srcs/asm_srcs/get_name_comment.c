@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:52:03 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 20:01:28 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 19:37:08 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int8_t				check_end_cn(char **str, int i)
 {
 	char		c;
 
-	c = -1;
 	while ((*str)[i] != '\"')
 		i--;
 	i++;
@@ -62,7 +61,6 @@ int8_t				get_name_comment(t_asm *a)
 	flg = 0;
 	while (a->line != NULL && i == 1 && !(flg & T_NAME && flg & T_COMMENT))
 	{
-		i = 0;
 		skip_empty(a);
 		skip_start(a->line);
 		if (choose_name_or_comment(a, &flg) == ASM_ERROR)

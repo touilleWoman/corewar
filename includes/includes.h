@@ -6,15 +6,14 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/24 15:24:55 by flhember         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:22:48 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		INCLUDES_H
 # define	INCLUDES_H
 
-/* A DELETE */
-#include <stdio.h>
+# include <stdio.h>
 
 # include <fcntl.h>
 # include <sys/types.h>

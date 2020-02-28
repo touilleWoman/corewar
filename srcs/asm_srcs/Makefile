@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2020/02/12 20:00:37 by naali            ###   ########.fr        #
+#    Updated: 2020/02/15 18:46:23 by nabih            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,6 @@ NAME			=	asm
 CC				=	gcc
 
 CFLAG 			=	-Wall -Wextra -Werror
-CFLAG 			+=	-fsanitize=address
 
 INCLUDES		=	-I../../includes/asm_incs	\
 					-I../../includes			\
@@ -32,14 +31,14 @@ SRC				=	checking_things.c		get_info.c			\
 					print_error.c			skip.c				\
 					arguments_analysis.c	get_code.c			\
 					set_champ_value.c		get_name_comment.c	\
-					lst_champion.c			line_checker.c		\
-					main.c					open_file.c			\
+					lst_champion.c			main.c				\
 					lst_clear.c				is_label.c			\
 					sort_lst.c				write_str_type.c	\
 					write_int_type.c		write_header.c		\
 					write_body.c			print_verbose.c		\
 					lst_label_bis.c			write_ocp.c			\
-					name_get.c				comment_get.c
+					name_get.c				comment_get.c		\
+					open_file.c
 
 OBJ				=	$(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

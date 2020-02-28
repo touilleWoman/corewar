@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 17:56:25 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/01 08:28:44 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/14 18:55:41 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void				lab_pushfront(t_label **lst, t_label *ptr)
 {
 	t_label		*tmp;
 
+	tmp = NULL;
 	if (lst && *lst && ptr)
 	{
 		tmp = *lst;
@@ -60,6 +61,7 @@ void				lab_add_ptr(t_label **lst_lab, t_champ **lst_champ)
 {
 	t_label		*tmpl;
 
+	tmpl = NULL;
 	if (lst_lab && *lst_lab && lst_champ && *lst_champ)
 	{
 		tmpl = *lst_lab;

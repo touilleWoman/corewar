@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:12:32 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 19:52:02 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 16:43:56 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,11 @@ void				print_champ(t_header *h, t_champ **ch, t_label **la)
 {
 	unsigned int	address;
 	t_champ			*tmp;
-	t_label			*tmpl;
 	char			*label;
 
 	address = 0;
 	tmp = NULL;
-	tmpl = *la;
+	label = NULL;
 	print_header(h);
 	if (ch && *ch)
 	{

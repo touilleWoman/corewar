@@ -6,7 +6,7 @@
 /*   By: naali <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:23:14 by naali             #+#    #+#             */
-/*   Updated: 2018/11/16 01:23:57 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 16:48:16 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char			*ft_strtrim(char const *s)
 	size_t	size;
 	char	*r;
 
-	size = 0;
 	r = NULL;
 	if (s == NULL)
 		return (NULL);

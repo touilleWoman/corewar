@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:44:05 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 17:28:26 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/14 18:50:50 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void				champ_pushfront(t_champ **lst, t_champ *ptr)
 {
 	t_champ		*tmp;
 
+	tmp = NULL;
 	if (lst && *lst && ptr)
 	{
 		tmp = *lst;

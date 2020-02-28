@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/18 14:45:26 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:22:18 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 ***-----------**
 
 */
-# define ASM_SUCCESS		1
+# define ASM_SUCCESS		0
 # define ASM_ERROR			-1
-# define ASM_IGNORE			0
+# define ASM_IGNORE			1
 
 /*
 ***------------**
@@ -62,7 +62,6 @@
 # define T_COMMENT			4
 
 /*
-<<<<<<< HEAD
 ***--------------**
 **|   Caractere   |
 ***--------------**
@@ -74,18 +73,6 @@
 ***--------------**
 **|   Structure   |
 ***--------------**
-=======
-**-------------**
-|   Caractere   |
-**-------------**
-*/
-# define QUOTE				'\"'
-
-/*
-**-------------**
-|   Structure   |
-**-------------**
->>>>>>> vm
 */
 typedef struct s_champion	t_champ;
 typedef struct s_label		t_label;
@@ -152,6 +139,7 @@ typedef struct		s_asm
 ***--------------**
 */
 void				print_error(int error_type, char *str, int line);
+void				error_arg_check(int pos, char *args, t_champ **ret);
 
 /*
 ***--------------**

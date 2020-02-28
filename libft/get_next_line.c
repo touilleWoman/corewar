@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 18:53:57 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/01 01:40:01 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/28 16:46:22 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int						get_next_line(int const fd, char **line)
 	char		*tmp2;
 	char		buf[BUFF_SIZE + 1];
 
-	rd = 0;
 	check = 0;
 	tmp2 = NULL;
 	if (fd >= 0 && line && BUFF_SIZE > 0 && read(fd, buf, 0) >= 0)

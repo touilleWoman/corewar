@@ -6,7 +6,7 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:46:52 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 17:35:07 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 16:20:30 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				open_file(char *file)
 
 static int		open_n_free_file(t_asm *a, char **file)
 {
-	if ((a->fd = open(*file, O_CREAT | O_TRUNC | O_WRONLY, 0644)) < 3)
+	if ((a->fd = open(*file, O_CREAT | O_TRUNC | O_WRONLY, 0600)) < 3)
 	{
 		ft_memdel((void**)file);
 		return (ASM_ERROR);
