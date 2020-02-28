@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 13:26:07 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/28 09:05:37 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			player_to_arena(t_vm *vm)
 	}
 }
 
-static void		init_vm(t_vm *vm)
+void			init_vm(t_vm *vm)
 {
 	ft_bzero(vm, sizeof(t_vm));
 	vm->cycle_to_die = CYCLE_TO_DIE;

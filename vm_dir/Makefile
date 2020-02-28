@@ -6,7 +6,7 @@
 #    By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 16:07:39 by jleblond          #+#    #+#              #
-#    Updated: 2020/02/26 18:48:29 by jleblond         ###   ########.fr        #
+#    Updated: 2020/02/28 09:12:47 by jleblond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(LIBFTA): FORCE
 	make -C libft2
 
 dylib: $(LIBFTA)
-	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  C_lib.dylib
+	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  vm_lib.dylib
 
 FORCE:
 
