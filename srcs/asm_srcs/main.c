@@ -6,7 +6,7 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:07:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/28 12:40:28 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/28 22:55:24 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static int8_t		next_main_bis(t_asm *a)
 
 static int8_t		next_main(t_asm *a)
 {
+	t_champ		*tmp;
+
+	tmp = NULL;
 	if (get_info(a) == ASM_ERROR)
 	{
 		clear_all(a);
@@ -33,7 +36,13 @@ static int8_t		next_main(t_asm *a)
 	{
 		close(a->fd);
 		a->lab = sort_label(&(a->lab));
-		a->champ = sort_champ(a, &(a->champ));
+		if (a->champ != NULL && (tmp = sort_champ(a, &(a->champ))) == NULL)
+		{
+			clear_all(a);
+			print_error(ASM_ERROR_OTHER, "Label error", 0);
+			return (ASM_ERROR);
+		}
+		a->champ = tmp;
 		if ((a->fd = create_new_file(a, a->file)) == ASM_ERROR)
 		{
 			clear_all(a);
