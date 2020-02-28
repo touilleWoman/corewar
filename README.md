@@ -25,14 +25,9 @@ make
     -p : show movement of cursor
 ```
 
-visualiseur :
-
-install pygame in virtual env
-```
-python3 -m venv venv && source venv/bin/activate && pip install pygame
-```
+debug :
 
 ```
-python3 visu_python/run_visu.py file1.cor file2.cor .. (flags the same as corewar)
+python3 debug_vm/debug_vm.py file1.cor file2.cor .. (flags the same as corewar)
 ```
 

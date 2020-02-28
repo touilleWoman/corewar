@@ -66,6 +66,7 @@ int				main(int argc, char const **argv)
 		player_to_arena(&vm);
 		run_vm(&vm);
 	}
+	ft_printf("Now cyle is %d", vm.cycle_total);
 	free_vm(&vm);
 	return (0);
 }

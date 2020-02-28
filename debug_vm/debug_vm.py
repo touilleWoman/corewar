@@ -21,12 +21,15 @@ def get_vm_lib():
         exit()
 
 
-def user_input(stop):
-    u_input = input('--> say "n" for next cyle, or cycle nb :')
+def user_input(stop, p_vm, vm_lib):
+    u_input = input('type "n" for next cyle, or cycle nb, "exit" to quit -->')
     if u_input == 'n':
         stop += 1
     elif u_input.isdigit() and int(u_input) > stop:
         stop = int(u_input)
+    elif u_input == "exit" :
+        vm_lib.free_vm(p_vm)
+        exit()
     else :
         print('wrong input')
         user_input(stop)
@@ -36,17 +39,13 @@ def loop(vm, p_vm, vm_lib):
     stop = 0
     while vm.cursor_nb:
         while vm.delta_cycle_counter < vm.cycle_to_die:
-            if stop == 0 :
-                stop = int(input('--> stop at cycle:'))
-
-            if vm.cycle_total == stop :
+            if vm.cycle_total >= stop :
                 vm_lib.dump_mem(vm.arena)
                 print('cycle at: ', vm.cycle_total)
                 print('cycle_to_die:', vm.cycle_to_die)
                 print('processus_nb: ', vm.cursor_nb)
-                print('processus_nb: ', vm.cursor_nb)
-                print('live: ', vm.live_counter)
-                stop = user_input(stop)
+                print('live_nb between check: ', vm.live_counter, '\n\n')
+                stop = user_input(stop, p_vm, vm_lib)
 
             if vm_lib.one_round(p_vm) == False:
                 return
