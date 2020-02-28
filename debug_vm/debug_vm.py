@@ -53,7 +53,7 @@ def loop(vm, p_vm, vm_lib):
     vm_lib.declare_winner(p_vm)
 
 
-def main():
+def main_vm():
     # get all my C functions for virtual machine
     vm_lib = get_vm_lib()
 
@@ -85,4 +85,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main_vm()

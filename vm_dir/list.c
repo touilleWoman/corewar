@@ -16,7 +16,10 @@ t_bool		c_lst_new(t_cursor **new)
 {
 	*new = (t_cursor*)malloc(sizeof(t_cursor));
 	if (*new == NULL)
+	{
+		ft_putendl_fd("ERROR: list new malloc failed", 2);
 		return (FALSE);
+	}
 	ft_bzero(*new, sizeof(t_cursor));
 	return (TRUE);
 }
