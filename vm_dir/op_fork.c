@@ -21,7 +21,6 @@ void		op_fork(t_vm *vm, t_cursor *c)
 	t_cursor	*new;
 	int16_t		p1;
 
-
 	if (c_lst_new(&new) == FALSE)
 		return ;
 	ft_memcpy(new, c, sizeof(t_cursor));

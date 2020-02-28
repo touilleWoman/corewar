@@ -56,10 +56,10 @@ FORCE:
 
 clean:
 	make clean -C ../libft2
-	$(RM) -f $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
 	make fclean -C ../libft2
-	$(RM) -f $(NAME) vm_lib.dylib
+	$(RM) $(NAME) vm_lib.dylib
 
 re: fclean all
