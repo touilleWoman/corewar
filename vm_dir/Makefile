@@ -50,7 +50,7 @@ $(LIBFTA): FORCE
 	make -C ../libft2
 
 dylib: $(LIBFTA)
-	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  C_lib.dylib
+	$(CC)  $(CFLAGS) -dynamiclib $(SRCS) $(LIBFTA) $(IFLAG)  -o  vm_lib.dylib
 
 FORCE:
 

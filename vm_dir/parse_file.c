@@ -15,11 +15,16 @@
 static t_bool		get_name(uint8_t *s, t_player *p)
 {
 	ft_memcpy(p->prog_name, s, PROG_NAME_LENGTH + 1);
+	if (ft_strlen(p->prog_name) == 0)
+	{
+		ft_putendl_fd("ERROR: champion name can't be empty", 2);
+		return (FALSE);
+	}
 	s += PROG_NAME_LENGTH;
 	if (s[0] || s[1] || s[2] || s[3])
 	{
 		ft_putendl_fd("ERROR: name string shold be followed \
-by 4 bytes of 0\n", 2);
+by 4 bytes of 0", 2);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -27,8 +32,14 @@ by 4 bytes of 0\n", 2);
 
 static t_bool		get_comment(uint8_t *s, t_player *p)
 {
+
 	ft_memcpy(p->comment, s, COMMENT_LENGTH + 1);
 	s += COMMENT_LENGTH;
+	// if (ft_strlen(p->comment) == 0)
+	// {
+	// 	ft_putendl_fd("ERROR: comment can't be empty", 2);
+	// 	return (FALSE);
+	// }
 	if (s[0] || s[1] || s[2] || s[3])
 	{
 		ft_putendl_fd("ERROR: comment string shold be followed \

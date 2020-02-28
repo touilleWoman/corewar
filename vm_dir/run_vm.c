@@ -92,6 +92,6 @@ void			run_vm(t_vm *vm)
 		check(vm);
 	}
 	if (vm->flags & V_FLAG)
-		ft_printf("Now cycle at [%d]\n", vm->cycle_total);
+		ft_printf("It is now cycle %d\n", vm->cycle_total);
 	declare_winner(vm);
 }
