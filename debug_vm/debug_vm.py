@@ -4,29 +4,28 @@ import ctypes
 from pathlib import Path
 
 from declare_c_struct import Vm
-import pdb
 
 
 def get_C_lib():
     try:
         # make dylib
-        makefile_path = Path(__file__).parent.absolute()
-        makefile_path = makefile_path / '..' / 'vm_dir'
-        output = subprocess.run(['make', '-C', makefile_path])
+        base_dir = Path(__file__).parent.parent.absolute()
+        vm_dir = base_dir / 'vm_dir'
+        output = subprocess.run(['make', 'dylib', '-C', vm_dir])
 
         # open dylib to get all the C functions
-        lib_path = Path(__file__).parent.absolute()
-        lib_path = lib_path / '..' / 'vm_dir' / 'C_lib.dylib'
+        lib_path = vm_dir / 'C_lib.dylib'
         C_lib = ctypes.CDLL(str(lib_path))
         return (C_lib)
 
-    except:
-        print("ERROR: Failed to get dylib")
+    except EXCEPTION as e:
+        print("ERROR: Failed to get dylib, reason:", e)
         exit()
 
 
 def run_vm(vm, p_vm, C_lib):
     while vm.cursor_nb:
+        print(vm.cycle_total)
         while vm.delta_cycle_counter < vm.cycle_to_die:
             C_lib.one_round(p_vm)
     C_lib.declare_winner(p_vm)
