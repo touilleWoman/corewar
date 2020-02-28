@@ -13,16 +13,16 @@
 .PHONY: all clean fclean re
 
 CC		=	gcc
-CFLAGS =	-Wall -Werror -Wextra -g
+CFLAGS =	-Wall -Werror -Wextra
 CFLAGS =	-Wextra
 CFLAGS =	-Werror
-#CFLAGS =	-g3 -fsanitize=address
+# CFLAGS =	-g3 -fsanitize=address
 NAME	=	corewar
 
 
-SRCS	=	main_vm.c parse.c free.c parse_file.c parse_argv.c parse_argv_bis.c \
-			list.c run_vm.c dump_mem.c instructions.c tools.c params.c \
-			params_bis.c bytes.c init_players.c print.c winner.c \
+SRCS	=	main_vm.c parse.c free.c parse_file.c parse_argv.c tools.c \
+			parse_argv_bis.c list.c run_vm.c dump_mem.c instructions.c \
+			params.c params_bis.c bytes.c init_players.c winner.c print.c \
 			op_add_sub.c op_live_zjmp.c op_ld.c op_st.c op_fork.c\
 			op_and_or.c op_aff.c
 
@@ -60,6 +60,6 @@ clean:
 
 fclean: clean
 	make fclean -C ../libft2
-	$(RM) -f $(NAME) C_lib.dylib
+	$(RM) -f $(NAME) vm_lib.dylib
 
 re: fclean all

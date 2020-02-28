@@ -27,7 +27,7 @@ static void		activate_p_flag(t_vm *vm, int *i)
 static t_bool	fill_id_tab(t_vm *vm, int *i, char const *argv,
 		t_id_tab id_tab[MAX_PLAYERS])
 {
-	if (vm->player_nb == 4)
+	if (vm->player_nb >= 4)
 	{
 		ft_putstr_fd("ERROR: number of Player surpassed\n", 2);
 		return (FALSE);
@@ -68,5 +68,7 @@ t_bool			parse_argv(t_vm *vm, int argc, char const **argv,
 		else
 			ok = FALSE;
 	}
+	if (vm->player_nb < 1 || vm->player_nb > 4)
+		ok = FALSE;
 	return (ok);
 }
