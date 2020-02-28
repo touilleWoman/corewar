@@ -23,19 +23,25 @@
 # define OPCODE_SIZE 1
 # define OCP_SIZE 1
 
-# define D_FLAG 1 << 0
-# define N_FLAG 1 << 1
-# define V_FLAG 1 << 2
-# define P_FLAG 1 << 3
+/*
+** # define D_FLAG 1 << 0
+** # define N_FLAG 1 << 1
+** # define V_FLAG 1 << 2
+** # define P_FLAG 1 << 3
+*/
 
+# define D_FLAG 1
+# define N_FLAG 2
+# define V_FLAG 4
+# define P_FLAG 8
 
-typedef struct 	s_id_tab
+typedef struct		s_id_tab
 {
 	const char		*argv;
 	uint8_t			id;
-}				t_id_tab;
+}					t_id_tab;
 
-typedef enum 		s_type
+typedef enum		e_type
 {
 	TYPE_ABSENT = 0,
 	TYPE_REG = 1,
@@ -43,7 +49,7 @@ typedef enum 		s_type
 	TYPE_IND = 3,
 }					t_type;
 
-typedef struct 		s_player
+typedef struct		s_player
 {
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
@@ -55,9 +61,9 @@ typedef struct 		s_player
 	int8_t			player_id;
 }					t_player;
 
-typedef struct 		s_params
+typedef struct		s_params
 {
-	uint8_t 		ocp;
+	uint8_t			ocp;
 	int32_t			p1;
 	int32_t			p2;
 	int32_t			p3;
@@ -67,7 +73,6 @@ typedef struct 		s_params
 	uint8_t			p1_len;
 	uint8_t			p2_len;
 	uint8_t			p3_len;
-	// t_type			p4_type;
 	int16_t			newpc;
 }					t_params;
 
@@ -80,7 +85,7 @@ typedef struct 		s_params
 **
 ** regs[0] is not used, player_id is stored at regs[1].
 */
-typedef	struct 		s_cursor
+typedef	struct		s_cursor
 {
 	uint32_t		regs[REG_NUMBER + 1];
 	unsigned int	live_counter;
@@ -88,7 +93,7 @@ typedef	struct 		s_cursor
 	int				wait_cycle;
 	int				no_live_cycle;
 	int16_t			pc;
-	uint8_t		 	op;
+	uint8_t			op;
 	t_bool			carry;
 	struct s_cursor	*next;
 	struct s_cursor	*prev;
@@ -119,19 +124,20 @@ typedef	struct		s_vm
 /*
 ** parser
 */
-void 				usage(void);
+void				usage(void);
 t_bool				parse(t_vm *vm, int argc, char const **argv);
 t_bool				get_digital_value_succeed(char *s, int *value);
 t_bool				parse_argv(t_vm *vm, int argc, char const **argv,
 							t_id_tab id_tab[MAX_PLAYERS]);
-t_bool				get_dump_value(int argc, char const **argv, int *i, t_vm *vm);
-t_bool				get_n_value(char const **argv, int *i, t_vm *vm, t_id_tab id_tab[MAX_PLAYERS]);
+t_bool				get_dump_value(int argc, char const **argv, int *i,
+									t_vm *vm);
+t_bool				get_n_value(char const **argv, int *i, t_vm *vm,
+								t_id_tab id_tab[MAX_PLAYERS]);
 t_bool				parse_file(t_vm *vm);
 void				dump_mem(uint8_t *arena);
 t_bool				is_valid_filename(char const *s);
 t_bool				init_players(t_id_tab id_tab[MAX_PLAYERS], t_vm *vm);
 int32_t				read_four_bytes(uint8_t *s);
-
 
 /*
 ** vm
@@ -170,10 +176,13 @@ void				op_xor(t_vm *vm, t_cursor *c);
 */
 void				fill_params(t_params *prm, uint8_t *arena, t_cursor *c);
 int32_t				read_bytes(uint8_t *s, int16_t addr, uint8_t nb_of_bytes);
-void				write_4_bytes(uint8_t *arena, int16_t address, uint32_t value);
-int16_t 			pos(int16_t pc);
-uint32_t			get_reg_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p);
-uint16_t			get_ind_size_value(t_vm *vm, t_cursor *c, t_type type, int32_t p);
+void				write_4_bytes(uint8_t *arena, int16_t address,
+									uint32_t value);
+int16_t				pos(int16_t pc);
+uint32_t			get_reg_size_value(t_vm *vm, t_cursor *c, t_type type,
+										int32_t p);
+uint16_t			get_ind_size_value(t_vm *vm, t_cursor *c, t_type type,
+										int32_t p);
 t_bool				op_code_valid(unsigned char op);
 uint8_t				get_dir_len(uint8_t opcode);
 t_bool				is_3_types(t_type type, uint32_t p_value);
@@ -182,7 +191,7 @@ t_bool				is_dir_or_reg(t_type type, uint32_t p_value);
 t_bool				is_reg_type(t_type type, uint32_t p_value);
 void				print(unsigned int id, char *s, t_params *p);
 char				*get_player_name(t_vm *vm, int id);
-void	print_pc_movement(t_vm *vm, int nb_bytes, int pc, int newpc);
-
+void				print_pc_movement(t_vm *vm, int nb_bytes, int pc,
+										int newpc);
 
 #endif

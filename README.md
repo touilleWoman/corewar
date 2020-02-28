@@ -25,7 +25,7 @@ make
     -p : show movement of cursor
 ```
 
-debug :
+debug vm :
 
 ```
 python3 debug_vm/debug_vm.py file1.cor file2.cor .. (flags the same as corewar)
