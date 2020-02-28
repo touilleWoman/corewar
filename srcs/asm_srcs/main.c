@@ -6,7 +6,7 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:07:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/12 19:34:15 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/28 12:40:28 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ static int8_t		next_main(t_asm *a)
 	{
 		close(a->fd);
 		a->lab = sort_label(&(a->lab));
-		if ((a->champ = sort_champ(a, &(a->champ))) == NULL)
-			return (ASM_ERROR);
-		if (a->header.prog_size == 0
-			|| (a->fd = create_new_file(a, a->file)) == ASM_ERROR)
+		a->champ = sort_champ(a, &(a->champ));
+		if ((a->fd = create_new_file(a, a->file)) == ASM_ERROR)
 		{
 			clear_all(a);
 			if (a->fd < 0)
