@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 13:54:18 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 16:44:15 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:18:31 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ uint8_t				is_empty(char *str)
 	int		i;
 
 	i = 0;
-	while (str != NULL && ((str[i] > 7 && str[i] < 14) || str[i] == 32)
-			&& str[i] != '\0')
+	while (str != NULL && ((str[i] == ' ' || str[i] == '\t')
+			&& str[i] != '\0'))
 		i++;
 	return ((str == NULL || str[i] == '\0'
 			|| str[i] == COMMENT_CHAR

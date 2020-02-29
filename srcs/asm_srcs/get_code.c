@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 15:01:11 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 16:44:04 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:21:49 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int8_t				get_code(t_asm *a)
 			a->line_nb += 1;
 		}
 	}
+	if (is_empty(a->line) == ASM_FALSE && a->nl == 1)
+		return (ASM_ERROR);
 	ft_memdel((void**)&(a->line));
-	return ((a->nl == 0) ? ASM_SUCCESS : ASM_ERROR);
+	return (ASM_SUCCESS);
 }
