@@ -4,6 +4,7 @@ import ctypes
 from pathlib import Path
 from declare_c_struct import Vm
 
+
 def get_vm_lib():
     try:
         # make dylib
@@ -22,29 +23,35 @@ def get_vm_lib():
 
 
 def user_input(stop, p_vm, vm_lib):
-    u_input = input('type "n" for next cyle, or cycle nb, "exit" to quit -->')
-    if u_input == 'n':
+    u_input = input("-->")
+    if u_input == "n":
         stop += 1
     elif u_input.isdigit() and int(u_input) > stop:
         stop = int(u_input)
-    elif u_input == "exit" :
+    elif u_input == "q":
         vm_lib.free_vm(p_vm)
         exit()
-    else :
-        print('wrong input')
-        user_input(stop)
+    else:
+        print(
+            "usage:\n"
+            "\tn: go to next cycle\n"
+            "\t[nb]: go to cycle [nb]\n"
+            "\tq: quit\n"
+        )
+        user_input(stop, p_vm, vm_lib)
     return stop
+
 
 def loop(vm, p_vm, vm_lib):
     stop = 0
     while vm.cursor_nb:
         while vm.delta_cycle_counter < vm.cycle_to_die:
-            if vm.cycle_total >= stop :
+            if vm.cycle_total >= stop:
                 vm_lib.dump_mem(vm.arena)
-                print('cycle at: ', vm.cycle_total)
-                print('cycle_to_die:', vm.cycle_to_die)
-                print('processus_nb: ', vm.cursor_nb)
-                print('live_nb between check: ', vm.live_counter, '\n\n')
+                print("cycle at: ", vm.cycle_total)
+                print("cycle_to_die:", vm.cycle_to_die)
+                print("processus_nb: ", vm.cursor_nb)
+                print("live_nb between check: ", vm.live_counter, "\n\n")
                 stop = user_input(stop, p_vm, vm_lib)
 
             if vm_lib.one_round(p_vm) == False:
