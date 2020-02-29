@@ -47,7 +47,7 @@ class Players(Structure):
     ("player_id",c_int8)]
 
 
-class Vm(Structure):
+class C_struct(Structure):
     _fields_ = [("players", Players * MAX_PLAYERS),
     ("arena", c_uint8 * MEM_SIZE),
     ("dump", c_int),
