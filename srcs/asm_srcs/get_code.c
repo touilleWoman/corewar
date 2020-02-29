@@ -6,11 +6,11 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 15:01:11 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 15:45:38 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/29 16:44:04 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 static void			check_op_bis(char *str, size_t size)
 {
@@ -89,18 +89,22 @@ int8_t				get_code(t_asm *a)
 
 	flg = 1;
 	lab = 0;
-	while (a->line != NULL && flg == 1)
+	while (a->line != NULL && flg == 1 && a->nl == 0)
 	{
 		skip_empty(a);
-		skip_start(a->line);
-		if (is_label(a, a->line) == ASM_TRUE)
-			lab = 1;
-		if (is_empty(a->line) == ASM_FALSE && check_line(a, &lab) == ASM_ERROR)
-			return (ASM_ERROR);
-		ft_memdel((void**)&(a->line));
-		flg = get_next_line(a->fd, &(a->line));
-		a->line_nb += 1;
+		if (a->nl == 0)
+		{
+			skip_start(a->line);
+			if (is_label(a, a->line) == ASM_TRUE)
+				lab = 1;
+			if (is_empty(a->line) == ASM_FALSE
+					&& check_line(a, &lab) == ASM_ERROR)
+				return (ASM_ERROR);
+			ft_memdel((void**)&(a->line));
+			flg = get_next_line_eof(a->fd, &(a->line), &(a->nl));
+			a->line_nb += 1;
+		}
 	}
 	ft_memdel((void**)&(a->line));
-	return (ASM_SUCCESS);
+	return ((a->nl == 0) ? ASM_SUCCESS : ASM_ERROR);
 }

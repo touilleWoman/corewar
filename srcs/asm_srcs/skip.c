@@ -6,11 +6,11 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 13:54:18 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/11 17:33:45 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/29 16:44:15 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 void				skip_start(char *str)
 {
@@ -53,7 +53,7 @@ void				skip_empty(t_asm *a)
 	while (is_empty(a->line) == ASM_TRUE && flg != 0)
 	{
 		ft_memdel((void**)&(a->line));
-		flg = get_next_line(a->fd, &(a->line));
+		flg = get_next_line_eof(a->fd, &(a->line), &(a->nl));
 		a->line_nb += 1;
 	}
 	if (flg == 0)

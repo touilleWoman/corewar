@@ -6,11 +6,11 @@
 /*   By: naali <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 19:58:40 by naali             #+#    #+#             */
-/*   Updated: 2020/02/28 19:43:00 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/02/29 16:40:02 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 static int8_t		copy_quote_comment(t_asm *a, char **str, int32_t i)
 {
@@ -26,7 +26,7 @@ static int8_t		copy_quote_comment(t_asm *a, char **str, int32_t i)
 		{
 			i = 0;
 			ft_memdel((void**)str);
-			get_next_line(a->fd, str);
+			get_next_line_eof(a->fd, str, &(a->nl));
 			a->line_nb += 1;
 			a->header.comment[(a->size_comment)++] = '\n';
 		}

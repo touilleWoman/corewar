@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_header.c                                     :+:      :+:    :+:   */
+/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
+/*   By: flhember <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/01 03:04:12 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/01 03:46:00 by nabih            ###   ########.fr       */
+/*   Created: 2018/11/22 19:49:48 by flhember          #+#    #+#             */
+/*   Updated: 2020/02/29 15:52:47 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 
-void				write_header(int fd, t_header *h)
+char	*ft_strjoinfree(char *s1, char *s2, int n)
 {
-	write_int_four_bytes(fd, h->magic);
-	write_str_type(fd, h->prog_name, PROG_NAME_LENGTH);
-	write_int_four_bytes(fd, h->prog_size);
-	write_str_type(fd, h->comment, COMMENT_LENGTH);
+	char	*jo;
+
+	jo = ft_strjoin(s1, s2);
+	if (n == 1)
+		ft_strdel(&s1);
+	if (n == 2)
+		ft_strdel(&s2);
+	if (n == 3)
+	{
+		ft_strdel(&s1);
+		ft_strdel(&s2);
+	}
+	return (jo);
 }

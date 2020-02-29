@@ -6,11 +6,11 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:52:03 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/28 19:37:08 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/02/29 16:40:58 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 static int8_t		choose_name_or_comment(t_asm *a, int *flg)
 {
@@ -65,7 +65,7 @@ int8_t				get_name_comment(t_asm *a)
 		skip_start(a->line);
 		if (choose_name_or_comment(a, &flg) == ASM_ERROR)
 			return (ASM_ERROR);
-		i = get_next_line(a->fd, &(a->line));
+		i = get_next_line_eof(a->fd, &(a->line), &(a->nl));
 		a->line_nb += 1;
 	}
 	return ((flg & T_NAME && flg & T_COMMENT) ? ASM_SUCCESS : ASM_ERROR);

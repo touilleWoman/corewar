@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 static int8_t		check_between(char *bet, int *size, int pos, int nb_arg)
 {

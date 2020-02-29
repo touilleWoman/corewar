@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 18:53:57 by nabih             #+#    #+#             */
-/*   Updated: 2019/12/08 07:06:08 by nabih            ###   ########.fr       */
+/*   Updated: 2020/02/29 15:50:47 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@
 # define BUFF_SIZE 1000
 
 int				get_next_line(int const fd, char **line);
-
+int				get_next_line_eof(const int fd, char **line, int *nl);
 #endif

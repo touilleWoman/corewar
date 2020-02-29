@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 static void			calc_size(uint32_t id, t_champ **c, int pos, t_champ *tmpc)
 {

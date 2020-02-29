@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 15:28:45 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/29 16:50:52 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **|   Includes   |
 ***-------------**
 */
-# include <includes.h>
+# include "includes.h"
 
 /*
 ***-----------**
@@ -115,6 +115,7 @@ typedef struct		s_asm
 {
 	int			fd;
 	int			verbose;
+	int			nl;
 	uint32_t	size_name;
 	uint32_t	size_comment;
 	char		*file;

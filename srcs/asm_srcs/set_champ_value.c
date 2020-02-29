@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 int8_t				set_register(t_champ *champ, char *arg, int size, int pos)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "asm.h"
 
 char				*get_label_by_ptrid(t_label **la, unsigned int id)
 {
