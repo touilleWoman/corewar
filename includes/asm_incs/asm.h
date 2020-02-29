@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/28 18:22:18 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/02/29 14:56:11 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct		s_asm
 **|     Error     |
 ***--------------**
 */
+int8_t				print_main_error(t_asm *a, char *msg);
 void				print_error(int error_type, char *str, int line);
 void				error_arg_check(int pos, char *args, t_champ **ret);
 
@@ -152,7 +153,6 @@ t_champ				*arguments_analysis(t_asm *a);
 uint8_t				is_valide_name(char *str, int end);
 
 /*
-<<<<<<< HEAD
 ***----------**
 **|   Files   |
 ***----------**
@@ -170,7 +170,6 @@ int8_t				get_code(t_asm *a);
 ***---------**
 **|   Skip   |
 ***---------**
-
 */
 void				skip_start(char *str);
 uint8_t				is_empty(char *str);
@@ -195,7 +194,6 @@ char				*get_label_by_ptrid(t_label **la, unsigned int id);
 ***--------------------**
 **|   Champ functions   |
 ***--------------------**
-
 */
 t_champ				*champ_new(int op);
 void				champ_pushfront(t_champ **lst, t_champ *ptr);
@@ -211,7 +209,6 @@ int					champ_size_calc(t_champ *c);
 ***-----------------**
 **|   Print Memory   |
 ***-----------------**
-
 */
 void				write_str_type(int fd, char *str, int size);
 void				write_int_four_bytes(int fd, int nb);
@@ -239,7 +236,6 @@ void				clear_all(t_asm *a);
 ***---------------**
 **|   Global Var   |
 ***---------------**
-
 */
 extern t_op			g_op_tab[17];
 

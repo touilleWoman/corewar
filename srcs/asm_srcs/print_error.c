@@ -6,7 +6,7 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:31:28 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/28 15:19:45 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/02/29 14:54:03 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 static void			print_asm_usage(void)
 {
 	ft_putstr_fd("Usage: ./asm [-v=verbose] [champion.s]\n", 2);
+}
+
+int8_t				print_main_error(t_asm *a, char *msg)
+{
+	clear_all(a);
+	if (msg != NULL)
+		print_error(ASM_ERROR_OTHER, msg, 0);
+	return (ASM_ERROR);
 }
 
 void				print_error(int error_type, char *str, int line)
