@@ -6,7 +6,7 @@
 /*   By: nabih <nabih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:07:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 15:24:53 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/29 15:35:39 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,7 @@ static int8_t		next_main(t_asm *a)
 		close(a->fd);
 		a->lab = sort_label(&(a->lab));
 		if (a->champ != NULL && (tmp = sort_champ(a, &(a->champ))) == NULL)
-		{
 			return (print_main_error(a, "Label error"));
-/* 			clear_all(a); */
-/* 			print_error(ASM_ERROR_OTHER, "Label error", 0); */
-/* 			return (ASM_ERROR); */
-		}
 		a->champ = tmp;
 		if ((a->fd = create_new_file(a, a->file)) == ASM_ERROR)
 		{
@@ -77,6 +72,5 @@ int					main(int ac, char **av)
 		print_error(ASM_ERROR_OTHER, "open_file", 0);
 		return (ASM_ERROR);
 	}
-	sleep(5);
 	return (next_main(&a));
 }

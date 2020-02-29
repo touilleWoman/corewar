@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 14:56:11 by naali            ###   ########.fr       */
+/*   Updated: 2020/02/29 15:28:45 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 ***-------------**
 **|   Includes   |
 ***-------------**
-
 */
 # include <includes.h>
 
@@ -25,7 +24,6 @@
 ***-----------**
 **|   Return   |
 ***-----------**
-
 */
 # define ASM_SUCCESS		0
 # define ASM_ERROR			-1
@@ -35,7 +33,6 @@
 ***------------**
 **|   Boolean   |
 ***------------**
-
 */
 # define ASM_TRUE			1
 # define ASM_FALSE			0
@@ -44,7 +41,6 @@
 ***---------------**
 **|   Error Type   |
 ***---------------**
-
 */
 # define ASM_ERROR_AC		-1
 # define ASM_ERROR_FILE		-2
@@ -56,7 +52,6 @@
 ***------------------**
 **|   Commande Type   |
 ***------------------**
-
 */
 # define T_NAME				2
 # define T_COMMENT			4
