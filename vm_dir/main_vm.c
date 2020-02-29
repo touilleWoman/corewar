@@ -6,23 +6,23 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:49:21 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/23 13:51:21 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/28 09:05:37 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void 				usage(void)
+void			usage(void)
 {
 	ft_putstr_fd("usage:./corewar [-dump <nb> -n <nb>] \
 file1.cor file2.cor ...\n\
-    -dump <nb> : dump memory in hexadecimal after <nb> cycles then quit\n\
-    -n : set id of next player. Player_id must > 0 and <= player_nb\n\
-    -v : show operations and cycle\n\
-    -p : show movement of cursor\n", 2);
+	-dump <nb> : dump memory in hexadecimal after <nb> cycles then quit\n\
+	-n : set id of next player. Player_id must > 0 and <= player_nb\n\
+	-v : show operations and cycle\n\
+	-p : show movement of cursor\n", 2);
 }
 
-void				player_to_arena(t_vm *vm)
+void			player_to_arena(t_vm *vm)
 {
 	int	i;
 	int	size;
@@ -34,7 +34,6 @@ void				player_to_arena(t_vm *vm)
 	{
 		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
 			-(vm->players[i].player_id),
-			// vm->players[i].player_id,
 			vm->players[i].file_size - sizeof(t_header),
 			vm->players[i].prog_name, vm->players[i].comment);
 		ft_memcpy(vm->arena + (size * i),
@@ -44,15 +43,15 @@ void				player_to_arena(t_vm *vm)
 	}
 }
 
-void		init_vm(t_vm *vm)
+void			init_vm(t_vm *vm)
 {
 	ft_bzero(vm, sizeof(t_vm));
 	vm->cycle_to_die = CYCLE_TO_DIE;
-	vm->cycle_total = 1;
+	vm->cycle_total = 0;
 	vm->delta_cycle_counter = 0;
 }
 
-int			main(int argc, char const **argv)
+int				main(int argc, char const **argv)
 {
 	t_vm	vm;
 

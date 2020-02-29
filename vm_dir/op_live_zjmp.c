@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:09:02 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:44:46 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:27:01 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,15 @@ void		op_live(t_vm *vm, t_cursor *c)
 	int		player_index;
 	int		new_pc;
 
-	new_pc = pos(c->pc + OPCODE_SIZE);
-	player_id = read_bytes(vm->arena + new_pc, 4);
+	new_pc = c->pc + OPCODE_SIZE;
+	player_id = read_bytes(vm->arena, new_pc, 4);
 	new_pc += 4;
 	if (player_id_valid(vm, player_id, &player_index))
 	{
 		vm->players[player_index].live_counter++;
 		vm->winner = player_id;
-		// ft_printf("Player %d (%s) is alive\n", player_id, get_player_name(vm, player_id));
+		ft_printf("Player %d (%s) is alive\n", -player_id,
+				get_player_name(vm, player_id));
 	}
 	c->no_live_cycle = 0;
 	c->live_counter++;
@@ -54,7 +55,7 @@ void		op_live(t_vm *vm, t_cursor *c)
 	if (vm->flags & V_FLAG)
 		ft_printf("P    %d | live %d\n", c->c_id, player_id);
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", new_pc - c->pc, c->pc, new_pc);
+		print_pc_movement(vm, 5, c->pc, new_pc);
 	c->pc = new_pc;
 }
 
@@ -67,12 +68,15 @@ void		op_zjmp(t_vm *vm, t_cursor *c)
 	int16_t		jump;
 	int16_t		new_pc;
 
-	jump = read_bytes(vm->arena + pos(c->pc + OPCODE_SIZE), IND_SIZE);
+	jump = read_bytes(vm->arena, c->pc + OPCODE_SIZE, IND_SIZE);
 	if (c->carry == 1)
-		new_pc = pos(c->pc + jump % IDX_MOD);
+		new_pc = pos(c->pc + (jump % IDX_MOD));
 	else
 		new_pc = pos(c->pc + OPCODE_SIZE + IND_SIZE);
 	if (vm->flags & V_FLAG)
-		ft_printf("P    %d | zjmp %d %s\n", c->c_id, jump, (c->carry == 1) ? "OK" : "FAILED");
+		ft_printf("P    %d | zjmp %d %s\n", c->c_id, jump,
+				(c->carry == 1) ? "OK" : "FAILED");
+	if (vm->flags & P_FLAG)
+		ft_printf("ADV  %d (%#06x -> %#06x)\n", new_pc - c->pc, c->pc, new_pc);
 	c->pc = new_pc;
 }

@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:19:28 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/13 18:37:41 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:27:24 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ t_bool		is_valid_filename(char const *s)
 	int		l;
 
 	l = ft_strlen(s);
-	if (s[l - 1] == 'r' && s[l - 2] == 'o' && s[l - 3] == 'c' &&  s[l - 4] == '.')
+	if (s[l - 1] == 'r' && s[l - 2] == 'o' && s[l - 3] == 'c'
+			&& s[l - 4] == '.')
 		return (TRUE);
 	return (FALSE);
 }
 
-void		fill_option_n_value(t_id_tab id_tab[MAX_PLAYERS], t_id_tab cp[MAX_PLAYERS], uint8_t player_nb)
+void		fill_option_n_value(t_id_tab id_tab[MAX_PLAYERS],
+				t_id_tab cp[MAX_PLAYERS], uint8_t player_nb)
 {
-	uint8_t		i;
+	uint8_t	i;
 
 	i = 0;
 	while (i < player_nb)
@@ -35,12 +37,12 @@ void		fill_option_n_value(t_id_tab id_tab[MAX_PLAYERS], t_id_tab cp[MAX_PLAYERS]
 			id_tab[cp[i].id - 1].argv = cp[i].argv;
 		}
 		i++;
-	}		
+	}
 }
 
 void		set_player_id(t_id_tab id_tab[MAX_PLAYERS], uint8_t player_nb)
 {
-	t_id_tab 	cp[MAX_PLAYERS];
+	t_id_tab	cp[MAX_PLAYERS];
 	uint8_t		i;
 	uint8_t		j;
 
@@ -87,18 +89,6 @@ t_bool		duplicate_in_id_tab(t_id_tab id_tab[MAX_PLAYERS])
 	return (FALSE);
 }
 
-void		print_id_tab(t_id_tab id_tab[MAX_PLAYERS])
-{
-	int i;
-
-	i = 0;
-	while (i < MAX_PLAYERS)
-	{
-		printf("tab [%d] has id [%d] argv[%s]\n", i, id_tab[i].id, id_tab[i].argv);
-		i++;
-	}
-}
-
 /*
 ** Players are all initialised with temperaty id 1, 2, 3, 4.
 ** if option -n activated, replace them with this value
@@ -109,24 +99,16 @@ t_bool		parse(t_vm *vm, int argc, char const **argv)
 	t_id_tab		id_tab[MAX_PLAYERS];
 
 	ft_bzero(id_tab, sizeof(t_id_tab) * MAX_PLAYERS);
-	// printf("first print id_tab\n");
-	// print_id_tab(id_tab);
 	if (parse_argv(vm, argc, argv, id_tab) == FALSE
 		|| duplicate_in_id_tab(id_tab))
 	{
 		ft_putendl_fd("ERROR: wrong parameter", 2);
 		return (FALSE);
 	}
-	// printf("seond print\n");
-	// print_id_tab(id_tab);
-
 	set_player_id(id_tab, vm->player_nb);
 	if (init_players(id_tab, vm) == FALSE)
 		return (FALSE);
-	// printf("third print\n");
-	// print_id_tab(id_tab);
 	if (parse_file(vm) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
-

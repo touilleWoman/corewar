@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:11:11 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/20 13:40:50 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:31:17 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,34 @@
 
 static t_bool		st_p2_valid(t_params *prm)
 {
-	return (prm->p2_type == TYPE_IND ||  is_reg_type(prm->p2_type, prm->p2));
+	return (prm->p2_type == TYPE_IND || is_reg_type(prm->p2_type, prm->p2));
 }
 
 void				op_st(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int	address;
+	int			address;
 	int			value;
 
 	fill_params(&prm, vm->arena, c);
-	if (is_reg_type(prm.p1_type, prm.p1) && st_p2_valid(&prm)
-		&& is_absent_type(prm.p3_type) && is_absent_type(prm.p4_type))
+	if (is_reg_type(prm.p1_type, prm.p1) && st_p2_valid(&prm))
 	{
 		value = c->regs[prm.p1];
 		if (prm.p2_type == TYPE_IND)
 		{
-			address = prm.p2 % IDX_MOD + c->pc;
-			write_4_bytes(vm->arena + pos(address), value);
+			address = c->pc + prm.p2 % IDX_MOD;
+			write_4_bytes(vm->arena, address, value);
 		}
 		else
-		{
 			c->regs[prm.p2] = value;
-		}
 		if (vm->flags & V_FLAG)
-			ft_printf("P    %d | st r%d(%d) => %d\n", c->c_id, prm.p1, value, prm.p2);
+			ft_printf("P    %d | st r%d(%d) => %d\n", c->c_id, prm.p1,
+					value, prm.p2);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
+		print_pc_movement(vm, 5, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }
-
 
 /*
 ** 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
@@ -65,22 +62,23 @@ void				op_st(t_vm *vm, t_cursor *c)
 void				op_sti(t_vm *vm, t_cursor *c)
 {
 	t_params	prm;
-	int	address;
+	int			address;
 	int32_t		value;
 
 	fill_params(&prm, vm->arena, c);
 	if (is_reg_type(prm.p1_type, prm.p1) && is_3_types(prm.p2_type, prm.p2)
-		&& is_dir_or_reg(prm.p3_type, prm.p3) && is_absent_type(prm.p4_type))
+		&& is_dir_or_reg(prm.p3_type, prm.p3))
 	{
 		prm.p2 = get_reg_size_value(vm, c, prm.p2_type, prm.p2);
 		prm.p3 = get_reg_size_value(vm, c, prm.p3_type, prm.p3);
 		address = c->pc + (prm.p2 + prm.p3) % IDX_MOD;
 		value = c->regs[prm.p1];
-		write_4_bytes(vm->arena + pos(address), value);
+		write_4_bytes(vm->arena, address, value);
 		if (vm->flags & V_FLAG)
-			ft_printf("P    %d | sti r%d(%d) => %d + %d\n", c->c_id, prm.p1, value, prm.p2, prm.p3);
+			ft_printf("P    %d | sti r%d(%d) => %d + %d\n", c->c_id, prm.p1,
+					value, prm.p2, prm.p3);
 	}
 	if (vm->flags & P_FLAG)
-		ft_printf("ADV  %d (%#06x -> %#06x)\n", prm.newpc - c->pc, c->pc, prm.newpc);
+		print_pc_movement(vm, 7, c->pc, prm.newpc);
 	c->pc = prm.newpc;
 }

@@ -6,45 +6,27 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:39:09 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/14 19:03:14 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:30:49 by jleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-// void	print(t_type type, uint32_t p)
-// {
-// 	if (type == TYPE_REG)
-// 		ft_printf(" r%d", p);
-// 	else if (type == TYPE_DIR)
-// 		ft_printf(" %%%d", p);
-// 	else if (type == TYPE_IND)
-// 		ft_printf(" %d", p);
-
-// }
-
-void	print(unsigned int id, char *s, t_params *p)
+void	print_pc_movement(t_vm *vm, int nb_bytes, int pc, int newpc)
 {
-	ft_printf("P    %u | %s", id, s);
-	if (p->p1_type == TYPE_REG)
-		ft_printf(" r%d", p->p1);
-	else if (p->p1_type == TYPE_DIR)
-		ft_printf(" %%%d", p->p1);
-	else if (p->p1_type == TYPE_IND)
-		ft_printf(" %d", p->p1);
-	if (p->p2_type == TYPE_REG)
-		ft_printf(" r%d", p->p2);
-	else if (p->p2_type == TYPE_DIR)
-		ft_printf(" %%%d", p->p2);
-	else if (p->p2_type == TYPE_IND)
-		ft_printf(" %d", p->p2);
-	if (p->p3_type == TYPE_REG)
-		ft_printf(" r%d", p->p3);
-	else if (p->p3_type == TYPE_DIR)
-		ft_printf(" %%%d", p->p3);
-	else if (p->p3_type == TYPE_IND)
-		ft_printf(" %d", p->p3);
+	int		i;
+	uint8_t	p;
+
+	if (nb_bytes < 1 || nb_bytes > 10)
+		return ;
+	i = 0;
+	ft_printf("ADV  %d (%#06x -> %#06x)", newpc - pc, pc,
+			newpc);
+	while (i < nb_bytes)
+	{
+		p = vm->arena[pos(pc + i)];
+		i++;
+		ft_printf(" %02x", p);
+	}
 	ft_printf("\n");
-
 }
-
