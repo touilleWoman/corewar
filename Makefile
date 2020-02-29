@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2020/02/28 16:18:24 by chcoutur         ###   ########.fr        #
+#    Updated: 2020/02/29 17:34:33 by chcoutur         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,6 @@ NAME_ASM		=	asm
 CC				=	gcc
 
 CFLAG 			=	-Wall -Wextra -Werror
-CFLAG			+= -g3 -fsanitize=address
 
 INCLUDES		=	-I./includes			\
 					-I./libft				\
@@ -53,9 +52,9 @@ all				:	asm vm libs
 # all				:	asm libs $(NAME)
 
 # $(NAME)			:	$(OBJ)
-					# @echo "${vertfonce}Compiling ...${neutre}\c"
-					# @$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG) $(INCLUDES)
-					# @echo "${rose}DONE${neutre}"
+					@echo "${vertfonce}Compiling ...${neutre}\c"
+					@$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG) $(INCLUDES)
+					@echo "${rose}DONE${neutre}"
 
 # $(OBJ_PATH)/%.o	:	%.c
 # 					@mkdir $(OBJ_PATH) 2> /dev/null || true

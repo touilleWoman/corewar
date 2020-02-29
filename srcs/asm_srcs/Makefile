@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2020/02/29 15:09:01 by naali            ###   ########.fr        #
+#    Updated: 2020/02/29 17:44:47 by chcoutur         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,6 +23,10 @@ CFLAG 			=	-Wall -Wextra -Werror
 INCLUDES		=	-I../../includes/asm_incs	\
 					-I../../includes			\
 					-I../../libft
+
+INCLUDES_NAME	=	asm.h		\
+					includes.h	\
+					op.h
 
 OBJ_PATH		=	../objs_asm
 
@@ -51,6 +55,7 @@ LFLAG			=	$(LIB_PATH) $(LIBS)
 ######################################################################
 
 vpath %.c .:
+vpath %.h ../../includes/:../../includes/asm_incs/
 
 all				:	libs $(NAME)
 
@@ -59,7 +64,7 @@ $(NAME)			:	$(OBJ)
 					@$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG) $(INCLUDES)
 					@echo "${rose}DONE${neutre}"
 
-$(OBJ_PATH)/%.o	:	%.c
+$(OBJ_PATH)/%.o	:	%.c $(INCLUDES_NAME)
 					@mkdir $(OBJ_PATH) 2> /dev/null || true
 					@echo "${vertfonce}Creating $@ ...\c${neutre}"
 					@$(CC) $(CFLAG) -o $@ -c $< $(INCLUDES)
