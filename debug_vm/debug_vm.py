@@ -94,10 +94,10 @@ class Vm(object):
             self.vm_lib.free_vm(self.p_c_struct)
 
 
-def main_vm():
+def main():
     vm = Vm()
     vm.run_vm()
 
 
 if __name__ == "__main__":
-    main_vm()
+    main()
