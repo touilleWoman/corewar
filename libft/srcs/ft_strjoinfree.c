@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flhember <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 16:47:27 by chcoutur         ###   ########.fr       */
+/*   Created: 2018/11/22 19:49:48 by flhember          #+#    #+#             */
+/*   Updated: 2020/02/29 15:52:47 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		INCLUDES_H
-# define	INCLUDES_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
+char	*ft_strjoinfree(char *s1, char *s2, int n)
+{
+	char	*jo;
 
-# include "op.h"
-# include "../libft/libft.h"
-# include "../libft/get_next_line.h"
-
-#endif
+	jo = ft_strjoin(s1, s2);
+	if (n == 1)
+		ft_strdel(&s1);
+	if (n == 2)
+		ft_strdel(&s2);
+	if (n == 3)
+	{
+		ft_strdel(&s1);
+		ft_strdel(&s2);
+	}
+	return (jo);
+}

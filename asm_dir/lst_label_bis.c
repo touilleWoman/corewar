@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   lst_label_bis.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: naali <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 16:47:27 by chcoutur         ###   ########.fr       */
+/*   Created: 2020/02/12 19:51:25 by naali             #+#    #+#             */
+/*   Updated: 2020/02/12 19:56:23 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		INCLUDES_H
-# define	INCLUDES_H
+#include "asm.h"
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
+char				*get_label_by_ptrid(t_label **la, unsigned int id)
+{
+	t_label		*tmp;
 
-# include "op.h"
-# include "../libft/libft.h"
-# include "../libft/get_next_line.h"
-
-#endif
+	tmp = *la;
+	while (tmp != NULL && tmp->ptr != NULL)
+	{
+		if (tmp->ptr->id == id)
+			return (tmp->label);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}

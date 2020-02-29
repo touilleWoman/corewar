@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   write_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 16:47:27 by chcoutur         ###   ########.fr       */
+/*   Created: 2020/02/01 03:04:12 by nabih             #+#    #+#             */
+/*   Updated: 2020/02/01 03:46:00 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		INCLUDES_H
-# define	INCLUDES_H
+#include "asm.h"
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-# include "op.h"
-# include "../libft/libft.h"
-# include "../libft/get_next_line.h"
-
-#endif
+void				write_header(int fd, t_header *h)
+{
+	write_int_four_bytes(fd, h->magic);
+	write_str_type(fd, h->prog_name, PROG_NAME_LENGTH);
+	write_int_four_bytes(fd, h->prog_size);
+	write_str_type(fd, h->comment, COMMENT_LENGTH);
+}

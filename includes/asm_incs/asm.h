@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/18 14:45:26 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:45:03 by chcoutur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,22 @@
 ***-------------**
 **|   Includes   |
 ***-------------**
-
 */
-# include <includes.h>
+# include "includes.h"
 
 /*
 ***-----------**
 **|   Return   |
 ***-----------**
-
 */
-# define ASM_SUCCESS		1
+# define ASM_SUCCESS		0
 # define ASM_ERROR			-1
-# define ASM_IGNORE			0
+# define ASM_IGNORE			1
 
 /*
 ***------------**
 **|   Boolean   |
 ***------------**
-
 */
 # define ASM_TRUE			1
 # define ASM_FALSE			0
@@ -44,7 +41,6 @@
 ***---------------**
 **|   Error Type   |
 ***---------------**
-
 */
 # define ASM_ERROR_AC		-1
 # define ASM_ERROR_FILE		-2
@@ -56,13 +52,11 @@
 ***------------------**
 **|   Commande Type   |
 ***------------------**
-
 */
 # define T_NAME				2
 # define T_COMMENT			4
 
 /*
-<<<<<<< HEAD
 ***--------------**
 **|   Caractere   |
 ***--------------**
@@ -74,18 +68,6 @@
 ***--------------**
 **|   Structure   |
 ***--------------**
-=======
-**-------------**
-|   Caractere   |
-**-------------**
-*/
-# define QUOTE				'\"'
-
-/*
-**-------------**
-|   Structure   |
-**-------------**
->>>>>>> vm
 */
 typedef struct s_champion	t_champ;
 typedef struct s_label		t_label;
@@ -133,6 +115,7 @@ typedef struct		s_asm
 {
 	int			fd;
 	int			verbose;
+	int			nl;
 	uint32_t	size_name;
 	uint32_t	size_comment;
 	char		*file;
@@ -151,7 +134,9 @@ typedef struct		s_asm
 **|     Error     |
 ***--------------**
 */
+int8_t				print_main_error(t_asm *a, char *msg);
 void				print_error(int error_type, char *str, int line);
+void				error_arg_check(int pos, char *args, t_champ **ret);
 
 /*
 ***--------------**
@@ -164,7 +149,6 @@ t_champ				*arguments_analysis(t_asm *a);
 uint8_t				is_valide_name(char *str, int end);
 
 /*
-<<<<<<< HEAD
 ***----------**
 **|   Files   |
 ***----------**
@@ -182,7 +166,6 @@ int8_t				get_code(t_asm *a);
 ***---------**
 **|   Skip   |
 ***---------**
-
 */
 void				skip_start(char *str);
 uint8_t				is_empty(char *str);
@@ -207,7 +190,6 @@ char				*get_label_by_ptrid(t_label **la, unsigned int id);
 ***--------------------**
 **|   Champ functions   |
 ***--------------------**
-
 */
 t_champ				*champ_new(int op);
 void				champ_pushfront(t_champ **lst, t_champ *ptr);
@@ -223,7 +205,6 @@ int					champ_size_calc(t_champ *c);
 ***-----------------**
 **|   Print Memory   |
 ***-----------------**
-
 */
 void				write_str_type(int fd, char *str, int size);
 void				write_int_four_bytes(int fd, int nb);
@@ -251,7 +232,6 @@ void				clear_all(t_asm *a);
 ***---------------**
 **|   Global Var   |
 ***---------------**
-
 */
 extern t_op			g_op_tab[17];
 
