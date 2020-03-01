@@ -51,7 +51,7 @@ class Players(Structure):
     ]
 
 
-class C_struct(Structure):
+class VM(Structure):
     _fields_ = [
         ("players", Players * MAX_PLAYERS),
         ("arena", c_uint8 * MEM_SIZE),
@@ -67,3 +67,4 @@ class C_struct(Structure):
         ("winner", c_int),
         ("flags", c_char),
     ]
+
