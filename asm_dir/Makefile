@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2020/02/29 17:44:47 by chcoutur         ###   ########.fr        #
+#    Updated: 2020/03/01 12:23:47 by nabih            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -35,7 +35,7 @@ SRC				=	checking_things.c		get_info.c			\
 					print_error.c			skip.c				\
 					arguments_analysis.c	get_code.c			\
 					set_champ_value.c		get_name_comment.c	\
-					lst_champion.c			main.c				\
+					lst_champion.c			main_asm.c			\
 					lst_clear.c				is_label.c			\
 					sort_lst.c				write_str_type.c	\
 					write_int_type.c		write_header.c		\

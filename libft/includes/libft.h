@@ -6,7 +6,7 @@
 /*   By: jleblond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 14:33:12 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/29 22:50:44 by charles          ###   ########.fr       */
+/*   Updated: 2020/03/01 13:23:54 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				ft_strequ(const char *s1, const char *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_strjoinfreei(char *s1, char *s2, int n);
+char			*ft_strjoinfree(char *s1, char *s2, int n);
 char			*ft_strtrim(char const *s);
 char			*ft_strdup(char const *src);
 char			**ft_strsplit(char const *s, char c);
@@ -97,6 +97,7 @@ typedef struct	s_list
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void(*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
+void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstadd_top(t_list **alst, t_list *new);
 void			ft_lstadd_bot(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void(*f)(t_list *elem));

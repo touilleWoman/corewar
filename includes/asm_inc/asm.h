@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:01:54 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 17:45:03 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/03/01 13:02:37 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **|   Includes   |
 ***-------------**
 */
-# include "includes.h"
+# include "../includes.h"
 
 /*
 ***-----------**
@@ -76,18 +76,18 @@ typedef enum		e_boolean
 {
 	false = 0,
 	true = 1
-}					t_bool;
+}					t_boolean;
 
 typedef struct		s_op
 {
-	char	*name;
-	int		nb_arg;
-	int		bnry_args[3];
-	int		id;
-	int		cycle_count;
-	char	*comment;
-	t_bool	ocp;
-	t_bool	dir_type;
+	char		*name;
+	int			nb_arg;
+	int			bnry_args[3];
+	int			id;
+	int			cycle_count;
+	char		*comment;
+	t_boolean	ocp;
+	t_boolean	dir_type;
 }					t_op;
 
 struct				s_champion
@@ -95,7 +95,7 @@ struct				s_champion
 	uint32_t	id;
 	int			op;
 	int			size;
-	t_bool		ocp;
+	t_boolean	ocp;
 	int			nb_arg;
 	int			type[3];
 	int			val[3];

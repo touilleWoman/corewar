@@ -6,19 +6,14 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/02/27 13:34:30 by jleblond         ###   ########.fr       */
+/*   Updated: 2020/03/01 12:57:39 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 
-# include "libft.h"
-# include "op.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
+# include "../includes.h"
 
 # define OPCODE_SIZE 1
 # define OCP_SIZE 1

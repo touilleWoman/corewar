@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 16:47:27 by chcoutur         ###   ########.fr       */
+/*   Updated: 2020/03/01 12:59:47 by nabih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include <stdlib.h>
 
 # include "op.h"
-# include "../libft/libft.h"
-# include "../libft/get_next_line.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line.h"
+# include "../libft/includes/ft_printf.h"
+# include "../libft/includes/pf_unit.h"
 
 #endif
