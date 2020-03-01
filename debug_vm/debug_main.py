@@ -8,7 +8,11 @@ from prompt_toolkit.layout.layout import Layout
 from prompt_toolkit.buffer import Buffer
 from prompt_toolkit.layout.containers import VSplit, Window
 from prompt_toolkit.layout.controls import BufferControl, FormattedTextControl
-from debug_vm import Vm
+
+
+from prompt_toolkit.interface import CommandLineInterface
+from prompt_toolkit.application import Application
+from prompt_toolkit.shortcuts import create_eventloop
 
 # class VM:
 #     def __init__(self):
@@ -29,32 +33,34 @@ from debug_vm import Vm
 #         }
 
 
-def run(vm):
+def run():
+
     buffer1 = Buffer()
     kb = KeyBindings()
+
     @kb.add("q")
     def exit_(event):
         event.app.exit()
 
-    root_container = VSplit([
-        # One window that holds the BufferControl with the default buffer on
-        # the left.
-        Window(content=BufferControl(buffer=buffer1)),
-
-        # A vertical line in the middle. We explicitly specify the width, to
-        # make sure that the layout engine will not try to divide the whole
-        # width by three for all these windows. The window will simply fill its
-        # content by repeating this character.
-        Window(width=1, char='|'),
-
-        # Display the text 'Hello world' on the right.
-        Window(content=FormattedTextControl(text='Hello world')),
-    ])
+    root_container = VSplit(
+        [
+            # One window that holds the BufferControl with the default buffer on
+            # the left.
+            Window(content=BufferControl(buffer=buffer1)),
+            # A vertical line in the middle. We explicitly specify the width, to
+            # make sure that the layout engine will not try to divide the whole
+            # width by three for all these windows. The window will simply fill its
+            # content by repeating this character.
+            Window(width=1, char="|"),
+            # Display the text 'Hello world' on the right.
+            Window(content=FormattedTextControl(text="hello")),
+        ]
+    )
 
     layout = Layout(root_container)
     app = Application(layout=layout, full_screen=True, key_bindings=kb)
     app.run()
-    # vm.run_vm()
+    vm.run_vm()
     # key_pressed = set()
     # speed = 1
 
@@ -95,16 +101,16 @@ def run(vm):
 
 
 def main():
-    vm = Vm()
+    # vm = Vm()
 
     with patch_stdout():
         while True:
             cmd = prompt(">>> ")
             if cmd == "n":
                 print("Reset vm state")
-                vm = VM()
+                # vm = VM()
             elif cmd == "r":
-                run(vm)
+                run()
             elif cmd == "q":
                 print("bye ;)")
                 return

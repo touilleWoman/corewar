@@ -4,7 +4,7 @@ import ctypes
 from pathlib import Path
 from colorama import Fore
 
-from . import c_struct
+import c_struct
 
 
 def get_vm_lib():
@@ -13,7 +13,7 @@ def get_vm_lib():
     vm_dir = base_dir / "vm_dir"
     output = subprocess.run(["make", "dylib", "-C", vm_dir])
 
-    # open dylib to get all the C functions
+    # open dylib to get all the C functions for vm
     lib_path = vm_dir / "vm_lib.dylib"
     vm_lib = ctypes.CDLL(str(lib_path))
     return vm_lib
@@ -55,6 +55,18 @@ class VM:
     def __init__(self):
         self.c_vm = c_struct.VM()
         self.p_c_vm = ctypes.pointer(self.c_vm)
+        LP_c_char = ctypes.POINTER(ctypes.c_char)
+        LP_LP_c_char = ctypes.POINTER(LP_c_char)
+        vm_lib.init_vm(self.p_c_vm)
+        argc = len(sys.argv)
+        argv = (LP_c_char * (argc + 1))()
+        for i, arg in enumerate(sys.argv):
+            enc_arg = arg.encode("utf-8")
+            argv[i] = ctypes.create_string_buffer(enc_arg)
+        if vm_lib.parse(self.p_c_vm, argc, argv) and vm_lib.init_cursor_lst(
+            self.p_c_vm
+        ):
+            vm_lib.player_to_arena(self.p_c_vm)
 
     def loop(self, stop=0):
         while self.c_vm.cursor_nb:
@@ -72,29 +84,16 @@ class VM:
             vm_lib.check(self.p_c_vm)
         vm_lib.declare_winner(self.p_c_vm)
 
-    def run_vm(self):
-        if len(sys.argv) < 2:
-            vm_lib.usage()
-        else:
-            LP_c_char = ctypes.POINTER(ctypes.c_char)
-            LP_LP_c_char = ctypes.POINTER(LP_c_char)
-            vm_lib.init_vm(self.p_c_vm)
-            argc = len(sys.argv)
-            argv = (LP_c_char * (argc + 1))()
-            for i, arg in enumerate(sys.argv):
-                enc_arg = arg.encode("utf-8")
-                argv[i] = ctypes.create_string_buffer(enc_arg)
-            if vm_lib.parse(
-                self.p_c_vm, argc, argv
-            ) and vm_lib.init_cursor_lst(self.p_c_vm):
-                vm_lib.player_to_arena(self.p_c_vm)
-                self.loop()
-            vm_lib.free_vm(self.p_c_vm)
+    def __del__(self):
+        vm_lib.free_vm(self.p_c_vm)
 
 
 def main():
-    vm = Vm()
-    vm.run_vm()
+    if len(sys.argv) < 2:
+        vm_lib.usage()
+        exit()
+    vm = VM()
+    vm.loop()
 
 
 if __name__ == "__main__":

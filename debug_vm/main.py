@@ -28,28 +28,29 @@ class Corewar:
             "count": self.count,
         }
 
+
 def run_corewar(corewar):
     kb = KeyBindings()
     key_pressed = set()
     speed = 1
 
-    @kb.add('x')
+    @kb.add("x")
     def _(event):
-        key_pressed.add('x')
+        key_pressed.add("x")
 
-    @kb.add('p')
+    @kb.add("p")
     def _(event):
-        key_pressed.add('p')
+        key_pressed.add("p")
 
     bottom_toolbar = HTML(
-        ' <b>[x]</b> Stop <b>[left]</b> Slower <b>[right]</b> Faster.'
+        " <b>[x]</b> Stop <b>[left]</b> Slower <b>[right]</b> Faster."
     )
 
     def runner_generator():
         while True:
             corewar.step(steps=speed)
             x = corewar.dump_memory()
-            x = x['count']
+            x = x["count"]
             yield x
 
     # TODO: should use a `prompt_toolkit.Application` instead to
@@ -57,13 +58,13 @@ def run_corewar(corewar):
     with ProgressBar(key_bindings=kb, bottom_toolbar=bottom_toolbar) as pb:
         for memory in pb(runner_generator()):
             # TODO: display memory
-            if 'x' in key_pressed:
+            if "x" in key_pressed:
                 break
-            if 'left' in key_pressed:
+            if "left" in key_pressed:
                 speed /= 10
                 speed = 1 if speed < 0 else speed
                 break
-            if 'right' in key_pressed:
+            if "right" in key_pressed:
                 speed *= 10
                 speed = 1000 if speed > 1000 else speed
                 break
@@ -76,22 +77,18 @@ def main():
 
     with patch_stdout():
         while True:
-            cmd = prompt('>>> ')
-            if cmd == 'n':
-                print('Reset vm state')
+            cmd = prompt(">>> ")
+            if cmd == "n":
+                print("Reset vm state")
                 corewar = corewar()
-            elif cmd == 'r':
+            elif cmd == "r":
                 run_corewar(corewar)
             elif cmd == "q":
-                print('bye ;)')
+                print("bye ;)")
                 return
             else:
-                print("usage:\n"
-                    "\tn: reset vm\n"
-                    "\tr: run vm\n"
-                    "\tq: quit\n"
-                )
+                print("usage:\n" "\tn: reset vm\n" "\tr: run vm\n" "\tq: quit\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

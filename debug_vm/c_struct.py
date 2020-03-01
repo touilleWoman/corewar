@@ -67,4 +67,3 @@ class VM(Structure):
         ("winner", c_int),
         ("flags", c_char),
     ]
-
