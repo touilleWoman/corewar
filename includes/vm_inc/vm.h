@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/03/01 12:57:39 by nabih            ###   ########.fr       */
+/*   Updated: 2020/03/02 10:27:04 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "../includes.h"
 
-# define OPCODE_SIZE 1
-# define OCP_SIZE 1
+# define OPCODE_SIZE	1
+# define OCP_SIZE		1
 
 /*
 ** # define D_FLAG 1 << 0

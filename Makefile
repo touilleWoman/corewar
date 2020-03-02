@@ -18,6 +18,8 @@ NAME_VM			=	corewar
 
 NAME_ASM		=	asm
 
+NAME_DYLIB		=	vm_lib.dylib
+
 CC				=	gcc
 
 CFLAG 			=	-Wall -Wextra -Werror
@@ -109,6 +111,11 @@ $(OBJ_ASM_PATH)/%.o	:	%.c $(DEP_ALL) $(DEP_ASM)
 					@$(CC) $(CFLAG) -o $@ -c $< $(INCLUDES) $(INCLUDE_ASM)
 					@echo "${rose}DONE${neutre}"
 
+dylib				: libs $(OBJ_VM_CORE) $(DEP_ALL) $(DEP_VM)
+					@echo "${vertfonce}Creating dylib ...\c${neutre}"
+					@$(CC) $(CFLAG) -dynamiclib $(OBJ_VM_CORE) $(LFLAG) $(IFLAG) -o $(NAME_DYLIB)
+					@echo "${rose}DONE${neutre}"
+
 clean			:
 					@echo "${rose}Cleaning the project ...${neutre}\c"
 					@make clean -C libft/
@@ -121,6 +128,7 @@ fclean			:	clean
 					@make fclean -C libft
 					@rm -rf $(NAME_VM)
 					@rm -rf $(NAME_ASM)
+					@rm -rf $(NAME_DYLIB)
 					@echo "${vertfonce}DONE${neutre}"
 
 libs			:

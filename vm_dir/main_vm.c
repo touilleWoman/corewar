@@ -60,6 +60,11 @@ int				main(int argc, char const **argv)
 		usage();
 		return (0);
 	}
+	if (MEM_SIZE > 1000000 || CHAMP_MAX_SIZE != MEM_SIZE / 6)
+	{
+		ft_putstr_fd("Wrong header\n", 2);
+		return (0);
+	}
 	init_vm(&vm);
 	if (parse(&vm, argc, argv) && init_cursor_lst(&vm))
 	{
