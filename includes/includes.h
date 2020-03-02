@@ -6,12 +6,14 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:12:56 by nabih             #+#    #+#             */
-/*   Updated: 2020/03/01 12:59:47 by nabih            ###   ########.fr       */
+/*   Updated: 2020/03/02 09:32:51 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		INCLUDES_H
 # define	INCLUDES_H
+
+# include <stdio.h>
 
 # include <fcntl.h>
 # include <sys/types.h>
