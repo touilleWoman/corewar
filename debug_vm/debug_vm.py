@@ -29,8 +29,7 @@ def user_input(stop, p_c_struct, vm_lib):
     elif u_input.isdigit() and int(u_input) > stop:
         stop = int(u_input)
     elif u_input == "q":
-        vm_lib.free_vm(p_c_struct)
-        exit()
+        raise SystemExit()
     else:
         print("usage:\n" "\tn: next_cycle\n" "\tnb : go to cycle ...\n" "\tq: quit\n")
         user_input(stop, p_c_struct, vm_lib)
@@ -91,7 +90,7 @@ class VM:
 def main():
     if len(sys.argv) < 2:
         vm_lib.usage()
-        exit()
+        raise SystemExit()
     vm = VM()
     vm.loop()
 
