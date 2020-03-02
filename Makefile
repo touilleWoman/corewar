@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2020/03/01 13:32:38 by nabih            ###   ########.fr        #
+#    Updated: 2020/03/02 09:10:29 by naali            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -28,6 +28,14 @@ INCLUDES		=	-I./includes			\
 INCLUDE_VM		=	-I./includes/vm_inc
 
 INCLUDE_ASM		=	-I./includes/asm_inc
+
+DEP_ALL			=	includes.h	\
+					op.h		\
+					./libft/libft.a
+
+DEP_VM			=	vm.h
+
+DEP_ASM			=	asm.h
 
 SRCS_VM			=	main_vm.c				parse.c			\
 					free.c					parse_file.c	\
@@ -80,22 +88,22 @@ vpath %.h ./includes/:./includes/vm_inc:./includes/asm_inc:./libft/
 all					:	libs vm_c asm_c
 
 $(NAME_VM)			:	$(OBJ_VM_CORE)
-					@echo "${vertfonce}Compiling ...${neutre}\c"
+					@echo "${vertfonce}Compiling VM...${neutre}\c"
 					@$(CC) $(CFLAG) -o $(NAME_VM) $(OBJ_VM_CORE) $(LFLAG) $(INCLUDES) $(INCLUDE_VM)
 					@echo "${rose}DONE${neutre}"
 
 $(NAME_ASM)			:	$(OBJ_ASM_CORE)
-					@echo "${vertfonce}Compiling ...${neutre}\c"
+					@echo "${vertfonce}Compiling ASM...${neutre}\c"
 					@$(CC) $(CFLAG) -o $(NAME_ASM) $(OBJ_ASM_CORE) $(LFLAG) $(INCLUDES) $(INCLUDE_ASM)
 					@echo "${rose}DONE${neutre}"
 
-$(OBJ_VM_PATH)/%.o	:	%.c
+$(OBJ_VM_PATH)/%.o	:	%.c $(DEP_ALL) $(DEP_VM)
 					@mkdir $(OBJ_VM_PATH) 2> /dev/null || true
 					@echo "${vertfonce}Creating $@ ...\c${neutre}"
 					@$(CC) $(CFLAG) -o $@ -c $< $(INCLUDES) $(INCLUDE_VM)
 					@echo "${rose}DONE${neutre}"
 
-$(OBJ_ASM_PATH)/%.o	:	%.c
+$(OBJ_ASM_PATH)/%.o	:	%.c $(DEP_ALL) $(DEP_ASM)
 					@mkdir $(OBJ_ASM_PATH) 2> /dev/null || true
 					@echo "${vertfonce}Creating $@ ...\c${neutre}"
 					@$(CC) $(CFLAG) -o $@ -c $< $(INCLUDES) $(INCLUDE_ASM)
@@ -116,8 +124,9 @@ fclean			:	clean
 					@echo "${vertfonce}DONE${neutre}"
 
 libs			:
-					@echo "Libft"
+					@echo "${vertfonce}Libft ...${neutre}\c"
 					@make -C libft/
+					@echo "${rose}DONE${neutre}"
 
 vm_c			:	libs $(NAME_VM)
 
