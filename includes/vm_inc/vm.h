@@ -6,7 +6,7 @@
 /*   By: jleblond <jleblond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 16:44:34 by jleblond          #+#    #+#             */
-/*   Updated: 2020/03/01 12:57:39 by nabih            ###   ########.fr       */
+/*   Updated: 2020/03/02 10:27:04 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 # include "../includes.h"
 
-# define OPCODE_SIZE 1
-# define OCP_SIZE 1
+# define OPCODE_SIZE	1
+# define OCP_SIZE		1
 
-# define D_FLAG 1 << 0
-# define N_FLAG 1 << 1
-# define V_FLAG 1 << 2
-# define P_FLAG 1 << 3
+# define D_FLAG			1 << 0
+# define N_FLAG			1 << 1
+# define V_FLAG			1 << 2
+# define P_FLAG			1 << 3
 
 
-typedef struct 	s_id_tab
+typedef struct		s_id_tab
 {
 	const char		*argv;
 	uint8_t			id;
-}				t_id_tab;
+}					t_id_tab;
 
 typedef enum 		s_type
 {
@@ -62,7 +62,6 @@ typedef struct 		s_params
 	uint8_t			p1_len;
 	uint8_t			p2_len;
 	uint8_t			p3_len;
-	// t_type			p4_type;
 	int16_t			newpc;
 }					t_params;
 
