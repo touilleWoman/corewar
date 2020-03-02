@@ -6,7 +6,7 @@
 /*   By: nabih <naali@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 06:55:52 by nabih             #+#    #+#             */
-/*   Updated: 2020/02/29 14:48:40 by naali            ###   ########.fr       */
+/*   Updated: 2020/03/02 09:19:31 by naali            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int8_t				set_register(t_champ *champ, char *arg, int size, int pos)
 			&& pos < champ->nb_arg - 1) || arg[i - 1] == 'r')
 		return (ASM_ERROR);
 	(champ->type)[pos] = T_REG;
-	(champ->val)[pos] = ft_atoi(arg + 1);
+	(champ->val)[pos] = ft_atoi_long(arg + 1);
 	arg[size] = c;
 	return (ASM_SUCCESS);
 }
@@ -62,7 +62,7 @@ int8_t				set_direct(t_champ *champ, char *arg, int size, int pos)
 			&& pos < champ->nb_arg - 1) || arg[i - 1] == '%')
 		return (ASM_ERROR);
 	(champ->type)[pos] = T_DIR;
-	(champ->val)[pos] = ft_atoi(arg + 1);
+	(champ->val)[pos] = ft_atoi_long(arg + 1);
 	arg[size] = c;
 	return (ASM_SUCCESS);
 }
@@ -90,7 +90,7 @@ int8_t				set_indirect(t_champ *champ, char *arg, int size, int pos)
 			|| arg[i - 1] == ' ' || arg[i - 1] == ',')
 		return (ASM_ERROR);
 	(champ->type)[pos] = T_IND;
-	(champ->val)[pos] = ft_atoi(arg);
+	(champ->val)[pos] = ft_atoi_long(arg);
 	arg[size] = c;
 	return (ASM_SUCCESS);
 }

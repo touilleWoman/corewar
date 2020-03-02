@@ -6,7 +6,7 @@
 #    By: jleblond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/21 20:32:08 by jleblond          #+#    #+#              #
-#    Updated: 2020/03/01 13:21:27 by nabih            ###   ########.fr        #
+#    Updated: 2020/03/02 09:17:18 by naali            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRCS_NAME	=	ft_aatoii.c		ft_putchar.c	ft_strsplit.c\
 				ft_memmove.c	ft_strnew.c		pf_type_f_tool.c\
 				ft_memset.c		ft_strnstr.c	pf_unit_list.c\
 				ft_printf.c		ft_strrchr.c	ft_color_val_calculate.c\
-				ft_lstadd.c		get_next_line_eof.c
+				ft_lstadd.c		get_next_line_eof.c\
+				ft_atoi_long.c
 
 SRCS_PATH	=	./srcs
 

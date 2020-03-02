@@ -6,7 +6,7 @@
 #    By: naali <naali@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/17 16:13:53 by naali             #+#    #+#              #
-#    Updated: 2020/03/02 09:10:29 by naali            ###   ########.fr        #
+#    Updated: 2020/03/02 09:20:56 by naali            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,7 +31,7 @@ INCLUDE_ASM		=	-I./includes/asm_inc
 
 DEP_ALL			=	includes.h	\
 					op.h		\
-					./libft/libft.a
+					libft/libft.a
 
 DEP_VM			=	vm.h
 
@@ -88,14 +88,14 @@ vpath %.h ./includes/:./includes/vm_inc:./includes/asm_inc:./libft/
 all					:	libs vm_c asm_c
 
 $(NAME_VM)			:	$(OBJ_VM_CORE)
-					@echo "${vertfonce}Compiling VM...${neutre}\c"
+					@echo "${rose}Compiling VM...${neutre}\c"
 					@$(CC) $(CFLAG) -o $(NAME_VM) $(OBJ_VM_CORE) $(LFLAG) $(INCLUDES) $(INCLUDE_VM)
-					@echo "${rose}DONE${neutre}"
+					@echo "${vertfonce}DONE${neutre}"
 
 $(NAME_ASM)			:	$(OBJ_ASM_CORE)
-					@echo "${vertfonce}Compiling ASM...${neutre}\c"
+					@echo "${rose}Compiling ASM...${neutre}\c"
 					@$(CC) $(CFLAG) -o $(NAME_ASM) $(OBJ_ASM_CORE) $(LFLAG) $(INCLUDES) $(INCLUDE_ASM)
-					@echo "${rose}DONE${neutre}"
+					@echo "${vertfonce}DONE${neutre}"
 
 $(OBJ_VM_PATH)/%.o	:	%.c $(DEP_ALL) $(DEP_VM)
 					@mkdir $(OBJ_VM_PATH) 2> /dev/null || true
@@ -124,9 +124,9 @@ fclean			:	clean
 					@echo "${vertfonce}DONE${neutre}"
 
 libs			:
-					@echo "${vertfonce}Libft ...${neutre}\c"
+					@echo "${rose}Libft ...${neutre}\c"
 					@make -C libft/
-					@echo "${rose}DONE${neutre}"
+					@echo "${vertfonce}DONE${neutre}"
 
 vm_c			:	libs $(NAME_VM)
 
