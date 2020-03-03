@@ -46,8 +46,8 @@ void		op_live(t_vm *vm, t_cursor *c)
 	{
 		vm->players[player_index].live_counter++;
 		vm->winner = player_id;
-		ft_printf("Player %d (%s) is alive\n", -player_id,
-				get_player_name(vm, player_id));
+		// ft_printf("Player %d (%s) is alive\n", -player_id,
+		// 		get_player_name(vm, player_id));
 	}
 	c->no_live_cycle = 0;
 	c->live_counter++;

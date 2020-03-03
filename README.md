@@ -1,12 +1,20 @@
 
 # Corewar
 
-Assembleur:
-- C'est un programme qui analyse un code source en langage Assembleur et le transforme en code binaire
+> Core War is a 1984 programming game created by D. G. Jones and A. K. Dewdney in which two or more battle programs (called "warriors")
+> compete for control of a virtual computer. These battle programs are written in an abstract assembly language called Redcode.
 
-Machine Virtuel:
-- Prend un champion, precedemment traduit de l'assembleur au binaire.
-- charge ce code binaire et en fonction des instructions qui y sont écrits effectue des opérations.
+
+The project is consist of 2 parts:
+
+Assembler
+- compile champions and translate them from the language written them in (assembly language) into “Bytecode”.
+Bytecode is a machine code, which will be directly interpreted by the virtual machine.
+
+Virtual machine:
+- It’s the “arena” where the champions fight against each other. This VM accept maximum 4 champions.
+
+This is a team project of school 42, I am in charge of the Virtual machine.
 
 
 **Usage**
@@ -18,7 +26,7 @@ make
 ```
 ```
 ./corewar file1.cor file2.cor ..
-	(flags optional)
+	(flags are optional)
     -dump <nb> : dump memory in hexadecimal after <nb> cycles then quit
     -n : set id of next player. Player_id must > 0 and <= player_nb
     -v : show operations and cycle
@@ -26,7 +34,6 @@ make
 ```
 
 debug vm :
-
 ```
 python3 debug_vm/debug_vm.py file1.cor file2.cor .. (flags the same as corewar)
 ```
