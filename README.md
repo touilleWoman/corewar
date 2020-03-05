@@ -28,6 +28,7 @@ compile the champions, convert *.s to *.cor
 ./asm champs/*.s
 ```
 
+
 execute corewar with champions
 ```
 ./corewar file1.cor file2.cor ... (maximum 4 champions)
@@ -39,17 +40,18 @@ execute corewar with champions
     -p : show movement of cursor
 ```
 
-test VM in python, compare my VM and the VM of Zaz (given by school)
-Using Python hypothesis to take ramdom numbers of champions and execute them in the two vm, dump memory at random cycle, then compare the results. My VM has the same behavior with VM of Zaz, except when ocp code is wrong.
+test VM in python, compare my VM and the VM of Zaz (given by school) to see the difference.
+Using Python hypothesis to take ramdom numbers of champions and execute them in the two vm, dump memory at random cycle, then compare the results. My VM has the same behavior with VM of Zaz, except when ocp code is wrong. Therefore, it is okay that this test fails.
 ```
 python3 -m venv venv
-pip install tests/requirements
+source venv/bin/activate
+pip install -r  tests/requirements.txt
 pytest tests
 ```
 
 
-Debugger VM: stop at wanted cycle, and show information of vm.
-I compile the my c functions to dylib, then use ctypes to connect Python and C.
+Debugger VM: stop at wanted cycle, and show information of VM.
+I compile my c functions to dylib, then use ctypes to connect Python and C.
 ```
 python3 debug_vm/debug_vm.py file1.cor file2.cor .. (the flags the same as corewar)
 ```
