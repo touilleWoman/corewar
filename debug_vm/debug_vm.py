@@ -11,11 +11,10 @@ import c_struct
 def get_vm_lib():
     # make dylib
     base_dir = Path(__file__).parent.parent.absolute()
-    vm_dir = base_dir / "vm_dir"
-    output = subprocess.run(["make", "dylib", "-C", vm_dir])
+    output = subprocess.run(["make", "dylib", base_dir])
 
     # open dylib to get all the C functions for vm
-    lib_path = vm_dir / "vm_lib.dylib"
+    lib_path = "vm_lib.dylib"
     vm_lib = ctypes.CDLL(str(lib_path))
     return vm_lib
 
